@@ -31,6 +31,21 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('social_number', 'الرقم القومي') !!}
+        {!! Form::text('social_number', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('mobile_number', ' الموبايل') !!}
+        {!! Form::text('mobile_number', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('phone_number', 'التليفون') !!}
+        {!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
     </div>
 
 
