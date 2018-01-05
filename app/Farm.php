@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    protected $table = 'farms';
+    protected $table = 'fishfarm';
 
 }
