@@ -2,7 +2,9 @@
     {!! Form::open(['route' => 'farms.store']) !!}
 
     <div class="form-group">
-        {!! Form::label('Clients', 'من يقوم بشراء الانتاج منك ؟ (*)') !!}
+        <div>
+            {!! Form::label('Clients', 'من يقوم بشراء الانتاج منك ؟ (*)') !!}
+        </div>
         {!! Form::checkbox('Factory', 1). 'مصانع' !!}
         {!! Form::checkbox('Supplier', 1). 'مصدرين' !!}
         {!! Form::checkbox('Trader', 1). 'تجار تجزئة' !!}
@@ -20,7 +22,7 @@
     </div>
 
 
-    {!! Form::submit('Submit', ['class' => 'btn btn-info']) !!}
+    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
 
     {!! Form::close() !!}
 
