@@ -18,12 +18,12 @@
 @include('farms.forms.farms')
 
 بيانات الانتاج
-@include('farms.forms.production')
+@include('farms.forms.hscode')
 
 بيانات مستلزمات الانتاج
-@include('farms.forms.facilities')
+@include('farms.forms.sources')
 
 العملاء
-@include('farms.forms.customers')
+@include('farms.forms.clients')
 
 @stop
