@@ -9,7 +9,7 @@
 				<h2 class="section-title">قــائمة مــزارع الاســماك</h2>
 			</div>
 			<div class="col-md-6">
-				<a href="farms/create" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+				<a href="{{ route('farms.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
 			</div>
 		</div>
 		<table class="table table-striped">
@@ -27,38 +27,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1031</td>
-					<td>وليد عباس</td>
-					<td>01022365294</td>
-					<td>نعمة العربى</td>
-					<td>12/2/2017</td>
-					<td>نعمة العربى</td>
-					<td>12/2/2017</td>
-					<td>
-						<button class="btn btn-sm btn-primary">تعديل</button>
-					</td>
-					<td>
-						<button class="btn btn-sm btn-danger">حذف</button>
-					</td>
-				</tr>
-				<tr>
-					<td>1031</td>
-					<td>وليد عباس</td>
-					<td>01022365294</td>
-					<td>نعمة العربى</td>
-					<td>12/2/2017</td>
-					<td>نعمة العربى</td>
-					<td>12/2/2017</td>
-					<td>
-						<button class="btn btn-sm btn-primary">تعديل</button>
-					</td>
-					<td>
-						<button class="btn btn-sm btn-danger">حذف</button>
-					</td>
-				</tr>
+				@foreach($farmers as $farmer)
+					<tr>
+						<td>{{ $farmer->FishFarmer_ID }}</td>
+						<td>{{ $farmer->FishFarmerName }}</td>
+						<td>{{ $farmer->Mob }}</td>
+						<td>{{ $farmer->entryUser ? $farmer->entryUser->FullName : '-' }}</td>
+						<td>{{ $farmer->created_at }}</td>
+						<td>{{ $farmer->updateUser ? $farmer->updateUser->FullName : '-' }}</td>
+						<td>{{ $farmer->updated_at }}</td>
+						<td>
+							<a href="{{ route('farms.update', $farmer) }}" class="btn btn-sm btn-primary">تعديل</a>
+						</td>
+						<td>
+							<a href="{{ route('farms.destroy', $farmer) }}" class="btn btn-sm btn-danger">حذف</a>
+						</td>
+					</tr>
+				@endforeach
 			</tbody>
 		</table>
+		{{ $farmers->links() }}
 	</div>
 </section>
 

@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Farm;
 use App\Models\Farmer;
-use App\Models\Governorate;
-use App\Models\Locality;
-use App\Models\Village;
 use Illuminate\Http\Request;
 
-class FarmsController extends Controller
+class FarmersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class FarmsController extends Controller
      */
     public function index()
     {
-        $farmers = Farmer::paginate(10);
-        return view('farms.index', compact('farmers'));
+        //
     }
 
     /**
@@ -29,10 +24,7 @@ class FarmsController extends Controller
      */
     public function create()
     {
-        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
-        return view('farms.create', compact('governorates', 'locals', 'villages'));
+        //
     }
 
     /**
@@ -43,15 +35,13 @@ class FarmsController extends Controller
     private function rules()
     {
         return [
-            'Governorate_ID' => 'required|numeric',
-            'Locality_ID' => 'required|numeric',
-            'Village_ID' => 'required|numeric',
-            'Address' => 'sometimes',
-            'OwnerType' => 'sometimes',
-            'OwnerID' => 'sometimes',
-            'FarmSize' => 'sometimes',
-            'EmpA' => 'sometimes',
-            'EmpB' => 'sometimes',
+            'FishFarmer_ID' => 'sometimes',
+            'FishFarmerName' => 'required|string',
+            'Email' => 'required|string|email',
+            'NationalNo' => 'required|numeric',
+            'Mob' => 'required|numeric',
+            'Phone' => 'sometimes',
+            'Memer' => 'sometimes|nullable',
         ];
     }
 
@@ -64,10 +54,11 @@ class FarmsController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'FishFarmer_ID' => auth()->id(),
+            'EntryUser' => auth()->id(),
+            'UpdateUser' => auth()->id(),
         ];
         $data += $request->validate($this->rules());
-        Farm::create($data);
+        Farmer::create($data);
 
         return back();
     }
@@ -75,21 +66,21 @@ class FarmsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Farm  $farm
+     * @param  Farmer  $farmer
      * @return \Illuminate\Http\Response
      */
-    public function show(Farm $farm)
+    public function show(Farmer $farmer)
     {
-        return view('farms.show', compact('farm'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Farm  $farm
+     * @param  Farmer  $farmer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Farm $farm)
+    public function edit(Farmer $farmer)
     {
         //
     }
@@ -98,10 +89,10 @@ class FarmsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Farm  $farm
+     * @param  Farmer  $farmer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Farm $farm)
+    public function update(Request $request, Farmer $farmer)
     {
         //
     }
@@ -109,10 +100,10 @@ class FarmsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Farm  $farm
+     * @param  Farmer  $farmer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Farm $farm)
+    public function destroy(Farmer $farmer)
     {
         //
     }

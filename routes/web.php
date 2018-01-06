@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('farms', 'FarmsController');
-Route::resource('farmers', 'FarmsController');
+Route::resource('farmers', 'FarmersController');
