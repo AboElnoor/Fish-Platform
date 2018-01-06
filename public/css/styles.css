@@ -100,3 +100,34 @@ Login page
 	border-radius: 8px;
 	box-shadow: 0px 1px 46px 0px rgba(189, 190, 190, 0.3);
 }
+
+
+/*********************
+Home page - logged in 
+*********************/
+.home .box-anchor {
+	color: #1c75bc;
+	display: block;
+	cursor: pointer;
+}
+.home .box-anchor:hover {
+	text-decoration: none;
+}
+.home .box {
+	background-color: #fff;
+	border-radius: 8px;
+	text-align: center;
+	margin-bottom: 25px;
+	box-shadow: 0px 1px 46px 0px rgba(189, 190, 190, 0.3);
+	transition: all 0.3s ease;
+}
+.home .box:hover, .home .box:focus {
+	box-shadow: 0px 1px 60px 0px rgba(189, 190, 190, 0.62);
+}
+.home .box .box-icon {
+	padding: 15px;
+	border-bottom: 1px solid #cccccc70;
+}
+.home .box .box-title {
+	padding: 15px;
+}
