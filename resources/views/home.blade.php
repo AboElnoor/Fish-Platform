@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="#" class="box-anchor">
+                <a href="{{ route('companies.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-cogs fa-2x" aria-hidden="true"></i>
