@@ -22,7 +22,17 @@
     </div>
 
 
-    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+    <div class="row">
+        <div class="col-md-4">
+            {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+        </div>
+        <div class="col-md-4">
+            {!! Form::submit('حفظ والتالى', ['class' => 'btn btn-default']) !!}
+        </div>
+        <div class="col-md-4">
+            {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+        </div>
+    </div>
 
     {!! Form::close() !!}
 

@@ -4,7 +4,7 @@
 <section class="home">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
@@ -16,7 +16,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ route('farms.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
@@ -28,19 +28,43 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ route('companies.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-cogs fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="box-title">
-                            <h4>مستلزمات الانتاج والمصانع والتجار</h4>
+                            <h4>مستلزمات الانتاج </h4>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <a href="#" class="box-anchor">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa fa-building fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="box-title">
+                            <h4>المصانع</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="box-anchor">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa fa-user-secret fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="box-title">
+                            <h4>التجار</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
@@ -52,7 +76,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
@@ -64,7 +88,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
