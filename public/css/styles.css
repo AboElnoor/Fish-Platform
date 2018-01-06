@@ -17,6 +17,17 @@
     transition: all 0.3s ease-in-out;
 }
 
+/********
+Overrides
+********/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+	background-color: #1c75bc;
+    border-color: #1c75bc;
+}
+.pagination>li>a, .pagination>li>span {
+	color: #1c75bc;
+}
+
 .navbar {
 	height: 70px;
 }

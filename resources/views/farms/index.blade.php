@@ -46,7 +46,9 @@
 				@endforeach
 			</tbody>
 		</table>
-		{{ $farmers->links() }}
+		<div class="text-center">
+			{{ $farmers->links() }}
+		</div>
 	</div>
 </section>
 
