@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+* {
+	font-family: 'Cairo', sans-serif;
+}
+.section-title {
+	margin-bottom: 25px;
+	display: inline-block;
+}
+.section-title:after {
+	osition: relative;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 30%;
+    margin: 6px 0;
+    background: #1c75bc;
+    transition: all 0.3s ease-in-out;
+}
+
 .navbar {
 	height: 70px;
 }
@@ -60,4 +79,14 @@ section.form .tab-content .form-control {
 }
 section.form .btn {
 	width: 100%;
+}
+
+
+table {
+    box-shadow: 0px 1px 46px 0px rgba(189, 190, 190, 0.3);
+    background-color: #fff;
+    border-radius: 8px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	padding: 18px;
 }

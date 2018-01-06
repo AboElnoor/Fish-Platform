@@ -4,6 +4,7 @@
 
 <section class="form">
 	<div class="container">
+		<h2 class="section-title">مزرعــــة جديــدة</h2>
 		@if ($errors->any())
 		    <div class="alert alert-danger">
 		        <ul>
