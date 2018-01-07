@@ -45,7 +45,8 @@ class Farmer extends Model
 
     public function hSCodes()
     {
-        return $this->belongsToMany(HSCode::class, 'fishfarmer_hscode', 'FishFarmer_ID', 'HSCode_ID');
+        return $this->belongsToMany(HSCode::class, 'fishfarmer_hscode', 'FishFarmer_ID', 'HSCode_ID')
+            ->withPivot('FishFarmer_HSCode_ID', 'cropMonth', 'Area', 'PoolCount', 'PoolAvrg', 'Notes');
     }
 
     public function sources()

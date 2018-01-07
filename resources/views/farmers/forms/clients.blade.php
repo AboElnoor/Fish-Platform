@@ -1,5 +1,5 @@
 <div>
-    {!! Form::open(['route' => ['farmers.addClient', session('farmer')]]) !!}
+    {!! Form::open(['route' => ['farmers.addClient', $farmer ?? session('farmer')]]) !!}
 
     <div class="form-group">
         <div>

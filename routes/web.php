@@ -11,14 +11,12 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('farms', 'FarmsController');
+    Route::resource('hSCodes', 'hScodesController');
     Route::resource('farmers', 'FarmersController');
     Route::post('farmers/{farmer}/addFarm', 'FarmersController@addFarm')->name('farmers.addFarm');
     Route::post('farmers/{farmer}/addHSCode', 'FarmersController@addHSCode')->name('farmers.addHSCode');

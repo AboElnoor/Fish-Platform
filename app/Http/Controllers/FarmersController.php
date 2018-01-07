@@ -29,10 +29,10 @@ class FarmersController extends Controller
      */
     public function create()
     {
-        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID')->toArray();
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID')->toArray();
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID')->toArray();
-        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID')->toArray();
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
+        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
+        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
 
         return view('farmers.create', compact('governorates', 'locals', 'villages', 'hscodes'));
     }
@@ -138,7 +138,7 @@ class FarmersController extends Controller
     public function addHSCode(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->hSCodeRules());
-        $farmer->hSCodes()->attach($data['HSCode_ID'], array_except($data, 'HSCode_ID'));
+        $farmer->hSCodes()->sync([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')]);
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات الانتاج بنجاح';
@@ -172,7 +172,7 @@ class FarmersController extends Controller
     public function addSource(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->sourceRules());
-        $farmer->sources()->create($data);
+        $farmer->sources()->updateOrCreate([], $data);
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات مستلزمات الانتاج بنجاح';
@@ -210,11 +210,11 @@ class FarmersController extends Controller
     public function addClient(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->clientRules());
-        $farmer->clients()->create($data);
-        session(compact('farmer'));
+        $farmer->clients()->updateOrCreate([], $data);
+        session()->forget('farmer');
 
         $success = 'تم انشاء بيانات بيانات العملاء بنجاح';
-        return back()->with(compact('success'));
+        return redirect()->route('farmers.index')->with(compact('success'));
     }
 
     /**
@@ -236,10 +236,10 @@ class FarmersController extends Controller
      */
     public function edit(Farmer $farmer)
     {
-        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID')->toArray();
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID')->toArray();
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID')->toArray();
-        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID')->toArray();
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
+        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
+        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
 
         return view('farmers.create', compact('farmer', 'governorates', 'locals', 'villages', 'hscodes'));
     }
@@ -265,6 +265,7 @@ class FarmersController extends Controller
     public function destroy(Farmer $farmer)
     {
         $farmer->delete();
+        session()->flush();
         $success = 'تم حذف المزارع بنجاح';
         return back()->with(compact('success'));
     }

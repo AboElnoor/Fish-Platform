@@ -1,5 +1,5 @@
 <div class="row">
-    {!! Form::open(['route' => ['farmers.addSource', session('farmer')]]) !!}
+    {!! Form::open(['route' => ['farmers.addSource', $farmer ?? session('farmer')]]) !!}
 
     <div class="col-md-12">
         <h4><b>الزريـــعه</b></h4>
@@ -51,7 +51,7 @@
                 {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
             </div>
             <div class="col-md-4">
-                {!! Form::submit('حفظ والتالى', ['class' => 'btn btn-default']) !!}
+                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
             </div>
             <div class="col-md-4">
                 {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}

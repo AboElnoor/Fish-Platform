@@ -1,40 +1,19 @@
 <div class="row farms">
-    {!! Form::open(['route' => ['farmers.addFarm', session('farmer')]]) !!}
+    {!! Form::open(['route' => ['farmers.addFarm', $farmer ?? session('farmer')]]) !!}
 
     <div class="form-group">
         {!! Form::label('Governorate_ID', '(*)عنوان المزرعة - المحافظة') !!}
-        {!!
-            Form::select(
-                'Governorate_ID',
-                array_merge(['من فضلك اختار'], $governorates ?? []),
-                null,
-                ['class' => 'form-control']
-            )
-        !!}
+        {!! Form::select('Governorate_ID', $governorates->prepend('من فضلك اختار', 0), null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('Locality_ID', '(*)مركز') !!}
-        {!!
-            Form::select(
-                'Locality_ID',
-                array_merge(['من فضلك اختار'], $locals ?? []),
-                null,
-                ['class' => 'form-control']
-            )
-        !!}
+        {!! Form::select('Locality_ID', $locals->prepend('من فضلك اختار', 0), null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('Village_ID', 'قرية') !!}
-        {!!
-            Form::select(
-                'Village_ID',
-                array_merge(['من فضلك اختار'], $villages ?? []),
-                null,
-                ['class' => 'form-control']
-            )
-        !!}
+        {!! Form::select('Village_ID', $villages->prepend('من فضلك اختار', 0), null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="col-md-6">
@@ -92,7 +71,7 @@
                 {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
             </div>
             <div class="col-md-4">
-                {!! Form::submit('حفظ والتالى', ['class' => 'btn btn-default']) !!}
+                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
             </div>
             <div class="col-md-4">
                 {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
@@ -113,18 +92,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>7162</td>
-                    <td>القاهرة</td>
-                    <td>عابدين</td>
-                    <td>محمد فريد</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">تعديل</a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                    </td>
-                </tr>
+                @forelse($farmer->farms ?? session('farmer')->farms ?? [] as $farm)
+                    <tr>
+                        <td>{{ $farm->FishFarm_ID }}</td>
+                        <td>{{ $farm->governorate ? $farm->governorate->Governorate_Name_A : '-' }}</td>
+                        <td>{{ $farm->locality ? $farm->locality->Locality_Name_A : '-' }}</td>
+                        <td>{{ $farm->village ? $farm->village->Village_Name_A : '-' }}</td>
+                        <td>
+                            <a href="{{ route('farms.edit', $farm) }}" class="btn btn-sm btn-primary">تعديل</a>
+                        </td>
+                        <td>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['farms.destroy', $farm]]) !!}
+                                {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">لا توجد نتائج لعرضها</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
