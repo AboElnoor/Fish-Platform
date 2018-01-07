@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('farms', 'FarmsController');
-Route::resource('farmers', 'FarmersController');
-Route::resource('companies', 'CompaniesController');
+Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('farmers', 'FarmersController');
+    Route::post('farmers/{farmer}/addFarm', 'FarmersController@addFarm')->name('farmers.addFarm');
+    Route::post('farmers/{farmer}/addHSCode', 'FarmersController@addHSCode')->name('farmers.addHSCode');
+    Route::post('farmers/{farmer}/addSource', 'FarmersController@addSource')->name('farmers.addSource');
+    Route::post('farmers/{farmer}/addClient', 'FarmersController@addClient')->name('farmers.addClient');
+    Route::resource('companies', 'CompaniesController');
+});

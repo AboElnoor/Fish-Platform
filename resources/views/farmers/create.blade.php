@@ -5,15 +5,7 @@
 <section class="form">
 	<div class="container">
 		<h2 class="section-title">مزرعــــة جديــدة</h2>
-		@if ($errors->any())
-		    <div class="alert alert-danger">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
+		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#home">المزارعين</a></li>
@@ -26,23 +18,23 @@
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active">
 				<h3 class="tab-title">المزارعين</h3>
-				@include('farms.forms.farmers')
+				@include('farmers.forms.farmers')
 			</div>
 			<div id="menu1" class="tab-pane fade">
 				<h3 class="tab-title">المزارع</h3>
-				@include('farms.forms.farms')
+				@include('farmers.forms.farms')
 			</div>
 			<div id="menu2" class="tab-pane fade">
 				<h3 class="tab-title">بيانات الانتاج</h3>
-				@include('farms.forms.hscode')
+				@include('farmers.forms.hscode')
 			</div>
 			<div id="menu3" class="tab-pane fade">
 				<h3 class="tab-title">بيانات مستلزمات الانتاج</h3>
-				@include('farms.forms.sources')
+				@include('farmers.forms.sources')
 			</div>
 			<div id="menu4" class="tab-pane fade">
 				<h3 class="tab-title">العملاء</h3>
-				@include('farms.forms.clients')
+				@include('farmers.forms.clients')
 			</div>
 		</div>
 

@@ -1,5 +1,5 @@
 <div class="row">
-    {!! Form::open(['route' => 'farms.store']) !!}
+    {!! Form::open(['route' => ['farmers.addSource', session('farmer')]]) !!}
 
     <div class="col-md-12">
         <h4><b>الزريـــعه</b></h4>

@@ -1,9 +1,9 @@
 <div>
-    {!! Form::open(['route' => 'farms.store']) !!}
+    {!! Form::open(['route' => ['farmers.addClient', session('farmer')]]) !!}
 
     <div class="form-group">
         <div>
-            {!! Form::label('Clients', 'من يقوم بشراء الانتاج منك ؟ (*)') !!}
+            {!! Form::label('ClientTypes', 'من يقوم بشراء الانتاج منك ؟ (*)') !!}
         </div>
         {!! Form::checkbox('Factory', 1). 'مصانع' !!}
         {!! Form::checkbox('Supplier', 1). 'مصدرين' !!}

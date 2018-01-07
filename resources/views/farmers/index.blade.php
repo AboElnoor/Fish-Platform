@@ -9,9 +9,10 @@
 				<h2 class="section-title">قــائمة مــزارع الاســماك</h2>
 			</div>
 			<div class="col-md-6">
-				<a href="{{ route('farms.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+				<a href="{{ route('farmers.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
 			</div>
 		</div>
+		@include('layouts.alert')
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -37,10 +38,12 @@
 						<td>{{ $farmer->updateUser ? $farmer->updateUser->FullName : '-' }}</td>
 						<td>{{ $farmer->updated_at }}</td>
 						<td>
-							<a href="{{ route('farms.update', $farmer) }}" class="btn btn-sm btn-primary">تعديل</a>
+							<a href="{{ route('farmers.edit', $farmer) }}" class="btn btn-sm btn-primary">تعديل</a>
 						</td>
 						<td>
-							<a href="{{ route('farms.destroy', $farmer) }}" class="btn btn-sm btn-danger">حذف</a>
+							{!! Form::open(['method' => 'DELETE', 'route' => ['farmers.destroy', $farmer]]) !!}
+					            {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+							{!! Form::close() !!}
 						</td>
 					</tr>
 				@endforeach

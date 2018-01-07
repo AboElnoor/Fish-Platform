@@ -1,11 +1,5 @@
 <div class="row">
     {!! Form::open(['route' => 'farmers.store']) !!}
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('FishFarmer_ID', 'كود صاحب المزرعة') !!}
-            {!! Form::text('FishFarmer_ID', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
 
     <div class="col-md-6">
         <div class="form-group">

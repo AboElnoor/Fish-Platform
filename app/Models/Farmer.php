@@ -37,4 +37,24 @@ class Farmer extends Model
     {
         return $this->belongsTo(User::class, 'UpdateUser');
     }
+
+    public function farms()
+    {
+        return $this->hasMany(Farm::class, 'FishFarmer_ID');
+    }
+
+    public function hSCodes()
+    {
+        return $this->belongsToMany(HSCode::class, 'fishfarmer_hscode', 'FishFarmer_ID', 'HSCode_ID');
+    }
+
+    public function sources()
+    {
+        return $this->hasMany(FarmerSource::class, 'FishFarmer_ID');
+    }
+
+    public function clients()
+    {
+        return $this->hasMany(FarmerClient::class, 'FishFarmer_ID');
+    }
 }

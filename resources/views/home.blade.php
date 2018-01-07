@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('farms.index') }}" class="box-anchor">
+                <a href="{{ route('farmers.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>

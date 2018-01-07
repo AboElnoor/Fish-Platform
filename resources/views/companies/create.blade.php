@@ -5,15 +5,7 @@
 <section class="form">
 	<div class="container">
 		<h2 class="section-title">مزرعــــة جديــدة</h2>
-		@if ($errors->any())
-		    <div class="alert alert-danger">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
+		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#home">استمارة بيانات مصادرمستلزمات الانتاج</a></li>

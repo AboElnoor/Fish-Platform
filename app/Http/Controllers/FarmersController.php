@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Farmer;
+use App\Models\Governorate;
+use App\Models\HSCode;
+use App\Models\Locality;
+use App\Models\Village;
 use Illuminate\Http\Request;
 
 class FarmersController extends Controller
@@ -14,7 +18,8 @@ class FarmersController extends Controller
      */
     public function index()
     {
-        //
+        $farmers = Farmer::paginate(10);
+        return view('farmers.index', compact('farmers'));
     }
 
     /**
@@ -24,7 +29,12 @@ class FarmersController extends Controller
      */
     public function create()
     {
-        //
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID')->toArray();
+        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID')->toArray();
+        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID')->toArray();
+        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID')->toArray();
+
+        return view('farmers.create', compact('governorates', 'locals', 'villages', 'hscodes'));
     }
 
     /**
@@ -35,13 +45,12 @@ class FarmersController extends Controller
     private function rules()
     {
         return [
-            'FishFarmer_ID' => 'sometimes',
             'FishFarmerName' => 'required|string',
-            'Email' => 'required|string|email',
-            'NationalNo' => 'required|numeric',
-            'Mob' => 'required|numeric',
-            'Phone' => 'sometimes',
-            'Memer' => 'sometimes|nullable',
+            'Email' => 'sometimes|nullable|string|email',
+            'NationalNo' => 'sometimes|nullable|numeric',
+            'Mob' => 'sometimes|nullable|numeric',
+            'Phone' => 'sometimes|nullable|numeric',
+            'Memer' => 'sometimes|nullable|string',
         ];
     }
 
@@ -58,9 +67,154 @@ class FarmersController extends Controller
             'UpdateUser' => auth()->id(),
         ];
         $data += $request->validate($this->rules());
-        Farmer::create($data);
+        $farmer = Farmer::create($data);
+        session(compact('farmer'));
 
-        return back();
+        $success = 'تم انشاء المزارع بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
+     * Specify the farm form's rules.
+     *
+     * @return array
+     */
+    private function farmRules()
+    {
+        return [
+            'Governorate_ID' => 'required|exists:governorate',
+            'Locality_ID' => 'required|exists:locality',
+            'Village_ID' => request('Village_ID') ? 'required|exists:village' : '',
+            'Address' => 'sometimes|nullable|string',
+            'OwnerType' => 'sometimes|nullable|string',
+            'OwnerID' => 'sometimes|nullable|string',
+            'FarmSize' => 'sometimes|nullable|string',
+            'EmpA' => 'sometimes|nullable|numeric',
+            'EmpB' => 'sometimes|nullable|numeric',
+        ];
+    }
+
+    /**
+     * Add Farm informstion to Farmer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Farmer  $farmer
+     * @return \Illuminate\Http\Response
+     */
+    public function addFarm(Request $request, Farmer $farmer)
+    {
+        $data = $request->validate($this->farmRules());
+        $farmer->farms()->create($data);
+        session(compact('farmer'));
+
+        $success = 'تم انشاء المزرعة بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
+     * Specify the HSCode form's rules.
+     *
+     * @return array
+     */
+    private function hSCodeRules()
+    {
+        return [
+            'HSCode_ID' => 'required|exists:hscode',
+            'cropMonth' => 'required|string',
+            'Area' => 'sometimes|nullable|string',
+            'PoolCount' => 'sometimes|nullable|string',
+            'PoolAvrg' => 'sometimes|nullable|string',
+            'Notes' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
+     * Add HSCode informstion to Farmer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Farmer  $farmer
+     * @return \Illuminate\Http\Response
+     */
+    public function addHSCode(Request $request, Farmer $farmer)
+    {
+        $data = $request->validate($this->hSCodeRules());
+        $farmer->hSCodes()->attach($data['HSCode_ID'], array_except($data, 'HSCode_ID'));
+        session(compact('farmer'));
+
+        $success = 'تم انشاء بيانات الانتاج بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
+     * Specify the Source form's rules.
+     *
+     * @return array
+     */
+    private function sourceRules()
+    {
+        return [
+            'SourceS1' => 'sometimes|nullable|string',
+            'Counts1' => 'sometimes|nullable|string',
+            'SourceS2' => 'sometimes|nullable|string',
+            'Counts2' => 'sometimes|nullable|string',
+            'SourceS3' => 'sometimes|nullable|string',
+            'Counts3' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
+     * Add Source informstion to Farmer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Farmer  $farmer
+     * @return \Illuminate\Http\Response
+     */
+    public function addSource(Request $request, Farmer $farmer)
+    {
+        $data = $request->validate($this->sourceRules());
+        $farmer->sources()->create($data);
+        session(compact('farmer'));
+
+        $success = 'تم انشاء بيانات مستلزمات الانتاج بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
+     * Specify the Client form's rules.
+     *
+     * @return array
+     */
+    private function clientRules()
+    {
+        return [
+            'Factory' => 'sometimes|nullable',
+            'Supplier' => 'sometimes|nullable',
+            'Trader' => 'sometimes|nullable',
+            'Hotel' => 'sometimes|nullable',
+            'WTrader' => 'sometimes|nullable',
+            'School' => 'sometimes|nullable',
+            'Strader' => 'sometimes|nullable',
+            'agent' => 'sometimes|nullable',
+            'other' => 'sometimes|nullable',
+            'Clients' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
+     * Add Client informstion to Farmer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Farmer  $farmer
+     * @return \Illuminate\Http\Response
+     */
+    public function addClient(Request $request, Farmer $farmer)
+    {
+        $data = $request->validate($this->clientRules());
+        $farmer->clients()->create($data);
+        session(compact('farmer'));
+
+        $success = 'تم انشاء بيانات بيانات العملاء بنجاح';
+        return back()->with(compact('success'));
     }
 
     /**
@@ -82,7 +236,12 @@ class FarmersController extends Controller
      */
     public function edit(Farmer $farmer)
     {
-        //
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID')->toArray();
+        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID')->toArray();
+        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID')->toArray();
+        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID')->toArray();
+
+        return view('farmers.create', compact('farmer', 'governorates', 'locals', 'villages', 'hscodes'));
     }
 
     /**
@@ -105,6 +264,8 @@ class FarmersController extends Controller
      */
     public function destroy(Farmer $farmer)
     {
-        //
+        $farmer->delete();
+        $success = 'تم حذف المزارع بنجاح';
+        return back()->with(compact('success'));
     }
 }
