@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row farms">
     {!! Form::open(['route' => 'farms.store']) !!}
 
     <div class="col-md-6">
@@ -29,8 +29,52 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-12">
-        {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>كود</th>
+                    <th>نوع الســمك</th>
+                    <th>اشهر الحصاد</th>
+                    <th>المساحة</th>
+                    <th>عدد الاحواض</th>
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7612</td>
+                    <td>دومى تيكست</td>
+                    <td>دومى تيكست</td>
+                    <td>دومى تيكست</td>
+                    <td>دومى تيكست</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary">تعديل</a>
+                    </td>
+                    <td>
+                        {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                    </td>
+                </tr>
+                {{-- <tr>
+                    <td colspan="7">لا توجد نتائج لعرضها</td>
+                </tr> --}}
+            </tbody>
+        </table>
     </div>
 
     {!! Form::close() !!}

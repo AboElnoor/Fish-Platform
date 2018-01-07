@@ -16,6 +16,9 @@
     background: #1c75bc;
     transition: all 0.3s ease-in-out;
 }
+input[type=checkbox], input[type=radio] {
+	margin-right: 8px;
+}
 
 /********
 Overrides

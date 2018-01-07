@@ -1,25 +1,31 @@
 <div class="row">
     {!! Form::open(['route' => 'farms.store']) !!}
 
-    <div class="form-group">
-        {!! Form::label('SourceS1', '(*)اصناف الاسماك') !!}
-        @foreach($hscodes as $id => $hscode)
-            {!! Form::checkbox('Village_ID', $id) . $hscode !!}
-        @endforeach
+    <div class="col-md-12">
+        <div class="form-group">
+            {!! Form::label('SourceS1', '(*)اصناف الاسماك') !!}
+            @foreach($hscodes as $id => $hscode)
+                {!! Form::checkbox('Village_ID', $id) . $hscode !!}
+            @endforeach
+        </div>
     </div>
 
-    <div class="form-group">
-        {!! Form::label('SourceS1', '(*) انواع مستلزمات الانتاج التى يقدمها') !!}
-        @foreach($hscodes as $id => $hscode)
-            {!! Form::checkbox('Village_ID', $id) . $hscode !!}
-        @endforeach
+    <div class="col-md-12">
+        <div class="form-group">
+            {!! Form::label('SourceS1', '(*) انواع مستلزمات الانتاج التى يقدمها') !!}
+            @foreach($hscodes as $id => $hscode)
+                {!! Form::checkbox('Village_ID', $id) . $hscode !!}
+            @endforeach
+        </div>
     </div>
 
-    <div class="form-group">
-        {!! Form::label('SourceS1', '(*) أهم انواع العملاء') !!}
-        @foreach($hscodes as $id => $hscode)
-            {!! Form::checkbox('Village_ID', $id) . $hscode !!}
-        @endforeach
+    <div class="col-md-12">
+        <div class="form-group">
+            {!! Form::label('SourceS1', '(*) أهم انواع العملاء') !!}
+            @foreach($hscodes as $id => $hscode)
+                {!! Form::checkbox('Village_ID', $id) . $hscode !!}
+            @endforeach
+        </div>
     </div>
 
     <div class="col-md-6">
@@ -36,8 +42,18 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+            </div>
+        </div>
     </div>
 
     {!! Form::close() !!}

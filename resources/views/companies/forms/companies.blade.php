@@ -1,21 +1,27 @@
 <div class="row">
     {!! Form::open(['route' => 'farms.store']) !!}
 
-    <div class="form-group">
-        {!! Form::label('FishCompanyType_ID', 'كــود') !!}
-        {!! Form::text('FishCompanyType_ID', null, ['class' => 'form-control']) !!}
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('FishCompanyType_ID', 'كــود') !!}
+            {!! Form::text('FishCompanyType_ID', null, ['class' => 'form-control']) !!}
+        </div>
     </div>
 
-    <div class="form-group">
-        {!! Form::label('FishCompanyName', 'الاســـم') !!}
-        {!! Form::text('FishCompanyName', null, ['class' => 'form-control']) !!}
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('FishCompanyName', 'الاســـم') !!}
+            {!! Form::text('FishCompanyName', null, ['class' => 'form-control']) !!}
+        </div>
     </div>
 
-    <div class="form-group">
-        {!! Form::label('Village_ID', 'طبيعه العمل') !!}
-        @foreach($types as $id => $type)
-            {!! Form::checkbox('Village_ID', $id) . $type !!}
-        @endforeach
+    <div class="col-md-12">
+        <div class="form-group">
+            {!! Form::label('Village_ID', 'طبيعه العمل') !!}
+            @foreach($types as $id => $type)
+                {!! Form::checkbox('Village_ID', $id) . $type !!}
+            @endforeach
+        </div>
     </div>
 
     <div class="col-md-6">
@@ -53,8 +59,18 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+            </div>
+            <div class="col-md-4">
+                {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+            </div>
+        </div>
     </div>
 
     {!! Form::close() !!}
