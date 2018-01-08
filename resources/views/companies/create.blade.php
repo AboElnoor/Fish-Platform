@@ -4,7 +4,7 @@
 
 <section class="form">
 	<div class="container">
-		<h2 class="section-title">مزرعــــة جديــدة</h2>
+		<h2 class="section-title">مستلزمات الانتاج</h2>
 		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">

@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<h2 class="section-title">قــائمة مــزارع الاســماك</h2>
+				<h2 class="section-title">قائمة مستلزمات الانتاج</h2>
 			</div>
 			<div class="col-md-6">
 				<a href="{{ route('companies.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
