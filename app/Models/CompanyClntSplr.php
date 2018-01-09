@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-class FarmerSource extends Model
+class CompanyClntSplr extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'fishfarmer_source';
+    protected $table = 'clntsplr';
 
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'FishCompany_ID';
+    protected $primaryKey = 'ClntSplr_ID';
 }

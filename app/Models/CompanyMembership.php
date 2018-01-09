@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Membership extends Model
+class CompanyMembership extends Model
 {
     /**
      * The table associated with the model.
@@ -17,4 +17,11 @@ class Membership extends Model
      * @var string
      */
     protected $primaryKey = 'Member_ID';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 }

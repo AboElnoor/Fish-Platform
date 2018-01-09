@@ -265,7 +265,7 @@ class FarmersController extends Controller
     public function destroy(Farmer $farmer)
     {
         $farmer->delete();
-        session()->flush();
+        session()->forget('farmer');
         $success = 'تم حذف المزارع بنجاح';
         return back()->with(compact('success'));
     }

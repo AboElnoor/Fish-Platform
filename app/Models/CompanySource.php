@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-class Bank extends Model
+class CompanySource extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'bank';
+    protected $table = 'fishcompany_source';
 
     /**
      * The primary key for the model.
