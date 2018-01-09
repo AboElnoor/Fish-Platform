@@ -1,11 +1,11 @@
 <div class="row">
-    {!! Form::open(['route' => 'farms.store']) !!}
+    {!! Form::open(['route' => ['companies.addBanks', $company ?? session('company')]]) !!}
 
     <div class="col-md-12">
-        @foreach($banks as $bank)
+        @foreach($banks as $id => $bank)
             <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::checkbox('Village_ID', $bank->Bank_ID) . $bank->Bank_Name_A !!}
+                    {!! Form::checkbox('Bank_ID[]', $id) . $bank !!}
                 </div>
             </div>
         @endforeach

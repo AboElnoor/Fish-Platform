@@ -1,31 +1,31 @@
 <div class="row farms">
-    {!! Form::open(['route' => 'farms.store']) !!}
+    {!! Form::open(['route' => ['companies.addManager', $company ?? session('company')]]) !!}
 
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('SourceS1', '(*)الاســـم') !!}
-            {!! Form::text('SourceS1', null, ['class' => 'form-control']) !!}
+            {!! Form::label('EmpName', '(*)الاســـم') !!}
+            {!! Form::text('EmpName', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('Counts1', '(*)المنصب') !!}
-            {!! Form::text('Counts1', null, ['class' => 'form-control']) !!}
+            {!! Form::label('Job', '(*)المنصب') !!}
+            {!! Form::text('Job', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('SourceS2', '(*)موبايل') !!}
-            {!! Form::text('SourceS2', null, ['class' => 'form-control']) !!}
+            {!! Form::label('Mob', '(*)موبايل') !!}
+            {!! Form::text('Mob', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('Counts2', 'بريد الالكترونى') !!}
-            {!! Form::text('Counts2', null, ['class' => 'form-control']) !!}
+            {!! Form::label('Email', 'بريد الالكترونى') !!}
+            {!! Form::text('Email', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
@@ -48,32 +48,36 @@
             <thead>
                 <tr>
                     <th>كود</th>
-                    <th>نوع الســمك</th>
-                    <th>اشهر الحصاد</th>
-                    <th>المساحة</th>
-                    <th>عدد الاحواض</th>
+                    <th>الاســــم</th>
+                    <th>الوظيفة</th>
+                    <th>الموبايل</th>
+                    <th>بريد الالكترونى</th>
                     <th>#</th>
                     <th>#</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>7612</td>
-                    <td>دومى تيكست</td>
-                    <td>دومى تيكست</td>
-                    <td>دومى تيكست</td>
-                    <td>دومى تيكست</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">تعديل</a>
-                    </td>
-                    <td>
-                        {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
-                    </td>
-                </tr>
-                {{-- <tr>
-                    <td colspan="7">لا توجد نتائج لعرضها</td>
-                </tr> --}}
-            </tbody>
+                @forelse($company->managers ?? session('company')->managers ?? [] as $manager)
+                    <tr>
+                        <td>{{ $manager->FishCompany_Mangr_ID }}</td>
+                        <td>{{ $manager->EmpName }}</td>
+                        <td>{{ $manager->Job }}</td>
+                        <td>{{ $manager->Mob }}</td>
+                        <td>{{ $manager->Email }}</td>
+                        <td>
+                            <a href="{{ route('managers.edit', $manager) }}" class="btn btn-sm btn-primary">تعديل</a>
+                        </td>
+                        <td>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['managers.destroy', $manager]]) !!}
+                                {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">لا توجد نتائج لعرضها</td>
+                    </tr>
+                @endforelse
         </table>
     </div>
 

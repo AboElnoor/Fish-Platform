@@ -1,5 +1,5 @@
 <div class="row">
-    {!! Form::open(['route' => 'farms.store']) !!}
+    {!! Form::open(['route' => ['companies.addSource', $company ?? session('company')]]) !!}
 
     <div class="col-md-12">
         <h4><b>أمهات للتفريخ</b></h4>
@@ -48,14 +48,14 @@
     <div class="col-md-12">
         <h4><b>مستلزمات تربيه وتفريخ</b></h4>
         <div class="form-group">
-            {!! Form::label('SourceS3', 'المصدر / المورديين') !!}
-            {!! Form::text('SourceS3', null, ['class' => 'form-control']) !!}
+            {!! Form::label('SourceS4', 'المصدر / المورديين') !!}
+            {!! Form::text('SourceS4', null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            {!! Form::label('Counts3', 'الكميات/ موسم') !!}
-            {!! Form::text('Counts3', null, ['class' => 'form-control']) !!}
+            {!! Form::label('Counts4', 'الكميات/ موسم') !!}
+            {!! Form::text('Counts4', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 

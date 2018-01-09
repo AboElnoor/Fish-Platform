@@ -1,24 +1,24 @@
 <div class="row">
-    {!! Form::open(['route' => 'farmers.store']) !!}
+    {!! Form::open(['method' => 'PUT', 'route' => ['companies.update', $company ?? session('company')]]) !!}
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
-            {!! Form::label('Memer', 'مساهمين محليين') !!}
-            {!! Form::textarea('Memer', null, ['class' => 'form-control']) !!}
+            {!! Form::label('ShareHoldr', 'مساهمين محليين') !!}
+            {!! Form::textarea('ShareHoldr', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
-            {!! Form::label('Memer', 'مساهمين اجانب') !!}
-            {!! Form::textarea('Memer', null, ['class' => 'form-control']) !!}
+            {!! Form::label('ShareHoldrFrgn', 'مساهمين اجانب') !!}
+            {!! Form::textarea('ShareHoldrFrgn', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
-            {!! Form::label('Memer', 'مجموعة الشركات التابع لها') !!}
-            {!! Form::textarea('Memer', null, ['class' => 'form-control']) !!}
+            {!! Form::label('ComGroup', 'مجموعة الشركات التابع لها') !!}
+            {!! Form::textarea('ComGroup', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 

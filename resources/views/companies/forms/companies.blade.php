@@ -1,12 +1,5 @@
 <div class="row">
-    {!! Form::open(['route' => 'farms.store']) !!}
-
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('FishCompanyType_ID', 'كــود') !!}
-            {!! Form::text('FishCompanyType_ID', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
+    {!! Form::open(['route' => 'companies.store']) !!}
 
     <div class="col-md-6">
         <div class="form-group">
@@ -15,19 +8,19 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="form-group">
-            {!! Form::label('Village_ID', 'طبيعه العمل') !!}
-            @foreach($types as $id => $type)
-                {!! Form::checkbox('Village_ID', $id) . $type !!}
-            @endforeach
-        </div>
-    </div>
-
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('TradeMark', 'العلامة التجارية') !!}
-            {!! Form::textarea('TradeMark', null, ['class' => 'form-control']) !!}
+            {!! Form::text('TradeMark', null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            {!! Form::label('ActivityType_ID[]', 'طبيعه العمل') !!}
+            @foreach($types as $id => $type)
+                {!! Form::checkbox('ActivityType_ID[]', $id) . $type !!}
+            @endforeach
         </div>
     </div>
 
@@ -55,7 +48,7 @@
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('Activity', 'تفاصيل النشاط') !!}
-            {!! Form::text('Activity', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('Activity', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
