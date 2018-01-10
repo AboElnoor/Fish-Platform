@@ -1,5 +1,7 @@
 <div class="row">
-    {!! Form::open(['route' => ['companies.addHSCode', $company ?? session('company')]]) !!}
+    {!! Form::open(['route' => [
+            requestUri() . '.addHSCode', $company ?? session('company')
+        ]]) !!}
 
     <div class="col-md-12">
         <div class="form-group">
@@ -28,19 +30,21 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('WrkArea', 'اهم مناطق العمل') !!}
-            {!! Form::textarea('WrkArea', null, ['class' => 'form-control']) !!}
+    @if(requestUri() == 'companies')
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('WrkArea', 'اهم مناطق العمل') !!}
+                {!! Form::textarea('WrkArea', null, ['class' => 'form-control']) !!}
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('tradMarks', 'توكيلات تجارية') !!}
-            {!! Form::textarea('tradMarks', null, ['class' => 'form-control']) !!}
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('tradMarks', 'توكيلات تجارية') !!}
+                {!! Form::textarea('tradMarks', null, ['class' => 'form-control']) !!}
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12">

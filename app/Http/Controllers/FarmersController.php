@@ -18,7 +18,7 @@ class FarmersController extends Controller
      */
     public function index()
     {
-        $farmers = Farmer::paginate(10);
+        $farmers = Farmer::latest()->paginate(10);
         return view('farmers.index', compact('farmers'));
     }
 

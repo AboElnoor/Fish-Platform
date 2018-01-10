@@ -1,5 +1,8 @@
 <div class="row">
-    {!! Form::open(['method' => 'PUT', 'route' => ['companies.update', $company ?? session('company')]]) !!}
+    {!! Form::open([
+        'method' => 'PUT',
+        'route' => [requestUri() . '.update', $company ?? session('company')]
+        ]) !!}
 
     <div class="col-md-12">
         <div class="form-group">

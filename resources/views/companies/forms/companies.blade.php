@@ -1,17 +1,28 @@
 <div class="row">
-    {!! Form::open(['route' => 'companies.store']) !!}
+    {!!
+        Form::open([
+            'method' => isset($company) ? 'PUT' : 'POST',
+            'route' => isset($company) ? [requestUri() . '.update', $company] : requestUri() . '.store',
+        ])
+    !!}
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('FishCompanyName', 'الاســـم') !!}
-            {!! Form::text('FishCompanyName', null, ['class' => 'form-control']) !!}
+            {!!
+                Form::text(
+                    'FishCompanyName',
+                    isset($company) ? $company->FishCompanyName : null,
+                    ['class' => 'form-control']
+                )
+            !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('TradeMark', 'العلامة التجارية') !!}
-            {!! Form::text('TradeMark', null, ['class' => 'form-control']) !!}
+            {!! Form::text('TradeMark', isset($company) ? $company->TradeMark : null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
@@ -19,7 +30,11 @@
         <div class="form-group">
             {!! Form::label('ActivityType_ID[]', 'طبيعه العمل') !!}
             @foreach($types as $id => $type)
-                {!! Form::checkbox('ActivityType_ID[]', $id) . $type !!}
+                {!! Form::checkbox(
+                        'ActivityType_ID[]',
+                        $id,
+                        isset($company) ? $company->activitytypes->contains($id) : false
+                    ) . $type !!}
             @endforeach
         </div>
     </div>
@@ -27,28 +42,28 @@
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('EYear', 'تاريخ الانشاء') !!}
-            {!! Form::text('EYear', null, ['class' => 'form-control']) !!}
+            {!! Form::text('EYear', isset($company) ? $company->EYear : null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('EmpCount', 'عدد العاملين') !!}
-            {!! Form::text('EmpCount', null, ['class' => 'form-control']) !!}
+            {!! Form::text('EmpCount', isset($company) ? $company->EmpCount : null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('RegNo', 'رقم السجل التجاري') !!}
-            {!! Form::text('RegNo', null, ['class' => 'form-control']) !!}
+            {!! Form::text('RegNo', isset($company) ? $company->RegNo : null, ['class' => 'form-control']) !!}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('Activity', 'تفاصيل النشاط') !!}
-            {!! Form::textarea('Activity', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('Activity', isset($company) ? $company->Activity : null, ['class' => 'form-control']) !!}
         </div>
     </div>
 

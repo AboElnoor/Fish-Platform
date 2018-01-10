@@ -19,13 +19,51 @@ use Illuminate\Validation\Rule;
 class CompaniesController extends Controller
 {
     /**
+     * FishCompanyType_ID
+     * @var integer
+     */
+    private $FishCompanyType_ID = 1;
+
+    /**
+     * ActivityTypeGroup_ID
+     * @var integer
+     */
+    private $ActivityTypeGroup_ID = 41;
+
+    /**
+     * CompanyType
+     * @var array
+     */
+    private $CompanyType = [1];
+
+    /**
+     * Resource constructor.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        switch (requestUri()) {
+            case 'factories':
+                $this->FishCompanyType_ID = 2;
+                $this->ActivityTypeGroup_ID = 81;
+                $this->CompanyType = [23];
+                break;
+            case 'sellers':
+                $this->FishCompanyType_ID = 2;
+                $this->ActivityTypeGroup_ID = 31;
+                $this->CompanyType = [23, 3];
+                break;
+        }
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $companies = Company::paginate(10);
+        $companies = Company::where('FishCompanyType_ID', $this->FishCompanyType_ID)->latest()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 
@@ -39,17 +77,23 @@ class CompaniesController extends Controller
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
         $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
-        $types = ActivityType::where('ActivityTypeGroup_ID', '41')->get()->pluck('AName', 'ActivityType_ID');
+        $types = ActivityType::where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID)
+            ->get()->pluck('AName', 'ActivityType_ID');
         $banks = CompanyBank::all()->pluck('Bank_Name_A', 'Bank_ID');
         $memberships = CompanyMembership::all()->pluck('MemberNameAr', 'Member_ID');
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
-        $clntsplrs = CompanyClntSplr::where('CompanyType', 1)->get();
+        $clntsplrs = CompanyClntSplr::whereIn('CompanyType', $this->CompanyType)->get();
 
         $impClnts = new Collection;
         $clntsplrs = $clntsplrs->filter(function ($clntsplr) use (&$impClnts) {
-            if ($clntsplr->Type_ID == 1) {
+            if (requestUri() == 'companies' && $clntsplr->Type_ID == $this->FishCompanyType_ID) {
                 return true;
             }
+
+            if (requestUri() != 'companies' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
+                return true;
+            }
+
             $impClnts->push($clntsplr);
         });
 
@@ -95,7 +139,7 @@ class CompaniesController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'FishCompanyType_ID' => '1',
+            'FishCompanyType_ID' => $this->FishCompanyType_ID,
             'EntryUser' => auth()->id(),
             'UpdateUser' => auth()->id(),
         ];
@@ -104,7 +148,7 @@ class CompaniesController extends Controller
             \Validator::make(request('ActivityType_ID'), [
                 'ActivityType_ID.*' => [
                     'sometimes',
-                    Rule::exists('activitytype')->where('ActivityTypeGroup_ID', '41'),
+                    Rule::exists('activitytype')->where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID),
                 ],
             ]);
         }
@@ -118,6 +162,7 @@ class CompaniesController extends Controller
 
             $success = 'تم انشاء مستلزمات الإنتاج بنجاح';
         } catch (\Exception $e) {
+            \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
 
@@ -276,14 +321,13 @@ class CompaniesController extends Controller
         $data = $request->validate($this->hSCodeRules());
         try {
             \DB::transaction(function () use ($company, $request) {
-                // dd($request->only('HSCode_ID'));
                 $company->hSCodes()->sync($request->HSCode_ID);
                 $company->clntSplrs()->sync($request->ClntSplr_ID);
                 $this->update($request, $company);
             });
             $success = 'تم تحديد مجموعة الشركات بنجاح';
         } catch (\Exception $e) {
-            throw $e;
+            \Log::error('addHSCode ' . \Route::current()->getPrefix(), compact('e'));
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
 
@@ -346,7 +390,44 @@ class CompaniesController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
+        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
+        $types = ActivityType::where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID)
+            ->get()->pluck('AName', 'ActivityType_ID');
+        $banks = CompanyBank::all()->pluck('Bank_Name_A', 'Bank_ID');
+        $memberships = CompanyMembership::all()->pluck('MemberNameAr', 'Member_ID');
+        $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
+        $clntsplrs = CompanyClntSplr::whereIn('CompanyType', $this->CompanyType)->get();
+
+        $impClnts = new Collection;
+        $clntsplrs = $clntsplrs->filter(function ($clntsplr) use (&$impClnts) {
+            if (requestUri() == 'companies' && $clntsplr->Type_ID == $this->FishCompanyType_ID) {
+                return true;
+            }
+
+            if (requestUri() != 'companies' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
+                return true;
+            }
+
+            $impClnts->push($clntsplr);
+        });
+
+        $clntsplrs = $clntsplrs->pluck('ClntSplr_Name', 'ClntSplr_ID');
+        $impClnts = $impClnts->pluck('ClntSplr_Name', 'ClntSplr_ID');
+
+        return view('companies.create', compact(
+            'governorates',
+            'locals',
+            'villages',
+            'types',
+            'banks',
+            'memberships',
+            'hscodes',
+            'clntsplrs',
+            'impClnts',
+            'company'
+        ));
     }
 
     /**
@@ -375,11 +456,31 @@ class CompaniesController extends Controller
     public function update(Request $request, Company $company)
     {
         $data = $request->validate($this->updateRules());
-        $company->update($data);
+
+        if (!empty(request('ActivityType_ID'))) {
+            \Validator::make(request('ActivityType_ID'), [
+                'ActivityType_ID.*' => [
+                    'sometimes',
+                    Rule::exists('activitytype')->where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID),
+                ],
+            ]);
+        }
+
+        try {
+            \DB::transaction(function () use ($company, $data) {
+                $company->update($data);
+                $company->activitytypes()->sync(request('ActivityType_ID'));
+            });
+
+            $success = 'تم انشاء مستلزمات الإنتاج بنجاح';
+        } catch (\Exception $e) {
+            \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
+            $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
+        }
 
         session(compact('company'));
-        $success = 'تم إضافة المساهمون بنجاح';
-        return back()->with(compact('success'));
+        // $success = 'تم إضافة المساهمون بنجاح';
+        return back()->with(compact('success', 'error'));
     }
 
     /**

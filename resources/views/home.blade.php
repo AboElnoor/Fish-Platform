@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="#" class="box-anchor">
+                <a href="{{ route('factories.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-building fa-2x" aria-hidden="true"></i>
@@ -53,7 +53,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="#" class="box-anchor">
+                <a href="{{ route('sellers.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-user-secret fa-2x" aria-hidden="true"></i>

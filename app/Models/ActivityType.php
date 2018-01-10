@@ -17,4 +17,9 @@ class ActivityType extends Model
      * @var string
      */
     protected $primaryKey = 'ActivityType_ID';
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'fishcompany_activitytype', $this->primaryKey, 'FishCompany_ID');
+    }
 }

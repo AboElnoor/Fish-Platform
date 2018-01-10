@@ -1,5 +1,7 @@
 <div class="row farms">
-    {!! Form::open(['route' => ['companies.addManager', $company ?? session('company')]]) !!}
+    {!! Form::open(['route' => [
+            requestUri() . '.addManager', $company ?? session('company')
+        ]]) !!}
 
     <div class="col-md-6">
         <div class="form-group">

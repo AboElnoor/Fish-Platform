@@ -9,7 +9,8 @@
 				<h2 class="section-title">قائمة مستلزمات الانتاج</h2>
 			</div>
 			<div class="col-md-6">
-				<a href="{{ route('companies.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+				<a href="{{ route(requestUri() . '.create') }}"
+					class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
 			</div>
 		</div>
 		<table class="table table-striped">
@@ -37,10 +38,12 @@
 						<td>{{ $company->updateUser ? $company->updateUser->FullName : '-' }}</td>
 						<td>{{ $company->updated_at }}</td>
 						<td>
-							<a href="{{ route('companies.update', $company) }}" class="btn btn-sm btn-primary">تعديل</a>
+							<a href="{{ route(requestUri() . '.edit', $company) }}"
+								class="btn btn-sm btn-primary">تعديل</a>
 						</td>
 						<td>
-							<a href="{{ route('companies.destroy', $company) }}" class="btn btn-sm btn-danger">حذف</a>
+							<a href="{{ route(requestUri() . '.destroy', $company) }}"
+								class="btn btn-sm btn-danger">حذف</a>
 						</td>
 					</tr>
 				@endforeach
