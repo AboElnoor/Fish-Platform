@@ -2,29 +2,26 @@
     {!! Form::open(['route' => [
             requestUri() . '.addMembership', $company ?? session('company')
         ]]) !!}
+        @foreach($memberships as $id => $membership)
+            <div class="col-md-4">
+                <div class="form-group">
+                    {!! Form::checkbox('Member_ID[]', $id) . $membership !!}
+                </div>
+            </div>
+        @endforeach
 
-    @foreach($memberships as $id => $membership)
-        <div class="col-md-4">
-            <div class="form-group">
-                {!! Form::checkbox('Member_ID[]', $id) . $membership !!}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+                </div>
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+                </div>
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+                </div>
             </div>
         </div>
-    @endforeach
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-4">
-                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
-            </div>
-            <div class="col-md-4">
-                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
-            </div>
-            <div class="col-md-4">
-                {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
-            </div>
-        </div>
-    </div>
-
     {!! Form::close() !!}
-
 </div>

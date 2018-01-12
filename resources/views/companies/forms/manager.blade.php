@@ -2,49 +2,48 @@
     {!! Form::open(['route' => [
             requestUri() . '.addManager', $company ?? session('company')
         ]]) !!}
-
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('EmpName', '(*)الاســـم') !!}
-            {!! Form::text('EmpName', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('Job', '(*)المنصب') !!}
-            {!! Form::text('Job', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('Mob', '(*)موبايل') !!}
-            {!! Form::text('Mob', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::label('Email', 'بريد الالكترونى') !!}
-            {!! Form::text('Email', null, ['class' => 'form-control']) !!}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-4">
-                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
-            </div>
-            <div class="col-md-4">
-                {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
-            </div>
-            <div class="col-md-4">
-                {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('EmpName', '(*)الاســـم') !!}
+                {!! Form::text('EmpName', null, ['class' => 'form-control']) !!}
             </div>
         </div>
-    </div>
 
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('Job', '(*)المنصب') !!}
+                {!! Form::text('Job', null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('Mob', '(*)موبايل') !!}
+                {!! Form::text('Mob', null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('Email', 'بريد الالكترونى') !!}
+                {!! Form::text('Email', null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+                </div>
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+                </div>
+                <div class="col-md-4">
+                    {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
     <div class="col-md-12">
         <table class="table table-striped">
             <thead>
@@ -80,9 +79,7 @@
                         <td colspan="6">لا توجد نتائج لعرضها</td>
                     </tr>
                 @endforelse
+            </tbody>
         </table>
     </div>
-
-    {!! Form::close() !!}
-
 </div>

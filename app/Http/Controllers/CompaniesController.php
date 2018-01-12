@@ -190,7 +190,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add branch informstion to company.
+     * Add branch information to company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company
@@ -222,7 +222,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add manager informstion to company.
+     * Add manager information to company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company
@@ -251,7 +251,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add banks informstion to company.
+     * Add banks information to company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company
@@ -280,7 +280,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add membership informstion to company.
+     * Add membership information to company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company
@@ -310,7 +310,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add hSCode informstion to company.
+     * Add hSCode information to company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company
@@ -355,7 +355,7 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Add Source informstion to Company.
+     * Add Source information to Company.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Company  $company

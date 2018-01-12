@@ -34,16 +34,18 @@ Route::group(['middleware' => ['auth:web']], function () {
     );
 
     Route::resource('factories', 'CompaniesController');
-    //Ex. Route::post('factories/{factory}/addBranch', 'FactoriesController@addBranch')->name('factories.addBranch');
+    //Ex. Route::post('factories/{factory}/addBranch', 'CompaniesController@addBranch')->name('factories.addBranch');
     buildRoutes(
         'factories',
-        ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource']
+        ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource'],
+        'CompaniesController'
     );
 
     Route::resource('sellers', 'CompaniesController');
-    //Ex. Route::post('sellers/{seller}/addBranch', 'SellersController@addBranch')->name('sellers.addBranch');
+    //Ex. Route::post('sellers/{seller}/addBranch', 'CompaniesController@addBranch')->name('sellers.addBranch');
     buildRoutes(
         'sellers',
-        ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource']
+        ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource'],
+        'CompaniesController'
     );
 });
