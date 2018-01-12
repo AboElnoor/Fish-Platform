@@ -34,12 +34,14 @@ Route::group(['middleware' => ['auth:web']], function () {
     );
 
     Route::resource('factories', 'CompaniesController');
+    //Ex. Route::post('factories/{factory}/addBranch', 'FactoriesController@addBranch')->name('factories.addBranch');
     buildRoutes(
         'factories',
         ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource']
     );
 
     Route::resource('sellers', 'CompaniesController');
+    //Ex. Route::post('sellers/{seller}/addBranch', 'SellersController@addBranch')->name('sellers.addBranch');
     buildRoutes(
         'sellers',
         ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource']

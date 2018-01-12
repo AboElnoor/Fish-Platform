@@ -50,7 +50,7 @@ class CompaniesController extends Controller
                 $this->CompanyType = [23];
                 break;
             case 'sellers':
-                $this->FishCompanyType_ID = 2;
+                $this->FishCompanyType_ID = 3;
                 $this->ActivityTypeGroup_ID = 31;
                 $this->CompanyType = [23, 3];
                 break;
