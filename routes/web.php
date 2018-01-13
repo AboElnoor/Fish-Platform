@@ -48,4 +48,6 @@ Route::group(['middleware' => ['auth:web']], function () {
         ['addBranch', 'addManager', 'addBanks', 'addMembership', 'addOwnership', 'addHSCode', 'addSource'],
         'CompaniesController'
     );
+
+    Route::resource('prices', 'PricesController');
 });
