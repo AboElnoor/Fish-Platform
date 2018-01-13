@@ -1,65 +1,68 @@
 <div class="row farms">
-    {!! Form::open(['route' => [requestUri() . '.addBranch', $company ?? session('company')]]) !!}
+    {!! Form::open([
+            'route' => [requestUri() . '.addBranch', $company ?? session('company')],
+            'class' => 'branches'
+        ]) !!}
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Governorate_ID', ' (*)عنوان الفرع - المحافظة ') !!}
-                {!! Form::select('Governorate_ID', $governorates, null, ['class' => 'form-control']) !!}
+                {!! Form::select('Governorate_ID', $governorates, null, ['class' => 'form-control Governorate_ID']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Locality_ID', '(*)مركز') !!}
-                {!! Form::select('Locality_ID', $locals, null, ['class' => 'form-control']) !!}
+                {!! Form::select('Locality_ID', $locals, null, ['class' => 'form-control Locality_ID']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Village_ID', 'المنطقة') !!}
-                {!! Form::select('Village_ID', $villages, null, ['class' => 'form-control']) !!}
+                {!! Form::select('Village_ID', $villages, null, ['class' => 'form-control Village_ID']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Address', 'تفاصيل العنوان') !!}
-                {!! Form::textarea('Address', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('Address', null, ['class' => 'form-control Address']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Mob', 'موبايل') !!}
-                {!! Form::text('Mob', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Mob', null, ['class' => 'form-control Mob']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Tel', '(*)تليفون') !!}
-                {!! Form::text('Tel', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Tel', null, ['class' => 'form-control Tel']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Fax', 'فاكـــس') !!}
-                {!! Form::text('Fax', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Fax', null, ['class' => 'form-control Fax']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Email', 'بريد الالكترونى') !!}
-                {!! Form::text('Email', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Email', null, ['class' => 'form-control Email']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Web', 'موقع الاكترونى/مواقع تواصل اجتماعى') !!}
-                {!! Form::text('Web', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Web', null, ['class' => 'form-control Web']) !!}
             </div>
         </div>
 
@@ -100,7 +103,9 @@
                         <td>{{ $branch->village ? $branch->village->Village_Name_A : '-' }}</td>
                         <td>{{ $branch->Tel }}</td>
                         <td>
-                            <a href="{{ route('branches.edit', $branch) }}" class="btn btn-sm btn-primary">تعديل</a>
+                            <a href="{{ route('branches.edit', $branch) }}"
+                                data-action="{{ route('branches.update', $branch) }}"
+                                data-form="branches" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['branches.destroy', $branch]]) !!}

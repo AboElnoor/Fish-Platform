@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
+use App\Models\FarmerHSCode;
 use Illuminate\Http\Request;
 
-class BranchesController extends Controller
+class hScodesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class BranchesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Branch  $branch
+     * @param  FarmerHSCode  $hSCode
      * @return \Illuminate\Http\Response
      */
-    public function show(Branch $branch)
+    public function show(FarmerHSCode $hSCode)
     {
         //
     }
@@ -52,31 +52,28 @@ class BranchesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Branch  $branch
+     * @param  FarmerHSCode  $hSCode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Branch $branch)
+    public function edit(FarmerHSCode $hSCode)
     {
-        return $branch;
+        return $hSCode;
     }
 
     /**
-     * Specify the branch form's rules.
+     * Specify the HSCode form's rules.
      *
      * @return array
      */
     private function rules()
     {
         return [
-            'Governorate_ID' => 'required|exists:governorate',
-            'Locality_ID' => 'required|exists:locality',
-            'Village_ID' => request('Village_ID') ? 'required|exists:village' : '',
-            'Address' => 'sometimes|nullable|string',
-            'Mob' => 'sometimes|nullable|numeric',
-            'Tel' => 'required|numeric',
-            'Fax' => 'sometimes|nullable|numeric',
-            'Email' => 'sometimes|nullable|string|email',
-            'Web' => 'sometimes|nullable|string',
+            'HSCode_ID' => 'required|exists:hscode',
+            'cropMonth' => 'required|string',
+            'Area' => 'sometimes|nullable|string',
+            'PoolCount' => 'sometimes|nullable|string',
+            'PoolAvrg' => 'sometimes|nullable|string',
+            'Notes' => 'sometimes|nullable|string',
         ];
     }
 
@@ -84,27 +81,27 @@ class BranchesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Branch  $branch
+     * @param  FarmerHSCode  $hSCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Branch $branch)
+    public function update(Request $request, FarmerHSCode $hSCode)
     {
         $data = $request->validate($this->rules());
-        $branch->update($data);
-        $success = 'تم تعديل الفرع بنجاح';
+        $hSCode->update($data);
+        $success = 'تم تعديل مستلزمات الانتاج بنجاح';
         return back()->with(compact('success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Branch  $branch
+     * @param  FarmerHSCode  $hSCode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Branch $branch)
+    public function destroy(FarmerHSCode $hSCode)
     {
-        $branch->delete();
-        $success = 'تم حذف الفرع بنجاح';
+        $hSCode->delete();
+        $success = 'تم حذف بيانات الإنتاج بنجاح';
         return back()->with(compact('success'));
     }
 }

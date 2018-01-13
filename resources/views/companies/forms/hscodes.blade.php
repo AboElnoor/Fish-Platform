@@ -6,7 +6,7 @@
             <div class="form-group">
                 {!! Form::label('HSCode_ID[]', '(*)اصناف الاسماك') !!}
                 @foreach($hscodes as $id => $hscode)
-                    {!! Form::checkbox('HSCode_ID[]', $id) . $hscode !!}
+                    {!! Form::checkbox('HSCode_ID[]', $id, $company->hSCodes->contains($id) ?? false) . $hscode !!}
                 @endforeach
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="form-group">
                 {!! Form::label('ClntSplr_ID[]', '(*) انواع مستلزمات الانتاج التى يقدمها') !!}
                 @foreach($clntsplrs as $id => $clntsplr)
-                    {!! Form::checkbox('ClntSplr_ID[]', $id) . $clntsplr !!}
+                    {!! Form::checkbox('ClntSplr_ID[]', $id, $company->clntSplrs->contains($id) ?? false) . $clntsplr !!}
                 @endforeach
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 {!! Form::label('ClntSplr_ID[]', '(*) أهم انواع العملاء') !!}
                 @foreach($impClnts as $id => $impClnt)
-                    {!! Form::checkbox('ClntSplr_ID[]', $id) . $impClnt !!}
+                    {!! Form::checkbox('ClntSplr_ID[]', $id, $company->clntSplrs->contains($id) ?? false) . $impClnt !!}
                 @endforeach
             </div>
         </div>
@@ -33,14 +33,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('WrkArea', 'اهم مناطق العمل') !!}
-                    {!! Form::textarea('WrkArea', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('WrkArea', $company->WrkArea ?? null, ['class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('tradMarks', 'توكيلات تجارية') !!}
-                    {!! Form::textarea('tradMarks', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('tradMarks', $company->tradMarks ?? null, ['class' => 'form-control']) !!}
                 </div>
             </div>
         @endif

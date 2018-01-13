@@ -26,7 +26,7 @@
 			</div>
 			<div id="menu2" class="tab-pane fade">
 				<h3 class="tab-title">بيانات الانتاج</h3>
-				@include('farmers.forms.hscode')
+				@include('farmers.forms.hscodes')
 			</div>
 			<div id="menu3" class="tab-pane fade">
 				<h3 class="tab-title">بيانات مستلزمات الانتاج</h3>
@@ -40,5 +40,5 @@
 
 	</div>
 </section>
-
+<script type="text/javascript" src="{{ url('/js/fish.js') }}"></script>
 @stop

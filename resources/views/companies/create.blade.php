@@ -99,5 +99,5 @@
 
 	</div>
 </section>
-
+<script type="text/javascript" src="{{ url('/js/fish.js') }}"></script>
 @stop

@@ -4,7 +4,7 @@
             @foreach($banks as $id => $bank)
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!! Form::checkbox('Bank_ID[]', $id) . $bank !!}
+                        {!! Form::checkbox('Bank_ID[]', $id, $company->banks->contains($id) ?? false) . $bank !!}
                     </div>
                 </div>
             @endforeach

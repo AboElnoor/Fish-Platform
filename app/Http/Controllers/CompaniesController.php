@@ -493,7 +493,7 @@ class CompaniesController extends Controller
     {
         $company->delete();
         session()->forget('company');
-        $success = 'تم حذف مستلزمات الإنتاج بنجاح';
+        $success = 'تم الحذف بنجاح';
         return back()->with(compact('success'));
     }
 }

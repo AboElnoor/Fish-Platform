@@ -1,32 +1,33 @@
 <div class="row farms">
-    {!! Form::open(['route' => [
-            requestUri() . '.addManager', $company ?? session('company')
-        ]]) !!}
+    {!! Form::open([
+            'route' => [requestUri() . '.addManager', $company ?? session('company')],
+            'class' => 'managers'
+        ]) !!}
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('EmpName', '(*)الاســـم') !!}
-                {!! Form::text('EmpName', null, ['class' => 'form-control']) !!}
+                {!! Form::text('EmpName', null, ['class' => 'form-control EmpName']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Job', '(*)المنصب') !!}
-                {!! Form::text('Job', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Job', null, ['class' => 'form-control Job']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Mob', '(*)موبايل') !!}
-                {!! Form::text('Mob', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Mob', null, ['class' => 'form-control Mob']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Email', 'بريد الالكترونى') !!}
-                {!! Form::text('Email', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Email', null, ['class' => 'form-control Email']) !!}
             </div>
         </div>
 
@@ -66,7 +67,9 @@
                         <td>{{ $manager->Mob }}</td>
                         <td>{{ $manager->Email }}</td>
                         <td>
-                            <a href="{{ route('managers.edit', $manager) }}" class="btn btn-sm btn-primary">تعديل</a>
+                            <a href="{{ route('managers.edit', $manager) }}"
+                                data-action="{{ route('managers.update', $manager) }}"
+                                data-form="managers" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['managers.destroy', $manager]]) !!}

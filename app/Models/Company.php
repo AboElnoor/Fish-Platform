@@ -79,8 +79,8 @@ class Company extends Model
             ->withPivot('Type_ID');
     }
 
-    public function sources()
+    public function source()
     {
-        return $this->hasMany(CompanySource::class, $this->primaryKey);
+        return $this->hasOne(CompanySource::class, $this->primaryKey);
     }
 }

@@ -6,21 +6,21 @@
         <div class="col-md-12">
             <div class="form-group">
                 {!! Form::label('ShareHoldr', 'مساهمين محليين') !!}
-                {!! Form::textarea('ShareHoldr', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('ShareHoldr', $company->ShareHoldr ?? null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 {!! Form::label('ShareHoldrFrgn', 'مساهمين اجانب') !!}
-                {!! Form::textarea('ShareHoldrFrgn', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('ShareHoldrFrgn', $company->ShareHoldrFrgn ?? null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 {!! Form::label('ComGroup', 'مجموعة الشركات التابع لها') !!}
-                {!! Form::textarea('ComGroup', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('ComGroup', $company->ComGroup ?? null, ['class' => 'form-control']) !!}
             </div>
         </div>
 

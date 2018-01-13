@@ -16,5 +16,5 @@ class CompanySource extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'Bank_ID';
+    protected $primaryKey = 'FishCompany_ID';
 }

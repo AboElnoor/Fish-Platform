@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Farm;
-use App\Models\Farmer;
-use App\Models\Governorate;
-use App\Models\Locality;
-use App\Models\Village;
 use Illuminate\Http\Request;
 
 class FarmsController extends Controller
@@ -18,8 +14,7 @@ class FarmsController extends Controller
      */
     public function index()
     {
-        $farmers = Farmer::latest()->paginate(10);
-        return view('farms.index', compact('farmers'));
+        //
     }
 
     /**
@@ -29,30 +24,7 @@ class FarmsController extends Controller
      */
     public function create()
     {
-        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
-        return view('farms.create', compact('governorates', 'locals', 'villages'));
-    }
-
-    /**
-     * Specify the form's rules.
-     *
-     * @return array
-     */
-    private function rules()
-    {
-        return [
-            'Governorate_ID' => 'required|numeric',
-            'Locality_ID' => 'required|numeric',
-            'Village_ID' => 'required|numeric',
-            'Address' => 'sometimes',
-            'OwnerType' => 'sometimes',
-            'OwnerID' => 'sometimes',
-            'FarmSize' => 'sometimes',
-            'EmpA' => 'sometimes',
-            'EmpB' => 'sometimes',
-        ];
+        //
     }
 
     /**
@@ -63,13 +35,7 @@ class FarmsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'FishFarmer_ID' => auth()->id(),
-        ];
-        $data += $request->validate($this->rules());
-        Farm::create($data);
-
-        return back();
+        //
     }
 
     /**
@@ -80,7 +46,7 @@ class FarmsController extends Controller
      */
     public function show(Farm $farm)
     {
-        return view('farms.show', compact('farm'));
+        //
     }
 
     /**
@@ -91,9 +57,23 @@ class FarmsController extends Controller
      */
     public function edit(Farm $farm)
     {
-        //
+        return $farm;
     }
 
+    private function rules()
+    {
+        return [
+            'Governorate_ID' => 'required|exists:governorate',
+            'Locality_ID' => 'required|exists:locality',
+            'Village_ID' => request('Village_ID') ? 'required|exists:village' : '',
+            'Address' => 'sometimes|nullable|string',
+            'OwnerType' => 'sometimes|nullable|string',
+            'OwnerID' => 'sometimes|nullable|string',
+            'FarmSize' => 'sometimes|nullable|string',
+            'EmpA' => 'sometimes|nullable|numeric',
+            'EmpB' => 'sometimes|nullable|numeric',
+        ];
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -103,7 +83,10 @@ class FarmsController extends Controller
      */
     public function update(Request $request, Farm $farm)
     {
-        //
+        $data = $request->validate($this->rules());
+        $farm->update($data);
+        $success = 'تم تعديل المزرعة بنجاح';
+        return back()->with(compact('success'));
     }
 
     /**

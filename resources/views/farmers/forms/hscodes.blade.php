@@ -1,11 +1,11 @@
 <div class="row farms">
-    {!! Form::open(['route' => ['farmers.addHSCode', $farmer ?? session('farmer')]]) !!}
+    {!! Form::open(['route' => ['farmers.addHSCode', $farmer ?? session('farmer')], 'class' => 'hSCodes']) !!}
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('HSCode_ID', 'انواع الاسماك (*)') !!}
                 {!! Form::select(
                         'HSCode_ID',
-                        $hscodes->prepend('من فضلك اختار', 0), null, ['class' => 'form-control']
+                        $hscodes->prepend('من فضلك اختار', 0), null, ['class' => 'form-control HSCode_ID']
                     )
                 !!}
             </div>
@@ -14,42 +14,42 @@
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('cropMonth', 'أشهر الحصاد (*)') !!}
-                {!! Form::text('cropMonth', null, ['class' => 'form-control']) !!}
+                {!! Form::text('cropMonth', null, ['class' => 'form-control cropMonth']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Area', 'المساحة المستزرعه') !!}
-                {!! Form::text('Area', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Area', null, ['class' => 'form-control Area']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('PoolCount', 'عدد الاحواض') !!}
-                {!! Form::text('PoolCount', null, ['class' => 'form-control']) !!}
+                {!! Form::text('PoolCount', null, ['class' => 'form-control PoolCount']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('PoolAvrg', 'متوسط حجم الانتاج ') !!}
-                {!! Form::text('PoolAvrg', null, ['class' => 'form-control']) !!}
+                {!! Form::text('PoolAvrg', null, ['class' => 'form-control PoolAvrg']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Notes', 'ملاحظات') !!}
-                {!! Form::text('Notes', null, ['class' => 'form-control']) !!}
+                {!! Form::text('Notes', null, ['class' => 'form-control Notes']) !!}
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-4">
-                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary save']) !!}
                 </div>
                 <div class="col-md-4">
                     {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
@@ -74,7 +74,7 @@
                     <th>#</th>
                 </tr>
             </thead>
-            <tbody>{{-- {{ dd($farmer->hSCodes) }} --}}
+            <tbody>
                 @forelse($farmer->hSCodes ?? session('farmer')->hSCodes ?? [] as $hSCode)
                     <tr>
                         <td>{{ $hSCode->pivot->FishFarmer_HSCode_ID }}</td>
@@ -83,7 +83,9 @@
                         <td>{{ $hSCode->pivot->Area }}</td>
                         <td>{{ $hSCode->pivot->PoolCount }}</td>
                         <td>
-                            <a href="{{ route('hSCodes.edit', $hSCode) }}" class="btn btn-sm btn-primary">تعديل</a>
+                            <a href="{{ route('hSCodes.edit', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
+                                data-action="{{ route('hSCodes.update', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
+                                data-form="hSCodes" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['hSCodes.destroy', $hSCode]]) !!}

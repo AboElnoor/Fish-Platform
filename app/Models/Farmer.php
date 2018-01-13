@@ -49,13 +49,13 @@ class Farmer extends Model
             ->withPivot('FishFarmer_HSCode_ID', 'cropMonth', 'Area', 'PoolCount', 'PoolAvrg', 'Notes');
     }
 
-    public function sources()
+    public function source()
     {
-        return $this->hasMany(FarmerSource::class, $this->primaryKey);
+        return $this->hasOne(FarmerSource::class, $this->primaryKey);
     }
 
-    public function clients()
+    public function client()
     {
-        return $this->hasMany(FarmerClient::class, $this->primaryKey);
+        return $this->hasOne(FarmerClient::class, $this->primaryKey);
     }
 }

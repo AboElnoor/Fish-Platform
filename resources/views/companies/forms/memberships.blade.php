@@ -5,7 +5,7 @@
         @foreach($memberships as $id => $membership)
             <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::checkbox('Member_ID[]', $id) . $membership !!}
+                    {!! Form::checkbox('Member_ID[]', $id, $company->memberships->contains($id)) . $membership !!}
                 </div>
             </div>
         @endforeach

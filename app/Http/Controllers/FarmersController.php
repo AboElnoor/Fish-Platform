@@ -172,7 +172,7 @@ class FarmersController extends Controller
     public function addSource(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->sourceRules());
-        $farmer->sources()->updateOrCreate([], $data);
+        $farmer->source()->updateOrCreate([], $data);
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات مستلزمات الانتاج بنجاح';
@@ -210,7 +210,7 @@ class FarmersController extends Controller
     public function addClient(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->clientRules());
-        $farmer->clients()->updateOrCreate([], $data);
+        $farmer->client()->updateOrCreate([], $data);
         session()->forget('farmer');
 
         $success = 'تم انشاء بيانات بيانات العملاء بنجاح';

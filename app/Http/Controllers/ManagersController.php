@@ -57,7 +57,22 @@ class ManagersController extends Controller
      */
     public function edit(CompanyManager $manager)
     {
-        //
+        return $manager;
+    }
+
+    /**
+     * Specify the manager form's rules.
+     *
+     * @return array
+     */
+    private function rules()
+    {
+        return [
+            'EmpName' => 'required|string',
+            'Job' => 'required|string',
+            'Mob' => 'required|numeric',
+            'Email' => 'sometimes|nullable|string|email',
+        ];
     }
 
     /**
@@ -69,7 +84,10 @@ class ManagersController extends Controller
      */
     public function update(Request $request, CompanyManager $manager)
     {
-        //
+        $data = $request->validate($this->rules());
+        $manager->update($data);
+        $success = 'تم تعديل الموظف بنجاح';
+        return back()->with(compact('success'));
     }
 
     /**
@@ -80,6 +98,8 @@ class ManagersController extends Controller
      */
     public function destroy(CompanyManager $manager)
     {
-        //
+        $manager->delete();
+        $success = 'تم حذف مستلزمات الإنتاج بنجاح';
+        return back()->with(compact('success'));
     }
 }
