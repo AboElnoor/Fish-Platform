@@ -33,6 +33,27 @@ class PricesController extends Controller
     }
 
     /**
+     * Specify the form's rules.
+     *
+     * @return array
+     */
+    private function rules()
+    {
+        return [
+            'HSCode_ID' => 'required|exists:hscode,HSCode_ID',
+            'Market_ID' => 'sometimes|nullable|numeric',
+            'PriceDate' => 'sometimes|nullable|date',
+            'PriceMin' => 'sometimes|nullable|numeric',
+            'PriceMax' => 'sometimes|nullable|numeric',
+            'Unit_ID' => 'sometimes|nullable|exists:Unit,Unit_ID',
+            'Weights' => 'sometimes|nullable|string',
+            'Weight' => 'sometimes|nullable|string',
+            'Desc_A' => 'sometimes|nullable|string',
+            'Desc_E' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -40,7 +61,15 @@ class PricesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'EntryUser' => auth()->id(),
+            'UpdateUser' => auth()->id(),
+            'PriceAverage' => array_sum($request->only('PriceMin', 'PriceMax')) / 2,
+        ];
+        $data += $request->validate($this->rules());
+        Price::create(array_except($data, ['Unit_ID', 'Weights']));
+        $success = 'تم انشاء السوق بنجاح';
+        return back()->with(compact('success'));
     }
 
     /**
