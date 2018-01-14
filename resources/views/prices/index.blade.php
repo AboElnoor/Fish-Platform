@@ -8,49 +8,140 @@
             <div class="col-md-6">
                 <h2 class="section-title">الأسعار</h2>
             </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="HSCode_ID">منتج/ كود HS</label>
+                    <select id="HSCode_ID" name="HSCode_ID" class="form-control">
+                        <option value="0">من فضلك اختار</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="HSCode_ID">المدينة/الســوق</label>
+                    <select id="HSCode_ID" name="HSCode_ID" class="form-control">
+                        <option value="0">القاهره</option>
+                        <option value="0">اسكندرية</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-md-6">
-                <a href="{{ route('farmers.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+                <div class="form-group">
+                    <label for="">من تاريخ</label>
+                    {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">الى تاريخ</label>
+                    {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
+                    </div>
+                    <div class="col-md-6">
+                        {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>كود</th>
+                            <th>منتج</th>
+                            <th>سوق</th>
+                            <th>تاريخ السفر</th>
+                            <th>سعر السوق</th>
+                            <th>من</th>
+                            <th>الى</th>
+                            <th>العبوة</th>
+                            <th>الصلاحية</th>
+                            <th>المستخدم</th>
+                            <th>الادخال</th>
+                            <th>#</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                               <td>9127</td> 
+                               <td>أ</td> 
+                               <td>العبور</td> 
+                               <td>١٨-١١-٢٠١٨</td> 
+                               <td>١٨ جنية</td> 
+                               <td>١</td> 
+                               <td>٣</td> 
+                               <td>٩</td> 
+                               <td>١٨ شهر</td> 
+                               <td>عادل</td> 
+                               <td>اليوم</td> 
+                               <td>
+                                    <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         @include('layouts.alert')
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>كود</th>
-                    <th>الاسم</th>
-                    <th>الموبايل</th>
-                    <th>مدخل البيانات</th>
-                    <th>تاريخ الادخال</th>
-                    <th>معدل البيانات</th>
-                    <th>تاريخ التعديل</th>
-                    <th>#</th>
-                    <th>#</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($farmers as $farmer)
-                    <tr>
-                        <td>{{ $farmer->FishFarmer_ID }}</td>
-                        <td>{{ $farmer->FishFarmerName }}</td>
-                        <td>{{ $farmer->Mob }}</td>
-                        <td>{{ $farmer->entryUser ? $farmer->entryUser->FullName : '-' }}</td>
-                        <td>{{ $farmer->created_at }}</td>
-                        <td>{{ $farmer->updateUser ? $farmer->updateUser->FullName : '-' }}</td>
-                        <td>{{ $farmer->updated_at }}</td>
-                        <td>
-                            <a href="{{ route('farmers.edit', $farmer) }}" class="btn btn-sm btn-primary">تعديل</a>
-                        </td>
-                        <td>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['farmers.destroy', $farmer]]) !!}
-                                {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        {{-- <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="HSCode_ID">منتج/ كود HS</label>
+                            <select id="HSCode_ID" name="HSCode_ID" class="form-control">
+                                <option value="0">من فضلك اختار</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="HSCode_ID">المدينة/الســوق</label>
+                            <select id="HSCode_ID" name="HSCode_ID" class="form-control">
+                                <option value="0">القاهره</option>
+                                <option value="0">اسكندرية</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">من تاريخ</label>
+                            {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">الى تاريخ</label>
+                            {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+                
         <div class="text-center">
-            {{ $farmers->links() }}
+            {{-- {{ $farmers->links() }} --}}
         </div>
     </div>
 </section>
