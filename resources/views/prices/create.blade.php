@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="form">
+<section class="form farms">
     <div class="container">
         <h2 class="section-title">الأسعار</h2>
         @include('layouts.alert')
@@ -116,10 +116,50 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
                             </div>
+                            <div class="col-md-6">
+                                {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>كود</th>
+                                    <th>منتج</th>
+                                    <th>سوق</th>
+                                    <th>تاريخ السعر</th>
+                                    <th>سعر السوق</th>
+                                    <th>من</th>
+                                    <th>الى</th>
+                                    <th>العبوة</th>
+                                    <th>#</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                       <td>9127</td> 
+                                       <td>أ</td> 
+                                       <td>العبور</td> 
+                                       <td>١٨-١١-٢٠١٨</td> 
+                                       <td>١٨ جنية</td> 
+                                       <td>١</td> 
+                                       <td>٣</td> 
+                                       <td>٩</td> 
+                                       <td>
+                                            <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
