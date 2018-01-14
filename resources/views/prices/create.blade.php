@@ -112,18 +112,17 @@
                                 {!! Form::textarea('Desc_E', $price->Desc_E ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
-                    {!! Form::close() !!}
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-6">
-                                {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
-                            </div>
-                            <div class="col-md-6">
-                                {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+	                    <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {!! Form::close() !!}
 
                     <div class="col-md-12">
                         <table class="table table-striped">
