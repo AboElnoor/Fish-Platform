@@ -10,14 +10,49 @@ use Illuminate\Http\Request;
 class PricesController extends Controller
 {
     /**
+     * Resource constructor
+     */
+    public function __construct()
+    {
+        $this->hSCodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        $hSCodes = $this->hSCodes;
         $prices = Price::latest('PriceDate')->paginate(10);
-        return view('prices.index', compact('prices'));
+        return view('prices.index', compact('prices', 'hSCodes'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        $hSCodes = $this->hSCodes;
+        $prices = Price::latest('PriceDate');
+        if (request('HSCode_ID')) {
+            $prices->where('HSCode_ID', request('HSCode_ID'));
+        };
+
+        if (request('Market_ID')) {
+            $prices->where('Market_ID', request('Market_ID'));
+        };
+
+        if (request('fromDate') || request('toDate')) {
+            $prices->whereBetween('PriceDate', [request('fromDate'), request('toDate')]);
+        }
+
+        $prices = $prices->paginate(10);
+        return view('prices.index', compact('prices', 'hSCodes'));
     }
 
     /**
@@ -27,8 +62,8 @@ class PricesController extends Controller
      */
     public function create()
     {
-        $hSCodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
-        $units = Unit::all();
+        $hSCodes = $this->hSCodes;
+        $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
         return view('prices.create', compact('hSCodes', 'units'));
     }
 
@@ -45,8 +80,8 @@ class PricesController extends Controller
             'PriceDate' => 'sometimes|nullable|date',
             'PriceMin' => 'sometimes|nullable|numeric',
             'PriceMax' => 'sometimes|nullable|numeric',
-            'Unit_ID' => 'sometimes|nullable|exists:Unit,Unit_ID',
-            'Weights' => 'sometimes|nullable|string',
+            'Unit_ID.*' => 'sometimes|nullable|exists:Unit,Unit_ID',
+            'Weights.*' => 'sometimes|nullable|string',
             'Weight' => 'sometimes|nullable|string',
             'Desc_A' => 'sometimes|nullable|string',
             'Desc_E' => 'sometimes|nullable|string',
@@ -67,7 +102,21 @@ class PricesController extends Controller
             'PriceAverage' => array_sum($request->only('PriceMin', 'PriceMax')) / 2,
         ];
         $data += $request->validate($this->rules());
-        Price::create(array_except($data, ['Unit_ID', 'Weights']));
+        $sync = [];
+        foreach (request('Unit_ID') as $key => $value) {
+            $sync[$value] = ['Weights' => request('Weights')[$key] ?? null];
+        }
+        try {
+            \DB::transaction(function () use ($data, $sync) {
+                $price = Price::create(array_except($data, ['Unit_ID', 'Weights']));
+                if ($sync) {
+                    $price->units()->sync($sync);
+                }
+            });
+        } catch (Exception $e) {
+            \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
+            $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
+        }
         $success = 'تم انشاء السوق بنجاح';
         return back()->with(compact('success'));
     }
@@ -91,7 +140,9 @@ class PricesController extends Controller
      */
     public function edit(Price $price)
     {
-        //
+        $hSCodes = $this->hSCodes;
+        $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
+        return view('prices.create', compact('hSCodes', 'units', 'price'));
     }
 
     /**
@@ -103,7 +154,28 @@ class PricesController extends Controller
      */
     public function update(Request $request, Price $price)
     {
-        //
+        $data = [
+            'UpdateUser' => auth()->id(),
+            'PriceAverage' => array_sum($request->only('PriceMin', 'PriceMax')) / 2,
+        ];
+        $data += $request->validate($this->rules());
+        $sync = [];
+        foreach (request('Unit_ID') as $key => $value) {
+            $sync[$value] = ['Weights' => request('Weights')[$key] ?? null];
+        }
+        try {
+            \DB::transaction(function () use ($price, $data, $sync) {
+                $price->update(array_except($data, ['Unit_ID', 'Weights']));
+                if($sync) {
+                    $price->units()->sync($sync);
+                }
+            });
+        } catch (Exception $e) {
+            \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
+            $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
+        }
+        $success = 'تم تحديث بيانات السوق بنجاح';
+        return back()->with(compact('success', 'error'));
     }
 
     /**
@@ -114,7 +186,7 @@ class PricesController extends Controller
      */
     public function destroy(Price $price)
     {
-        $hSCode->delete();
+        $price->delete();
         $success = 'تم حذف المنتج بنجاح';
         return back()->with(compact('success'));
     }

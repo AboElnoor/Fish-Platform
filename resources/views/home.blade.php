@@ -65,6 +65,18 @@
                 </a>
             </div>
             <div class="col-md-3">
+                <a href="{{ route('prices.index') }}" class="box-anchor">
+                    <div class="box">
+                        <div class="box-icon">
+                            <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="box-title">
+                            <h4>الأسعار</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">

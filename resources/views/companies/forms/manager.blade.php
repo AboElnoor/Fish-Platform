@@ -79,7 +79,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">لا توجد نتائج لعرضها</td>
+                        <td colspan="7">لا توجد نتائج لعرضها</td>
                     </tr>
                 @endforelse
             </tbody>

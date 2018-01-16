@@ -28,7 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($companies as $company)
+				@forelse($companies as $company)
 					<tr>
 						<td>{{ $company->FishCompany_ID }}</td>
 						<td>{{ $company->FishCompanyName }}</td>
@@ -46,7 +46,11 @@
 								class="btn btn-sm btn-danger">حذف</a>
 						</td>
 					</tr>
-				@endforeach
+				@empty
+					<tr>
+                        <td colspan="9">لا توجد نتائج لعرضها</td>
+                    </tr>
+				@endforelse
 			</tbody>
 		</table>
 		<div class="text-center">

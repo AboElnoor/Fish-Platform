@@ -5,49 +5,63 @@
 <section class="farms">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h2 class="section-title">الأسعار</h2>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="HSCode_ID">منتج/ كود HS</label>
-                    <select id="HSCode_ID" name="HSCode_ID" class="form-control">
-                        <option value="0">من فضلك اختار</option>
-                    </select>
+            {!! Form::open(['method' => 'GET', 'route' => 'prices.search']) !!}
+                <div class="col-md-6">
+                    <h2 class="section-title">الأسعار</h2>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="HSCode_ID">المدينة/الســوق</label>
-                    <select id="HSCode_ID" name="HSCode_ID" class="form-control">
-                        <option value="0">القاهره</option>
-                        <option value="0">اسكندرية</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="">من تاريخ</label>
-                    {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="">الى تاريخ</label>
-                    {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-6">
-                        {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
-                    </div>
-                    <div class="col-md-6">
-                        {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
+                    <div class="form-group">
+                        {!! Form::label('HSCode_ID', 'منتج/ كود HS') !!}
+                        {!! Form::select(
+                                'HSCode_ID',
+                                $hSCodes->prepend('من فضلك اختار', 0),
+                                $price->HSCode_ID ?? null,
+                                ['class' => 'form-control']
+                            ) !!}
                     </div>
                 </div>
-            </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {!! Form::label('Market_ID', 'المدينة/الســــوق') !!}
+                        {!! Form::select(
+                                'Market_ID',
+                                [
+                                    0 => 'من فضلك اختار',
+                                    1 => 'سوق العبور/القاهرة',
+                                    2 => 'سوق الجملة/6 اكتوبر',
+                                    3 => 'سوق الحضرة/الاسكندرية',
+                                    4 => 'سوق الجملة/اسيوط',
+                                    5 => 'سوق الجملة/المنيا',
+                                ],
+                                $price->Market_ID ?? null,
+                                ['class' => 'form-control']
+                            ) !!}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('fromDate', 'من تاريخ') !!}
+                        {{ Form::date('fromDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('toDate', 'الى تاريخ') !!}
+                        {{ Form::date('toDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('prices.create') }}" class="btn btn-success btn-block">اضافة جديد</a>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
 
             <div class="col-md-12">
                 <table class="table table-striped">
@@ -56,12 +70,10 @@
                             <th>كود</th>
                             <th>منتج</th>
                             <th>سوق</th>
-                            <th>تاريخ السفر</th>
+                            <th>تاريخ السعر</th>
                             <th>سعر السوق</th>
                             <th>من</th>
                             <th>الى</th>
-                            <th>العبوة</th>
-                            <th>الصلاحية</th>
                             <th>المستخدم</th>
                             <th>الادخال</th>
                             <th>#</th>
@@ -69,80 +81,40 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($prices as $price)
                             <tr>
-                               <td>9127</td> 
-                               <td>أ</td> 
-                               <td>العبور</td> 
-                               <td>١٨-١١-٢٠١٨</td> 
-                               <td>١٨ جنية</td> 
-                               <td>١</td> 
-                               <td>٣</td> 
-                               <td>٩</td> 
-                               <td>١٨ شهر</td> 
-                               <td>عادل</td> 
-                               <td>اليوم</td> 
+                               <td>{{ $price->PriceDB_ID }}</td>
+                               <td>{{ $price->hSCode->HS_Aname }}</td>
+                               <td>العبور</td>
+                               <td>{{ $price->PriceDate }}</td>
+                               <td>{{ $price->PriceAverage }}</td>
+                               <td>{{ $price->PriceMin }}</td>
+                               <td>{{ $price->PriceMax }}</td>
+                               <td>{{ $price->updateUser->FullName }}</td>
+                               <td>{{ $price->updated_at }}</td>
                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                                    <a href="{{ route('prices.edit', $price) }}"
+                                        class="btn btn-sm btn-primary edit">تعديل</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['prices.destroy', $price]]) !!}
+                                        {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
+                        @empty
+                            <tr>
+                                <td colspan="11">لا توجد نتائج لعرضها</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+                <div class="text-center">
+                    {{ $prices->links() }}
+                </div>
             </div>
         </div>
         @include('layouts.alert')
-        {{-- <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="HSCode_ID">منتج/ كود HS</label>
-                            <select id="HSCode_ID" name="HSCode_ID" class="form-control">
-                                <option value="0">من فضلك اختار</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="HSCode_ID">المدينة/الســوق</label>
-                            <select id="HSCode_ID" name="HSCode_ID" class="form-control">
-                                <option value="0">القاهره</option>
-                                <option value="0">اسكندرية</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">من تاريخ</label>
-                            {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">الى تاريخ</label>
-                            {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-6">
-                                {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
-                            </div>
-                            <div class="col-md-6">
-                                {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-                
-        <div class="text-center">
-            {{-- {{ $farmers->links() }} --}}
-        </div>
     </div>
 </section>
 

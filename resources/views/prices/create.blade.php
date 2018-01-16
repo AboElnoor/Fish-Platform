@@ -35,12 +35,12 @@
                                 {!! Form::select(
                                         'Market_ID',
                                         [
-                                            1 => 'من فضلك اختار',
-                                            2 => 'سوق العبور/القاهرة',
-                                            3 => 'سوق الجملة/6 اكتوبر',
-                                            4 => 'سوق الحضرة/الاسكندرية',
-                                            5 => 'سوق الجملة/اسيوط',
-                                            6 => 'سوق الجملة/المنيا',
+                                            0 => 'من فضلك اختار',
+                                            1 => 'سوق العبور/القاهرة',
+                                            2 => 'سوق الجملة/6 اكتوبر',
+                                            3 => 'سوق الحضرة/الاسكندرية',
+                                            4 => 'سوق الجملة/اسيوط',
+                                            5 => 'سوق الجملة/المنيا',
                                         ],
                                         $price->Market_ID ?? null,
                                         ['class' => 'form-control']
@@ -78,13 +78,13 @@
                                             Form::checkbox(
                                                 'Unit_ID[]',
                                                 $id,
-                                                false
-                                            ) . $unit->Unit_Name_A
+                                                $price->units->contains($id) ?? false
+                                            ) . $unit
                                         !!}
                                         {!!
                                             Form::text(
-                                                'Weights',
-                                                null,
+                                                'Weights[]',
+                                                $price->getUnitsWeights($id) ?? null,
                                                 ['class' => 'form-control']
                                             )
                                         !!}
@@ -123,43 +123,6 @@
                             </div>
                         </div>
                     {!! Form::close() !!}
-
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>كود</th>
-                                    <th>منتج</th>
-                                    <th>سوق</th>
-                                    <th>تاريخ السعر</th>
-                                    <th>سعر السوق</th>
-                                    <th>من</th>
-                                    <th>الى</th>
-                                    <th>العبوة</th>
-                                    <th>#</th>
-                                    <th>#</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                       <td>9127</td> 
-                                       <td>أ</td> 
-                                       <td>العبور</td> 
-                                       <td>١٨-١١-٢٠١٨</td> 
-                                       <td>١٨ جنية</td> 
-                                       <td>١</td> 
-                                       <td>٣</td> 
-                                       <td>٩</td> 
-                                       <td>
-                                            <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                                        </td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>

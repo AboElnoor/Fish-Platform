@@ -46,7 +46,11 @@
 							{!! Form::close() !!}
 						</td>
 					</tr>
-				@endforeach
+				@empty
+					<tr>
+                        <td colspan="9">لا توجد نتائج لعرضها</td>
+                    </tr>
+				@endforelse
 			</tbody>
 		</table>
 		<div class="text-center">
