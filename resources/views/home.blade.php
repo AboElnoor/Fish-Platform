@@ -104,6 +104,18 @@
                 <a href="#" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
+                            <i class="fa fa-object-ungroup fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="box-title">
+                            <h4>أفضل الممارسات</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="box-anchor">
+                    <div class="box">
+                        <div class="box-icon">
                             <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="box-title">
