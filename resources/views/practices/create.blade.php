@@ -4,126 +4,119 @@
 
 <section class="form farms">
     <div class="container">
-        <h2 class="section-title">الأسعار</h2>
+        <h2 class="section-title">أفضل الممارسات والافيديوهات</h2>
         @include('layouts.alert')
 
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#menu1">أفضل الممارسات</a></li>
+            <li><a data-toggle="tab" href="#menu2">الفيديوهات</a></li>
+        </ul>
+
         <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <h3 class="tab-title">الأسعار</h3>
-                <div class="row">
-                    {!!
-                        Form::open([
-                            'method' => isset($price) ? 'PUT' : 'POST',
-                            'route' => isset($price) ? ['prices.update', $price] : 'prices.store',
-                        ])
-                    !!}
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'منتج/ كود HS') !!}
-                                {!! Form::select(
-                                        'HSCode_ID',
-                                        $hSCodes->prepend('من فضلك اختار', 0),
-                                        $price->HSCode_ID ?? null,
-                                        ['class' => 'form-control']
-                                    ) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('Market_ID', 'المدينة/الســــوق') !!}
-                                {!! Form::select(
-                                        'Market_ID',
-                                        [
-                                            0 => 'من فضلك اختار',
-                                            1 => 'سوق العبور/القاهرة',
-                                            2 => 'سوق الجملة/6 اكتوبر',
-                                            3 => 'سوق الحضرة/الاسكندرية',
-                                            4 => 'سوق الجملة/اسيوط',
-                                            5 => 'سوق الجملة/المنيا',
-                                        ],
-                                        $price->Market_ID ?? null,
-                                        ['class' => 'form-control']
-                                    ) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('PriceDate', 'تاريخ السعر') !!}
-                                {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('PriceMin', 'أدنى سعر') !!}
-                                {!! Form::text('PriceMin', $price->PriceMin ?? null, ['class' => 'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('PriceMax', 'اعلى سعر') !!}
-                                {!! Form::text('PriceMax', $price->PriceMax ?? null, ['class' => 'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                {!! Form::label('Unit_ID', ' العبـــــوات') !!}
-                                @foreach($units as $id => $unit)
-                                    <div class="col-md-4">
-                                        {!!
-                                            Form::checkbox(
-                                                'Unit_ID[]',
-                                                $id,
-                                                $price->units->contains($id) ?? false
-                                            ) . $unit
-                                        !!}
-                                        {!!
-                                            Form::text(
-                                                'Weights[]',
-                                                $price->getUnitsWeights($id) ?? null,
-                                                ['class' => 'form-control']
-                                            )
-                                        !!}
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                {!! Form::label('Weight', 'الوزن') !!}
-                                {!! Form::text('Weight', $price->Weight ?? null, ['class' => 'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                {!! Form::label('Desc_A', ' المـواصفات- عربى') !!}
-                                {!! Form::textarea('Desc_A', $price->Desc_A ?? null, ['class' => 'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                {!! Form::label('Desc_E', 'المـواصفات- انجليزى') !!}
-                                {!! Form::textarea('Desc_E', $price->Desc_E ?? null, ['class' => 'form-control']) !!}
-                            </div>
-                        </div>
-	                    <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
-                                </div>
-                                <div class="col-md-6">
-                                    {!! Form::submit('اضافة جديد', ['class' => 'btn btn-success btn-block']) !!}
-                                </div>
-                            </div>
-                        </div>
-                    {!! Form::close() !!}
+            {{-- <div class="row">
+                <div class="col-md-6">
+                    
                 </div>
+            </div> --}}
+            <div id="menu1" class="tab-pane fade in active">
+                <h3 class="tab-title">أفضل الممارسات</h3>
+                <div class="form-group">
+                    <label for="title">العنوان</label>
+                    <input type="text" name="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة</label>
+                    <textarea name="message" id="" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pic">الصورة</label>
+                    <input type="file" name="pic" class="form-control">
+                </div>
+                <button class="btn btn-success btn-block">اضافة</button>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>العنوان</th>
+                            <th>#</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           <td>اسم مجهول</td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                           </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3 class="tab-title">الفيديوهات</h3>
+                <div class="form-group">
+                    <label for="title">العنوان</label>
+                    <input type="text" name="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="url">الرابط</label>
+                    <input type="text" name="url" class="form-control">
+                </div>
+                <button class="btn btn-success btn-block">اضافة</button>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>العنوان</th>
+                            <th>الفيديو</th>
+                            <th>#</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           <td>اسم مجهول</td>
+                           <td>
+                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>اسم مجهول</td>
+                           <td>
+                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>اسم مجهول</td>
+                           <td>
+                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
+                           </td>
+                           <td>
+                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
+                           </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
