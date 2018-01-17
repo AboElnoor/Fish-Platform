@@ -6,7 +6,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<h2 class="section-title">قائمة مستلزمات الانتاج</h2>
+				<h2 class="section-title">
+					@if(requestUri() == 'factories')
+						قائمة المصانع
+					@elseif(requestUri() == 'sellers')
+						قائمة التجار
+					@else
+						قائمة مستلزمات الانتاج
+					@endif
+				</h2>
 			</div>
 			<div class="col-md-6">
 				<a href="{{ route(requestUri() . '.create') }}"
