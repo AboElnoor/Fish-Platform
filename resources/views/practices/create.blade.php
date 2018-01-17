@@ -1,39 +1,33 @@
 @extends('layouts.app')
-
 @section('content')
-
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">أفضل الممارسات والافيديوهات</h2>
         @include('layouts.alert')
-
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#menu1">أفضل الممارسات</a></li>
             <li><a data-toggle="tab" href="#menu2">الفيديوهات</a></li>
         </ul>
-
         <div class="tab-content">
-            {{-- <div class="row">
-                <div class="col-md-6">
-                    
-                </div>
-            </div> --}}
             <div id="menu1" class="tab-pane fade in active">
-                <h3 class="tab-title">أفضل الممارسات</h3>
-                <div class="form-group">
-                    <label for="title">العنوان</label>
-                    <input type="text" name="title" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="message">الرسالة</label>
-                    <textarea name="message" id="" cols="30" rows="10" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="pic">الصورة</label>
-                    <input type="file" name="pic" class="form-control">
-                </div>
-                <button class="btn btn-success btn-block">اضافة</button>
-
+                {!! Form::open([
+                        'method' => isset($practice) ? 'PUT' : 'POST', 'files' => true,
+                        'route' => isset($practice) ? ['practices.update', $practice] : 'practices.store']) !!}
+                    <h3 class="tab-title">أفضل الممارسات</h3>
+                    <div class="form-group">
+                        {!! Form::label('title', 'العنوان') !!}
+                        {!! Form::text('title', $practice->title ?? null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('message', 'الرسالة') !!}
+                        {!! Form::textarea('message', $practice->message ?? null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('photo', 'الصورة') !!}
+                        {!! Form::file('photo', ['class' => 'form-control']) !!}
+                    </div>
+                    {!! Form::submit('اضافة', ['class' => 'btn btn-success btn-block']) !!}
+                {!! Form::close() !!}
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -43,31 +37,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                           <td>اسم مجهول</td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                           </td>
-                        </tr>
+                        @forelse($practices as $practice)
+                            <tr>
+                                {{-- <td><img src="{{ asset('storage/'. $practice->photo ) }}"></td> --}}
+                                <td>{{ $practice->title }}</td>
+                                <td>
+                                    <a href="{{ route('practices.edit', $practice) }}"
+                                       class="btn btn-sm btn-primary">تعديل</a>
+                                </td>
+                                <td>
+                                    {!! Form::open([
+                                        'method' => 'DELETE', 'route' => ['practices.destroy', $practice]]) !!}
+                                        {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">لا توجد نتائج لعرضها</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
             </div>
             <div id="menu2" class="tab-pane fade">
-                <h3 class="tab-title">الفيديوهات</h3>
-                <div class="form-group">
-                    <label for="title">العنوان</label>
-                    <input type="text" name="title" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="url">الرابط</label>
-                    <input type="text" name="url" class="form-control">
-                </div>
-                <button class="btn btn-success btn-block">اضافة</button>
-
+                {!! Form::open(['route' => 'videos.store', 'class' => 'videos']) !!}
+                    <h3 class="tab-title">الفيديوهات</h3>
+                    <div class="form-group">
+                        {!! Form::label('title', 'العنوان') !!}
+                        {!! Form::text('title', null, ['class' => 'form-control title']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('url', 'الرابط') !!}
+                        {!! Form::text('url', null, ['class' => 'form-control url']) !!}
+                    </div>
+                    {!! Form::submit('اضافة', ['class' => 'btn btn-success btn-block save']) !!}
+                {!! Form::close() !!}
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -78,45 +83,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                           <td>اسم مجهول</td>
-                           <td>
-                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>اسم مجهول</td>
-                           <td>
-                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>اسم مجهول</td>
-                           <td>
-                               <iframe width="200" height="100" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-primary edit">تعديل</a>
-                           </td>
-                           <td>
-                               <a href="#" class="btn btn-sm btn-danger">حذف</a>
-                           </td>
-                        </tr>
+                        @forelse($videos as $video)
+                            <tr>
+                                <td>{{ $video->title }}</td>
+                                <td>
+                                    <iframe width="200" height="100" src="{{ $video->url }}"></iframe>
+                                </td>
+                                <td>
+                                    <a href="{{ route('videos.edit', $video) }}" data-form="videos"
+                                        data-action="{{ route('videos.update', $video) }}"
+                                        class="btn btn-sm btn-primary edit">تعديل</a>
+                                </td>
+                                <td>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['videos.destroy', $video]]) !!}
+                                        {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4">لا توجد نتائج لعرضها</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

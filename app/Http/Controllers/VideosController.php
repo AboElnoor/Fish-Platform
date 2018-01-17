@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Practice;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
-class PracticesController extends Controller
+class VideosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,13 +24,11 @@ class PracticesController extends Controller
      */
     public function create()
     {
-        $practices = Practice::all();
-        $videos = Video::all();
-        return view('practices.create', compact('practices', 'videos'));
+        //
     }
 
     /**
-     * Specify the practices form's rules.
+     * Specify the videos form's rules.
      *
      * @return array
      */
@@ -39,7 +36,7 @@ class PracticesController extends Controller
     {
         return [
             'title' => 'required|string',
-            'message' => 'sometimes|nullable|string',
+            'url' => 'required|string|active_url',
             'photo' => 'sometimes|nullable|image',
         ];
     }
@@ -53,9 +50,8 @@ class PracticesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
-        $photo = (request()->file('photo')) ? request()->file('photo')->store('photos') : 'photos/default.jpg';
 
-        Practice::create(compact('photo') + $data);
+        Video::create($data);
         $success = 'تمت الااضافة بنجاح';
         return back()->with(compact('success'));
     }
@@ -63,10 +59,10 @@ class PracticesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Practice  $practice
+     * @param  Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show(Practice $practice)
+    public function show(Video $video)
     {
         //
     }
@@ -74,29 +70,26 @@ class PracticesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Practice  $practice
+     * @param  Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Practice $practice)
+    public function edit(Video $video)
     {
-        $practices = Practice::all();
-        $videos = Video::all();
-        return view('practices.create', compact('practices', 'practice', 'videos'));
+        return $video;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Practice  $practice
+     * @param  Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Practice $practice)
+    public function update(Request $request, Video $video)
     {
         $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('photos') : 'photos/default.jpg';
 
-        $practice->update(compact('photo') + $data);
+        $video->update($data);
         $success = 'تم التحديث بنجاح';
         return back()->with(compact('success'));
     }
@@ -104,13 +97,11 @@ class PracticesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Practice  $practice
+     * @param  Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Practice $practice)
+    public function destroy(Video $video)
     {
-        $practice->delete();
-        $success = 'تم الحذف بنجاح';
-        return back()->with(compact('success'));
+        //
     }
 }
