@@ -53,4 +53,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::resource('prices', 'PricesController');
     Route::resource('practices', 'PracticesController');
     Route::resource('videos', 'VideosController');
+    Route::resource('markets', 'MarketsController');
+    Route::resource('experts', 'ExpertsController');
 });
