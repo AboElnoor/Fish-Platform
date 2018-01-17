@@ -28,7 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($farmers as $farmer)
+				@forelse($farmers as $farmer)
 					<tr>
 						<td>{{ $farmer->FishFarmer_ID }}</td>
 						<td>{{ $farmer->FishFarmerName }}</td>
