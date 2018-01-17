@@ -24,7 +24,7 @@
                 {!! Form::label('ActivityType_ID[]', 'طبيعه العمل') !!}
                 @foreach($types as $id => $type)
                     {!! Form::checkbox(
-                            'ActivityType_ID[]', $id, $company->activitytypes->contains($id) ?? false
+                            'ActivityType_ID[]', $id, isset($company) ? $company->activitytypes->contains($id) : false
                         ) . $type !!}
                 @endforeach
             </div>

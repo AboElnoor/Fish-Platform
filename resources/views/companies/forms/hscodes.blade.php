@@ -6,7 +6,9 @@
             <div class="form-group">
                 {!! Form::label('HSCode_ID[]', '(*)اصناف الاسماك') !!}
                 @foreach($hscodes as $id => $hscode)
-                    {!! Form::checkbox('HSCode_ID[]', $id, $company->hSCodes->contains($id) ?? false) . $hscode !!}
+                    {!! Form::checkbox(
+                            'HSCode_ID[]', $id, isset($company) ? $company->hSCodes->contains($id) : false
+                        ) . $hscode !!}
                 @endforeach
             </div>
         </div>
@@ -15,7 +17,9 @@
             <div class="form-group">
                 {!! Form::label('ClntSplr_ID[]', '(*) انواع مستلزمات الانتاج التى يقدمها') !!}
                 @foreach($clntsplrs as $id => $clntsplr)
-                    {!! Form::checkbox('ClntSplr_ID[]', $id, $company->clntSplrs->contains($id) ?? false) . $clntsplr !!}
+                    {!! Form::checkbox(
+                            'ClntSplr_ID[]', $id, isset($company) ? $company->clntSplrs->contains($id) : false
+                        ) . $clntsplr !!}
                 @endforeach
             </div>
         </div>
@@ -24,7 +28,9 @@
             <div class="form-group">
                 {!! Form::label('ClntSplr_ID[]', '(*) أهم انواع العملاء') !!}
                 @foreach($impClnts as $id => $impClnt)
-                    {!! Form::checkbox('ClntSplr_ID[]', $id, $company->clntSplrs->contains($id) ?? false) . $impClnt !!}
+                    {!! Form::checkbox(
+                            'ClntSplr_ID[]', $id, isset($company) ? $company->clntSplrs->contains($id) : false
+                        ) . $impClnt !!}
                 @endforeach
             </div>
         </div>
