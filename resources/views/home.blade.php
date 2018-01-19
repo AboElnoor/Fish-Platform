@@ -113,7 +113,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('markets') }}" class="box-anchor">
+                <a href="{{ route('markets.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-home fa-2x" aria-hidden="true"></i>
