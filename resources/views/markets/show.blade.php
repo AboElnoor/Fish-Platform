@@ -66,12 +66,12 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <a href="#" class="btn btn-primary btn-block">عرض بيع</a>
+                        <a href="#" class="btn btn-primary btn-block">تعديل</a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <a href="#" class="btn btn-success btn-block">عرض طلب</a>
+                        <a href="#" class="btn btn-success btn-block">اضافة</a>
                     </div>
                 </div>
 			</div>
