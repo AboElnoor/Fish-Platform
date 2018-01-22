@@ -41,13 +41,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::label('fromDate', 'من تاريخ') !!}
-                        {{ Form::date('fromDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                        {!! Form::date('fromDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::label('toDate', 'الى تاريخ') !!}
-                        {{ Form::date('toDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                        {!! Form::date('toDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
 

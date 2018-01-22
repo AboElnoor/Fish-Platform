@@ -55,14 +55,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('PriceDate', 'بداية العرض') !!}
-                                {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                                {!! Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('PriceMin', 'نهاية العرض') !!}
-                                {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                                {!! Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                             </div>
                         </div>
 

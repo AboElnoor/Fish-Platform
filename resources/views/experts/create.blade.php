@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('PriceDate', 'تاريخ السعر') !!}
-                                {{ Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
+                                {!! Form::date('PriceDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
                             </div>
                         </div>
 
