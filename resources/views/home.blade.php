@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('practices.index') }}" class="box-anchor">
+                <a href="{{ route('practices.create') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-object-ungroup fa-2x" aria-hidden="true"></i>

@@ -110,6 +110,7 @@ class FarmersController extends Controller
         session(compact('farmer'));
 
         $success = 'تم انشاء المزرعة بنجاح';
+        // dd(\Illuminate\Support\Facades\Route::current());
         return back()->with(compact('success'));
     }
 
