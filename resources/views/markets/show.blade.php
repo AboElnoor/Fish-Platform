@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<section class="farms">
+	<section class="farms details">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
@@ -11,6 +11,11 @@
 				<div class="col-md-12">
 					<h4 class="section-title">عرض بيع</h4>
 				</div>
+				<div class="col-md-12">
+                    <div class="form-group">
+                        <img src="https://placeimg.com/500/500/nature" alt="">
+                    </div>
+                </div>
 				<div class="col-md-12">
                     <div class="form-group">
                         <h4>كود العرض: <i>220</i></h4>

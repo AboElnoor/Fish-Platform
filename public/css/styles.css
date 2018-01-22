@@ -152,3 +152,9 @@ Home page - logged in
 .home .box .box-title {
 	padding: 15px;
 }
+.farms.details i {
+	color: #1c75bc;
+}
+.farms.details img {
+	max-width: 300px;
+}
