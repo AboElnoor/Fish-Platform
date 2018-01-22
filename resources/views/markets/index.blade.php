@@ -41,10 +41,13 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-md-6">
-                            {!! Form::submit('ادخال عروض شراء', ['class' => 'btn btn-primary btn-block']) !!}
+                        <div class="col-md-4">
+                            {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <a href="#" class="btn btn-success btn-block">ادخال عروض شراء</a>
+                        </div>
+                        <div class="col-md-4">
                             <a href="#" class="btn btn-success btn-block">ادخال عروض بيع</a>
                         </div>
                     </div>

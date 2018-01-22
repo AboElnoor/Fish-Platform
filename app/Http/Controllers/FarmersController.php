@@ -18,6 +18,7 @@ class FarmersController extends Controller
      */
     public function index()
     {
+        session()->forget('farmer');
         $farmers = Farmer::latest()->paginate(10);
         return view('farmers.index', compact('farmers'));
     }
@@ -33,8 +34,9 @@ class FarmersController extends Controller
         $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
         $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
+        $farmer = session('farmer', null);
 
-        return view('farmers.create', compact('governorates', 'locals', 'villages', 'hscodes'));
+        return view('farmers.create', compact('governorates', 'locals', 'villages', 'hscodes', 'farmer'));
     }
 
     /**
@@ -253,7 +255,15 @@ class FarmersController extends Controller
      */
     public function update(Request $request, Farmer $farmer)
     {
-        //
+        $data = [
+            'UpdateUser' => auth()->id(),
+        ];
+        $data += $request->validate($this->rules());
+        $farmer->update($data);
+        session(compact('farmer'));
+
+        $success = 'تم تعديل المزارع بنجاح';
+        return back()->with(compact('success'));
     }
 
     /**

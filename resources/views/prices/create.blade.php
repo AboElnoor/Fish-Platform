@@ -78,13 +78,13 @@
                                             Form::checkbox(
                                                 'Unit_ID[]',
                                                 $id,
-                                                $price->units->contains($id) ?? false
+                                                isset($price) ? $price->units->contains($id) : false
                                             ) . $unit
                                         !!}
                                         {!!
                                             Form::text(
                                                 'Weights[]',
-                                                $price->getUnitsWeights($id) ?? null,
+                                                isset($price) ? $price->getUnitsWeights($id) : null,
                                                 ['class' => 'form-control']
                                             )
                                         !!}

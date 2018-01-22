@@ -63,6 +63,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
+        session()->forget('company');
         $companies = Company::where('FishCompanyType_ID', $this->FishCompanyType_ID)->latest()->paginate(10);
         return view('companies.index', compact('companies'));
     }
@@ -99,6 +100,7 @@ class CompaniesController extends Controller
 
         $clntsplrs = $clntsplrs->pluck('ClntSplr_Name', 'ClntSplr_ID');
         $impClnts = $impClnts->pluck('ClntSplr_Name', 'ClntSplr_ID');
+        $company = session('company', null);
 
         return view('companies.create', compact(
             'governorates',
@@ -109,7 +111,8 @@ class CompaniesController extends Controller
             'memberships',
             'hscodes',
             'clntsplrs',
-            'impClnts'
+            'impClnts',
+            'company'
         ));
     }
 
@@ -364,7 +367,7 @@ class CompaniesController extends Controller
     public function addSource(Request $request, Company $company)
     {
         $data = $request->validate($this->sourceRules());
-        $company->sources()->updateOrCreate([], $data);
+        $company->source()->updateOrCreate([], $data);
         session(compact('company'));
 
         $success = 'تم انشاء بيانات مستلزمات التشغيل بنجاح';
@@ -455,7 +458,7 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $data = $request->validate($this->updateRules());
+        $data = $request->validate($this->rules() + $this->updateRules());
 
         if (!empty(request('ActivityType_ID'))) {
             \Validator::make(request('ActivityType_ID'), [
@@ -472,14 +475,13 @@ class CompaniesController extends Controller
                 $company->activitytypes()->sync(request('ActivityType_ID'));
             });
 
-            $success = 'تم انشاء مستلزمات الإنتاج بنجاح';
+            $success = 'تم التعديل بنجاح';
         } catch (\Exception $e) {
             \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
 
         session(compact('company'));
-        // $success = 'تم إضافة المساهمون بنجاح';
         return back()->with(compact('success', 'error'));
     }
 

@@ -1,7 +1,6 @@
 <div class="row farms">
     {!! Form::open([
-            'route' => ['farmers.addFarm', $farmer ?? session('farmer')], 'class' => 'farms'
-        ]) !!}
+            'route' => ['farmers.addFarm', $farmer ?? session('farmer')], 'class' => 'farms']) !!}
         <div class="form-group">
             {!! Form::label('Governorate_ID', '(*)عنوان المزرعة - المحافظة') !!}
             {!! Form::select(
