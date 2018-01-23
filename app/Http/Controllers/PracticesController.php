@@ -27,6 +27,10 @@ class PracticesController extends Controller
     {
         $practices = Practice::all();
         $videos = Video::all();
+
+        if (requestUri() == 'api') {
+            return compact('practices', 'videos');
+        }
         return view('practices.create', compact('practices', 'videos'));
     }
 
@@ -57,6 +61,10 @@ class PracticesController extends Controller
 
         Practice::create(compact('photo') + $data);
         $success = 'تمت الااضافة بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -81,6 +89,10 @@ class PracticesController extends Controller
     {
         $practices = Practice::all();
         $videos = Video::all();
+
+        if (requestUri() == 'api') {
+            return compact('practices', 'practice', 'videos');
+        }
         return view('practices.create', compact('practices', 'practice', 'videos'));
     }
 
@@ -98,6 +110,10 @@ class PracticesController extends Controller
 
         $practice->update(compact('photo') + $data);
         $success = 'تم التحديث بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -111,6 +127,10 @@ class PracticesController extends Controller
     {
         $practice->delete();
         $success = 'تم الحذف بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 }

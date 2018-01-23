@@ -53,6 +53,10 @@ class VideosController extends Controller
 
         Video::create($data);
         $success = 'تمت الااضافة بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -91,6 +95,10 @@ class VideosController extends Controller
 
         $video->update($data);
         $success = 'تم التحديث بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -102,6 +110,12 @@ class VideosController extends Controller
      */
     public function destroy(Video $video)
     {
-        //
+        $video->delete();
+        $success = 'تم الحذف بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
+        return back()->with(compact('success'));
     }
 }

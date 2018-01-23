@@ -25,7 +25,12 @@ class PricesController extends Controller
     public function index()
     {
         $hSCodes = $this->hSCodes;
-        $prices = Price::latest('PriceDate')->paginate(10);
+        $prices = Price::latest('PriceDate')
+            ->with('hSCode', 'entryUser', 'updateUser')->paginate(10);
+
+        if (requestUri() == 'api') {
+            return compact('prices');
+        }
         return view('prices.index', compact('prices', 'hSCodes'));
     }
 
@@ -51,7 +56,11 @@ class PricesController extends Controller
             $prices->whereBetween('PriceDate', [request('fromDate'), request('toDate')]);
         }
 
-        $prices = $prices->paginate(10);
+        $prices = $prices->with('hSCode', 'entryUser', 'updateUser')->paginate(10);
+
+        if (requestUri() == 'api') {
+            return compact('prices');
+        }
         return view('prices.index', compact('prices', 'hSCodes'));
     }
 
@@ -64,6 +73,10 @@ class PricesController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
+
+        if (requestUri() == 'api') {
+            return compact('hSCodes', 'units');
+        }
         return view('prices.create', compact('hSCodes', 'units'));
     }
 
@@ -118,7 +131,11 @@ class PricesController extends Controller
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
         $success = 'تم انشاء السوق بنجاح';
-        return back()->with(compact('success'));
+
+        if (requestUri() == 'api') {
+            return compact('success', 'error');
+        }
+        return back()->with(compact('success', 'error'));
     }
 
     /**
@@ -142,6 +159,11 @@ class PricesController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
+        $price = Price::with('hSCode', 'entryUser', 'updateUser')->find($price->PriceDB_ID);
+
+        if (requestUri() == 'api') {
+            return compact('hSCodes', 'units', 'price');
+        }
         return view('prices.create', compact('hSCodes', 'units', 'price'));
     }
 
@@ -175,6 +197,10 @@ class PricesController extends Controller
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
         $success = 'تم تحديث بيانات السوق بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success', 'error');
+        }
         return back()->with(compact('success', 'error'));
     }
 
@@ -188,6 +214,10 @@ class PricesController extends Controller
     {
         $price->delete();
         $success = 'تم حذف المنتج بنجاح';
+
+        if (requestUri() == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 }
