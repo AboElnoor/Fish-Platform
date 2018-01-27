@@ -376,7 +376,7 @@ class CompaniesController extends Controller
         session()->forget('company');
 
         $success = 'تم انشاء بيانات مستلزمات التشغيل بنجاح';
-        return redirect()->route('companies.index')->with(compact('success'));
+        return redirect()->route(requestUri() . '.index')->with(compact('success'));
     }
 
     /**
@@ -446,6 +446,12 @@ class CompaniesController extends Controller
     private function updateRules()
     {
         return [
+            'FishCompanyName' => 'sometimes|nullable|string',
+            'TradeMark' => 'sometimes|nullable|string',
+            'EYear' => 'sometimes|nullable|numeric',
+            'EmpCount' => 'sometimes|nullable|numeric',
+            'RegNo' => 'sometimes|nullable|numeric',
+            'Activity' => 'sometimes|nullable|string',
             'ShareHoldr' => 'sometimes|nullable|string',
             'ShareHoldrFrgn' => 'sometimes|nullable|string',
             'ComGroup' => 'sometimes|nullable|string',
@@ -463,7 +469,7 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $data = $request->validate($this->rules() + $this->updateRules());
+        $data = $request->validate($this->updateRules());
 
         if (!empty(request('ActivityType_ID'))) {
             \Validator::make(request('ActivityType_ID'), [

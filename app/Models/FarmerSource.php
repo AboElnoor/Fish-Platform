@@ -16,5 +16,5 @@ class FarmerSource extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'FishCompany_ID';
+    protected $primaryKey = 'FishFarmer_ID';
 }
