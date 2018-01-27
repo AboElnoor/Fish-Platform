@@ -1,17 +1,56 @@
 $(document).ready(function() {
-    $('.save').on('click', function(event) {
+    $('.next').on('click', function(event) {
         event.preventDefault();
-        url = $(this).parents('form').attr('action');
-        console.log($(this).parents('form').attr('action'));
+        var form = $(this).parents('form');
+        var url = form.attr('action');
+        console.log(url);
+
         $.ajax({
             url: url,
             method: 'post',
-            data: $(this).parents('form').serialize(),
+            data: form.serialize(),
+        })
+        .done(function() {
+            console.log("success");
+            var hash = window.location.hash ? window.location.hash : '#menu0';
+            console.log(hash);
+            var tabNum = parseInt(hash.match(/\d+/)[0]) + 1;
+            var tabTxt = hash.replace(/\d+/, '');
+            var nextHash = tabTxt + tabNum;
+            console.log(nextHash);
+            window.location.hash = nextHash;
+            location.reload();
+        })
+        .fail(function(data) {
+            console.log(data.responseJSON.errors);
+            var htmlText = '<div class="alert alert-danger"><ul>';
+            $.each(data.responseJSON.errors, function(index, val) {
+                console.log(index + ' => ' + val);
+               htmlText += '<li>' + val + '</li>';
+            });
+            htmlText += '</ul></div>';
+            $('h2.section-title').after(htmlText);
+        })
+        .always(function () {
+            window.scrollTo(0, 0);
+        });
+
+    });
+
+    $('.save').on('click', function(event) {
+        event.preventDefault();
+        var form = $(this).parents('form');
+        var url = form.attr('action');
+        console.log(url);
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: form.serialize(),
         })
         .done(function(data) {
             console.log(data);
             location.reload();
-            window.scrollTo(0, 0);
         })
         .fail(function (data) {
             console.log(data.responseJSON.errors);
@@ -22,6 +61,9 @@ $(document).ready(function() {
             });
             htmlText += '</ul></div>';
             $('h2.section-title').after(htmlText);
+        })
+        .always(function () {
+            window.scrollTo(0, 0);
         });
     });
 

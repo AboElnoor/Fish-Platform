@@ -8,7 +8,7 @@
 		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#home">المزارعين</a></li>
+			<li class="active"><a data-toggle="tab" href="#menu0">المزارعين</a></li>
 			<li><a data-toggle="tab" href="#menu1">المزارع</a></li>
 			<li><a data-toggle="tab" href="#menu2">بيانات الانتاج</a></li>
 			<li><a data-toggle="tab" href="#menu3">بيانات مستلزمات الانتاج</a></li>
@@ -16,7 +16,7 @@
 		</ul>
 
 		<div class="tab-content">
-			<div id="home" class="tab-pane fade in active">
+			<div id="menu0" class="tab-pane fade in active">
 				<h3 class="tab-title">المزارعين</h3>
 				@include('farmers.forms.farmers')
 			</div>

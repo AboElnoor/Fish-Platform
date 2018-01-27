@@ -42,7 +42,7 @@
                     {!! Form::submit('حفظ', ['class' => 'btn btn-primary save']) !!}
                 </div>
                 <div class="col-md-4">
-                    {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}
+                    {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default next']) !!}
                 </div>
                 <div class="col-md-4">
                     {!! Form::submit('حفظ وانهاء', ['class' => 'btn btn-success']) !!}
