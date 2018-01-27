@@ -31,8 +31,8 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                {!! Form::label('EstDate', 'تاريخ بداء النشاط') !!}
-                {!! Form::text('EstDate', null, ['class' => 'form-control EstDate']) !!}
+                {!! Form::label('EstDate', 'تاريخ بدء  النشاط') !!}
+                {!! Form::date('EstDate', \Carbon\Carbon::now(), ['class' => 'form-control EstDate']) !!}
             </div>
         </div>
 

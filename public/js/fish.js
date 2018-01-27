@@ -69,16 +69,48 @@ $(document).ready(function() {
 
     $('table').on('click', '.edit', function(event) {
         event.preventDefault();
-        url = $(this).attr('href');
-        form = $('.' + $(this).data('form'));
-        action = $(this).data('action');
+        var url = $(this).attr('href');
+        var form = $('.' + $(this).data('form'));
+        var action = $(this).data('action');
         console.log(url);
+
         $.ajax({
             url: url,
         })
         .done(function(data) {
             $.each(data, function(index, val) {
                 if (val == null) { return true; }
+                if (index == 'Governorate_ID') {
+                    var baseURL = window.location.origin;
+                    var url = baseURL + '/localities/' + val;
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                    })
+                    .done(function(localities) {
+                        var locals = $('.Locality_ID');
+                        locals.html('<option value=0>من فضلك اختار</option>');
+                        $.each(localities, function(id, loacal) {
+                            locals.append('<option value=' + id + (data.Locality_ID == id ? ' selected' : '') + '>' + loacal + '</option>');
+                        });
+                    });
+                }
+
+                if (index == 'Locality_ID') {
+                    var baseURL = window.location.origin;
+                    var url = baseURL + '/villages/' + val;
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                    })
+                    .done(function(villages) {
+                        var select = $('.Village_ID');
+                        select.html('<option value=0>من فضلك اختار</option>');
+                        $.each(villages, function(id, village) {
+                            select.append('<option value=' + id + (data.Village_ID == id ? ' selected' : '') + '>' + village + '</option>');
+                        });
+                    });
+                }
                 $('.' + index).val(val);
                 console.log(index + ' => ' + val);
             });
@@ -91,7 +123,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.Governorate_ID').on('change', function(event) {
+    $('.Governorate_ID').on('change', function() {
         var url = $(this).data('url') + '/' + $(this).val();
         $.ajax({
             url: url,

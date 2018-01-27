@@ -66,6 +66,7 @@ class FarmsController extends Controller
             'Governorate_ID' => 'required|exists:governorate',
             'Locality_ID' => 'required|exists:locality',
             'Village_ID' => request('Village_ID') ? 'required|exists:village' : '',
+            'EstDate' => 'sometimes|nullable|string',
             'Address' => 'sometimes|nullable|string',
             'OwnerType' => 'sometimes|nullable|string',
             'OwnerID' => 'sometimes|nullable|string',
