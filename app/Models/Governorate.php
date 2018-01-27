@@ -17,4 +17,9 @@ class Governorate extends Model
      * @var string
      */
     protected $primaryKey = 'Governorate_ID';
+
+    public function localities()
+    {
+        return $this->hasMany(Locality::class, $this->primaryKey);
+    }
 }

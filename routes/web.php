@@ -56,4 +56,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('markets', 'MarketsController');
     Route::resource('experts', 'ExpertsController');
+
+    Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
+    Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
 });

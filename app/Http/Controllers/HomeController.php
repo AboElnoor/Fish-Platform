@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Governorate;
+use App\Models\Locality;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,5 +16,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function getGovernorateLocalities(Governorate $governorate)
+    {
+        return $governorate->localities->pluck('Locality_Name_A', 'Locality_ID');
+    }
+
+    public function getLocalityVillages(Locality $locality)
+    {
+        return $locality->villages->pluck('Village_Name_A', 'Village_ID');
     }
 }

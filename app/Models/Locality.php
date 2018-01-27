@@ -17,4 +17,9 @@ class Locality extends Model
      * @var string
      */
     protected $primaryKey = 'Locality_ID';
+
+    public function villages()
+    {
+        return $this->hasMany(Village::class, $this->primaryKey);
+    }
 }

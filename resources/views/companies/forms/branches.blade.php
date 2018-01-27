@@ -10,7 +10,7 @@
                         'Governorate_ID',
                         $governorates->prepend('من فضلك اختار', 0),
                         null,
-                        ['class' => 'form-control Governorate_ID']
+                        ['class' => 'form-control Governorate_ID', 'data-url' => url('/localities')]
                     ) !!}
             </div>
         </div>
@@ -18,24 +18,15 @@
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Locality_ID', '(*)مركز') !!}
-                {!! Form::select(
-                        'Locality_ID',
-                        $locals->prepend('من فضلك اختار', 0),
-                        null,
-                        ['class' => 'form-control Locality_ID']
-                    ) !!}
+                {!! Form::select('Locality_ID', ['من فضلك اختار'], null, [
+                    'class' => 'form-control Locality_ID', 'data-url' => url('/villages')]) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('Village_ID', 'المنطقة') !!}
-                {!! Form::select(
-                        'Village_ID',
-                        $villages->prepend('من فضلك اختار', 0),
-                        null,
-                        ['class' => 'form-control Village_ID']
-                    ) !!}
+                {!! Form::select('Village_ID', ['من فضلك اختار'], null, ['class' => 'form-control Village_ID']) !!}
             </div>
         </div>
 
