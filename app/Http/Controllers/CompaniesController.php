@@ -206,7 +206,8 @@ class CompaniesController extends Controller
 
         session(compact('company'));
         $success = 'تم انشاء الفرع بنجاح';
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
@@ -238,7 +239,8 @@ class CompaniesController extends Controller
 
         session(compact('company'));
         $success = 'تم انشاء الموظف بنجاح';
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
@@ -267,7 +269,8 @@ class CompaniesController extends Controller
 
         session(compact('company'));
         $success = 'تم تحديد البنوك بنجاح';
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
@@ -296,7 +299,8 @@ class CompaniesController extends Controller
 
         session(compact('company'));
         $success = 'تم تحديد العضويات بنجاح';
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
@@ -335,7 +339,8 @@ class CompaniesController extends Controller
         }
 
         session(compact('company'));
-        return back()->with(compact('success', 'error'));
+        isset($error) ? session()->flash('error', $error) : session()->flash('success', $success);
+        return compact('success', 'error');
     }
 
     /**
@@ -368,10 +373,10 @@ class CompaniesController extends Controller
     {
         $data = $request->validate($this->sourceRules());
         $company->source()->updateOrCreate([], $data);
-        session(compact('company'));
+        session()->forget('company');
 
         $success = 'تم انشاء بيانات مستلزمات التشغيل بنجاح';
-        return back()->with(compact('success'));
+        return redirect()->route('companies.index')->with(compact('success'));
     }
 
     /**

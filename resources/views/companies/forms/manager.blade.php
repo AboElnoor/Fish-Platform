@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-4">
-                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('حفظ', ['class' => 'btn btn-primary save']) !!}
                 </div>
                 <div class="col-md-4">
                     {!! Form::submit('حفظ واستمرار', ['class' => 'btn btn-default']) !!}

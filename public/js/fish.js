@@ -1,4 +1,30 @@
 $(document).ready(function() {
+    $('.save').on('click', function(event) {
+        event.preventDefault();
+        url = $(this).parents('form').attr('action');
+        console.log($(this).parents('form').attr('action'));
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: $(this).parents('form').serialize(),
+        })
+        .done(function(data) {
+            console.log(data);
+            location.reload();
+            window.scrollTo(0, 0);
+        })
+        .fail(function (data) {
+            console.log(data.responseJSON.errors);
+            var htmlText = '<div class="alert alert-danger"><ul>';
+            $.each(data.responseJSON.errors, function(index, val) {
+                console.log(index + ' => ' + val);
+               htmlText += '<li>' + val + '</li>';
+            });
+            htmlText += '</ul></div>';
+            $('h2.section-title').after(htmlText);
+        });
+    });
+
     $('table').on('click', '.edit', function(event) {
         event.preventDefault();
         url = $(this).attr('href');
@@ -44,7 +70,6 @@ $(document).ready(function() {
             url: url,
         })
         .done(function(data) {
-            console.log(data);
             var villages = $('.Village_ID');
             villages.html('<option value=0>من فضلك اختار</option>');
             $.each(data, function(index, val) {

@@ -110,8 +110,8 @@ class FarmersController extends Controller
         session(compact('farmer'));
 
         $success = 'تم انشاء المزرعة بنجاح';
-        // dd(\Illuminate\Support\Facades\Route::current());
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
@@ -145,7 +145,7 @@ class FarmersController extends Controller
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات الانتاج بنجاح';
-        return back()->with(compact('success'));
+        return compact('success');
     }
 
     /**
@@ -179,7 +179,8 @@ class FarmersController extends Controller
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات مستلزمات الانتاج بنجاح';
-        return back()->with(compact('success'));
+        session()->flash('success', $success);
+        return compact('success');
     }
 
     /**
