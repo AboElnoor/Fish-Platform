@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Market;
+use App\Models\Market;
 use Illuminate\Http\Request;
 
 class MarketsController extends Controller
@@ -41,7 +41,7 @@ class MarketsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Market  $market
+     * @param  Market  $market
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -52,7 +52,7 @@ class MarketsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Market  $market
+     * @param  Market  $market
      * @return \Illuminate\Http\Response
      */
     public function edit(Market $market)
@@ -64,7 +64,7 @@ class MarketsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Market  $market
+     * @param  Market  $market
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Market $market)
@@ -75,7 +75,7 @@ class MarketsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Market  $market
+     * @param  Market  $market
      * @return \Illuminate\Http\Response
      */
     public function destroy(Market $market)

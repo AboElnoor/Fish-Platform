@@ -36,6 +36,7 @@ class CompaniesController extends Controller
      */
     private $CompanyType = [1];
 
+    const SELLERS_CUSTOMERS_IDS = [13, 14, 15, 16, 17];
     /**
      * Resource constructor.
      *
@@ -91,10 +92,13 @@ class CompaniesController extends Controller
                 return true;
             }
 
-            if (requestUri() != 'companies' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
+            if (requestUri() == 'factories' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
                 return true;
             }
 
+            if (requestUri() == 'sellers' && !in_array($clntsplr->ClntSplr_ID, self::SELLERS_CUSTOMERS_IDS)) {
+                return true;
+            }
             $impClnts->push($clntsplr);
         });
 
@@ -414,10 +418,13 @@ class CompaniesController extends Controller
                 return true;
             }
 
-            if (requestUri() != 'companies' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
+            if (requestUri() == 'factories' && $clntsplr->Type_ID != $this->FishCompanyType_ID) {
                 return true;
             }
 
+            if (requestUri() == 'sellers' && !in_array($clntsplr->ClntSplr_ID, self::SELLERS_CUSTOMERS_IDS)) {
+                return true;
+            }
             $impClnts->push($clntsplr);
         });
 
