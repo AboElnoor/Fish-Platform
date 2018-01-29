@@ -26,7 +26,7 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $markets = Market::latest('startDate')->paginate(10);
-        return view('markets.index', compact('hSCodes', 'markets'));
+        return view('admin.markets.index', compact('hSCodes', 'markets'));
     }
 
     /**
@@ -56,7 +56,7 @@ class MarketsController extends Controller
         }
 
         $markets = $markets->paginate(10);
-        return view('markets.index', compact('markets', 'hSCodes'));
+        return view('admin.markets.index', compact('markets', 'hSCodes'));
     }
 
     /**
@@ -69,7 +69,7 @@ class MarketsController extends Controller
         $hSCodes = $this->hSCodes;
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $buy = request('buy');
-        return view('markets.create', compact('hSCodes', 'governorates', 'buy'));
+        return view('admin.markets.create', compact('hSCodes', 'governorates', 'buy'));
     }
 
     /**
@@ -130,7 +130,7 @@ class MarketsController extends Controller
      */
     public function show(Market $market)
     {
-        return view('markets.show', compact('market'));
+        return view('admin.markets.show', compact('market'));
     }
 
     /**
@@ -143,7 +143,7 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        return view('markets.create', compact('market', 'hSCodes', 'governorates'));
+        return view('admin.markets.create', compact('market', 'hSCodes', 'governorates'));
     }
 
     /**

@@ -13,7 +13,7 @@ class PricesTwoController extends Controller
      */
     public function index()
     {
-        return view('pricesTwo.index');
+        return view('admin.pricesTwo.index');
     }
 
     /**

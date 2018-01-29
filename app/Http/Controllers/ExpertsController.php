@@ -14,7 +14,7 @@ class ExpertsController extends Controller
      */
     public function index()
     {
-        return view('experts.index');
+        return view('admin.experts.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ExpertsController extends Controller
      */
     public function create()
     {
-        return view('experts.create');
+        return view('admin.experts.create');
     }
 
     /**

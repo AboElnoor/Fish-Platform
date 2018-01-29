@@ -66,7 +66,7 @@ class CompaniesController extends Controller
     {
         session()->forget('company');
         $companies = Company::where('FishCompanyType_ID', $this->FishCompanyType_ID)->latest()->paginate(10);
-        return view('companies.index', compact('companies'));
+        return view('admin.companies.index', compact('companies'));
     }
 
     /**
@@ -105,7 +105,7 @@ class CompaniesController extends Controller
         $company = session('company', null);
 
         return view(
-            'companies.create',
+            'admin.companies.create',
             compact('governorates', 'types', 'banks', 'memberships', 'hscodes', 'clntsplrs', 'impClnts', 'company')
         );
     }
@@ -420,7 +420,7 @@ class CompaniesController extends Controller
         $impClnts = $impClnts->pluck('ClntSplr_Name', 'ClntSplr_ID');
 
         return view(
-            'companies.create',
+            'admin.companies.create',
             compact('governorates', 'types', 'banks', 'memberships', 'hscodes', 'clntsplrs', 'impClnts', 'company')
         );
     }

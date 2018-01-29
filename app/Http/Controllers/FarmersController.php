@@ -20,7 +20,7 @@ class FarmersController extends Controller
     {
         session()->forget('farmer');
         $farmers = Farmer::latest()->paginate(10);
-        return view('farmers.index', compact('farmers'));
+        return view('admin.farmers.index', compact('farmers'));
     }
 
     /**
@@ -34,7 +34,7 @@ class FarmersController extends Controller
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
         $farmer = session('farmer', null);
 
-        return view('farmers.create', compact('governorates', 'hscodes', 'farmer'));
+        return view('admin.farmers.create', compact('governorates', 'hscodes', 'farmer'));
     }
 
     /**
@@ -217,7 +217,7 @@ class FarmersController extends Controller
         session()->forget('farmer');
 
         $success = 'تم انشاء بيانات بيانات العملاء بنجاح';
-        return redirect()->route('farmers.index')->with(compact('success'));
+        return redirect()->route('admin.farmers.index')->with(compact('success'));
     }
 
     /**
@@ -242,7 +242,7 @@ class FarmersController extends Controller
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
 
-        return view('farmers.create', compact('farmer', 'governorates', 'hscodes'));
+        return view('admin.farmers.create', compact('farmer', 'governorates', 'hscodes'));
     }
 
     /**

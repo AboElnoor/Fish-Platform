@@ -3,7 +3,8 @@
 if (!function_exists('requestUri')) {
     function requestUri(): string
     {
-        $route = \Route::current()->uri ?? '';
+        $prefix = Route::current() ? Route::current()->getPrefix() : null;
+        $route = str_replace(ltrim($prefix . '/', '/'), '', Route::current()->uri ?? '');
         return strpos($route, '/') ? strstr($route, '/', true) : $route;
     }
 }

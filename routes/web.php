@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth:web']], function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:web'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::resource('farms', 'FarmsController');
