@@ -31,12 +31,10 @@ class FarmersController extends Controller
     public function create()
     {
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
         $farmer = session('farmer', null);
 
-        return view('farmers.create', compact('governorates', 'locals', 'villages', 'hscodes', 'farmer'));
+        return view('farmers.create', compact('governorates', 'hscodes', 'farmer'));
     }
 
     /**
@@ -242,11 +240,9 @@ class FarmersController extends Controller
     public function edit(Farmer $farmer)
     {
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
 
-        return view('farmers.create', compact('farmer', 'governorates', 'locals', 'villages', 'hscodes'));
+        return view('farmers.create', compact('farmer', 'governorates', 'hscodes'));
     }
 
     /**

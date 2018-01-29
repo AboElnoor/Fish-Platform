@@ -9,9 +9,7 @@ use App\Models\CompanyClntSplr;
 use App\Models\CompanyMembership;
 use App\Models\Governorate;
 use App\Models\HSCode;
-use App\Models\Locality;
 use App\Models\Membership;
-use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
@@ -37,6 +35,7 @@ class CompaniesController extends Controller
     private $CompanyType = [1];
 
     const SELLERS_CUSTOMERS_IDS = [13, 14, 15, 16, 17];
+
     /**
      * Resource constructor.
      *
@@ -57,6 +56,7 @@ class CompaniesController extends Controller
                 break;
         }
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -77,8 +77,6 @@ class CompaniesController extends Controller
     public function create()
     {
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
         $types = ActivityType::where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID)
             ->get()->pluck('AName', 'ActivityType_ID');
         $banks = CompanyBank::all()->pluck('Bank_Name_A', 'Bank_ID');
@@ -106,18 +104,10 @@ class CompaniesController extends Controller
         $impClnts = $impClnts->pluck('ClntSplr_Name', 'ClntSplr_ID');
         $company = session('company', null);
 
-        return view('companies.create', compact(
-            'governorates',
-            'locals',
-            'villages',
-            'types',
-            'banks',
-            'memberships',
-            'hscodes',
-            'clntsplrs',
-            'impClnts',
-            'company'
-        ));
+        return view(
+            'companies.create',
+            compact('governorates', 'types', 'banks', 'memberships', 'hscodes', 'clntsplrs', 'impClnts', 'company')
+        );
     }
 
     /**
@@ -403,8 +393,6 @@ class CompaniesController extends Controller
     public function edit(Company $company)
     {
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $locals = Locality::all()->pluck('Locality_Name_A', 'Locality_ID');
-        $villages = Village::all()->pluck('Village_Name_A', 'Village_ID');
         $types = ActivityType::where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID)
             ->get()->pluck('AName', 'ActivityType_ID');
         $banks = CompanyBank::all()->pluck('Bank_Name_A', 'Bank_ID');
@@ -431,18 +419,10 @@ class CompaniesController extends Controller
         $clntsplrs = $clntsplrs->pluck('ClntSplr_Name', 'ClntSplr_ID');
         $impClnts = $impClnts->pluck('ClntSplr_Name', 'ClntSplr_ID');
 
-        return view('companies.create', compact(
-            'governorates',
-            'locals',
-            'villages',
-            'types',
-            'banks',
-            'memberships',
-            'hscodes',
-            'clntsplrs',
-            'impClnts',
-            'company'
-        ));
+        return view(
+            'companies.create',
+            compact('governorates', 'types', 'banks', 'memberships', 'hscodes', 'clntsplrs', 'impClnts', 'company')
+        );
     }
 
     /**
