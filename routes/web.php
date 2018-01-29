@@ -57,7 +57,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web'])->group(function
     Route::get('markets/search', 'MarketsController@search')->name('markets.search');
     Route::resource('markets', 'MarketsController');
     Route::resource('experts', 'ExpertsController');
-
-    Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
-    Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
 });
+
+Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
+Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
