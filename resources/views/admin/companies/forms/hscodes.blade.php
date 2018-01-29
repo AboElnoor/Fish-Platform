@@ -1,6 +1,6 @@
 <div class="row">
     {!! Form::open(['route' => [
-            'admin' . requestUri() . '.addHSCode', $company ?? session('company')
+            'admin.' . requestUri() . '.addHSCode', $company ?? session('company')
         ]]) !!}
         <div class="col-md-12">
             <div class="form-group">

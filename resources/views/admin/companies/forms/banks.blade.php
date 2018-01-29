@@ -1,5 +1,5 @@
 <div class="row">
-    {!! Form::open(['route' => ['admin' . requestUri() . '.addBanks', $company ?? session('company')]]) !!}
+    {!! Form::open(['route' => ['admin.' . requestUri() . '.addBanks', $company ?? session('company')]]) !!}
         <div class="col-md-12">
             @foreach($banks as $id => $bank)
                 <div class="col-md-4">

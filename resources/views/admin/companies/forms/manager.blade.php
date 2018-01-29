@@ -1,6 +1,6 @@
 <div class="row farms">
     {!! Form::open([
-            'route' => ['admin' . requestUri() . '.addManager', $company ?? session('company')],
+            'route' => ['admin.' . requestUri() . '.addManager', $company ?? session('company')],
             'class' => 'managers'
         ]) !!}
         <div class="col-md-6">

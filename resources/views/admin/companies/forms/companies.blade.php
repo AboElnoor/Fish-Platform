@@ -2,7 +2,7 @@
     {!!
         Form::open([
             'method' => isset($company) ? 'PUT' : 'POST',
-            'route' => isset($company) ? ['admin' . requestUri() . '.update', $company] : 'admin' . requestUri() . '.store',
+            'route' => isset($company) ? ['admin.' . requestUri() . '.update', $company] : 'admin.' . requestUri() . '.store',
         ])
     !!}
         <div class="col-md-6">
