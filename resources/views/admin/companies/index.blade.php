@@ -17,7 +17,7 @@
 				</h2>
 			</div>
 			<div class="col-md-6">
-				<a href="{{ route('admin' . requestUri() . '.create') }}"
+				<a href="{{ route('admin.' . requestUri() . '.create') }}"
 					class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
 			</div>
 		</div>
@@ -46,11 +46,11 @@
 						<td>{{ $company->updateUser ? $company->updateUser->FullName : '-' }}</td>
 						<td>{{ $company->updated_at }}</td>
 						<td>
-							<a href="{{ route('admin' . requestUri() . '.edit', $company) }}"
+							<a href="{{ route('admin.' . requestUri() . '.edit', $company) }}"
 								class="btn btn-sm btn-primary">تعديل</a>
 						</td>
 						<td>
-							<a href="{{ route('admin' . requestUri() . '.destroy', $company) }}"
+							<a href="{{ route('admin.' . requestUri() . '.destroy', $company) }}"
 								class="btn btn-sm btn-danger">حذف</a>
 						</td>
 					</tr>
