@@ -4,7 +4,7 @@
 
 <section class="form farms">
     <div class="container">
-        <h2 class="section-title">سوق بشاير : عرض {{ $buy ?? $market->buy_request ? 'شراء' : 'بيع' }}</h2>
+        <h2 class="section-title">سوق بشاير : عرض {{ $buy ?? $market->buy_request ?? false ? 'شراء' : 'بيع' }}</h2>
         @include('admin.layouts.alert')
 
         <div class="tab-content">
@@ -16,7 +16,8 @@
                         'route' => isset($market) ? ['admin.markets.update', $market] : 'admin.markets.store',
                     ])
                 !!}
-                    {!! Form::hidden('buy_request', $buy ?? $market->buy_request, ['class' => 'form-control']) !!}
+                    {!! Form::hidden(
+                        'buy_request', $buy ?? $market->buy_request ?? null, ['class' => 'form-control']) !!}
                     <div class="row">
                         <div class="col-md-12">
                             <h4><b>بيانات المحصول</b></h4>

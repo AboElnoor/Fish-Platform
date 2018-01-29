@@ -68,7 +68,7 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        $buy = request('buy');
+        $buy = request('buy_request');
         return view('admin.markets.create', compact('hSCodes', 'governorates', 'buy'));
     }
 
