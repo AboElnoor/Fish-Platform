@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::prefix('admin')->name('admin.')->middleware(['auth:web'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::resource('farms', 'FarmsController');
@@ -59,5 +59,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web'])->group(function
     Route::resource('experts', 'ExpertsController');
 });
 
-Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
-Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
+Route::middleware('web')->group(function () {
+    Route::get('/', 'HomeController@index');
+    Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
+    Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
+});

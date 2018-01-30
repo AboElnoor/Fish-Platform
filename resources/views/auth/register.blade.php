@@ -1,77 +1,126 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+<section class="form-registration">
+    <div class="container">
+        <div class="title centre">
+                <button type="submit" class="btn btn-primary btn-lg btn-facebook">التسجيل من خلال الفيس بوك
+                    <i class="fa fa-facebook"></i>
+                </button>
+            <h2> - أو - </h2>
+        </div>
+        <div class="row">
+            <div >
+                <div class="form-wrapper">
+                    {!! Form::open(['route' => 'register', 'class' => 'form-horizontal']) !!}
+                        <fieldset class="col-md-6 col-md-offset-2">
+                            <!-- Name input-->
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'FullName', 'الاسم بالكامل *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text(
+                                        'FullName', old('FullName'), ['id' => 'name', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <!-- Email input-->
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'username', 'اسم المستخدم *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text(
+                                        'username', old('username'), ['id' => 'number', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'password', 'كلمة المرور *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::password('password', ['id' => 'password', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'username', 'البريد الالكترونى *',
+                                    ['class' => 'col-md-4 control-label reg-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text(
+                                        'email', old('email'), ['id' => 'e-mail', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="clearfix"></div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="reg-title">مكان العمل:</div>
+                        <fieldset class="col-md-6 col-md-offset-2">
+                            <div class="form-group">
+                                <div class="col-md-4  col-md-offset-2 centre">
+                                    {!! Form::label(
+                                        'Governorate_ID', 'المحافظة *', ['class' => 'control-label reg-label']) !!}
+                                    {!! Form::select(
+                                            'Governorate_ID',
+                                            $governorates->prepend('من فضلك اختار', 0),
+                                            null,
+                                            [
+                                                'id' => 'gov',
+                                                'class' => 'Governorate_ID',
+                                                'data-url' => url('/localities')
+                                            ]
+                                        ) !!}
+                                </div>
+                                <div class="col-md-4  col-md-offset-2 centre">
+                                    {!! Form::label(
+                                        'Locality_ID', 'المركز *', ['class' => 'control-label reg-label']) !!}
+                                    {!! Form::select('Locality_ID', ['من فضلك اختار'], null, ['class' => 'Locality_ID']) !!}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="clearfix"></div>
+                        <div class="reg-title">أنواع الأسماك التي تهمك معرفة أسعارها وأفضل الممارسات</div>
+                        <fieldset class="col-md-7 col-md-offset-2">
+                            <div class="form-group">
+                                <div class="col-md-4  centre">
+                                    {!! Form::label(
+                                        'HSCode_ID', 'النوع الأول *', ['class' => 'control-label reg-label']) !!}
+                                    {!! Form::select(
+                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type1']
+                                    ) !!}
+                                </div>
+                                <div class="col-md-4 centre">
+                                    {!! Form::label(
+                                        'HSCode_ID', 'النوع الثاني *', ['class' => 'control-label reg-label']) !!}
+                                    {!! Form::select(
+                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type2']
+                                    ) !!}
+                                </div>
+                                <div class="col-md-4 centre">
+                                    {!! Form::label(
+                                        'HSCode_ID', 'النوع الثالث *', ['class' => 'control-label reg-label']) !!}
+                                    {!! Form::select(
+                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type3']
+                                    ) !!}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="clearfix"></div>
+                        <div class="button-custmoeize">
+                            <div class="row">
+                                <div class="col-md-4 block-center">
+                                    <div class="checkbox" style="margin-bottom: 10px">
+                                        <label style="font-size: 20px">
+                                            {!! Form::checkbox('sms', false, old('sms')) !!}
+                                            الاشتراك في خدمة الرسائل القصيرة *<br>
+                                            <span style="font-size: 12px">سعر الاشتراك في خدمة الرسائل القصيرة خمسون قرشاً يومياً</span>
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg reg-btn">التسجيل</button>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required>
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
