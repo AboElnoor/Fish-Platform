@@ -88,7 +88,9 @@
                                 data-form="hSCodes" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['admin.hSCodes.destroy', $hSCode]]) !!}
+                            {!! Form::open([
+                                'method' => 'DELETE', 'route' => [
+                                    'admin.hSCodes.destroy', $hSCode->pivot->FishFarmer_HSCode_ID]]) !!}
                                 {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>

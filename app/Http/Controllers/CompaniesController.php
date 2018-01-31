@@ -370,7 +370,7 @@ class CompaniesController extends Controller
         session()->forget('company');
 
         $success = 'تم انشاء بيانات مستلزمات التشغيل بنجاح';
-        return redirect()->route(requestUri() . '.index')->with(compact('success'));
+        return redirect()->route('admin.' . requestUri() . '.index')->with(compact('success'));
     }
 
     /**

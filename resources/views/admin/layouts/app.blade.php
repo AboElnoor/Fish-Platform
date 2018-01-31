@@ -45,7 +45,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route('home') }}">
+                    <a class="navbar-brand" href="{{ route('admin.admin') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
                         <img src="/images/logo.png" class="img-responsive">
                     </a>
