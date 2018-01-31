@@ -125,7 +125,8 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="#" class="box-anchor">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
@@ -136,6 +137,9 @@
                     </div>
                 </a>
             </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         </div>
     </div>
 </section>

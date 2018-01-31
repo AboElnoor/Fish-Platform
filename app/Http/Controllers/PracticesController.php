@@ -15,7 +15,8 @@ class PracticesController extends Controller
      */
     public function index()
     {
-        //
+        $practices = Practice::paginate(10);
+        return view('practices.index', compact('practices'));
     }
 
     /**

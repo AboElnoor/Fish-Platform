@@ -22,7 +22,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="{{ route('home') }}">الرئيسية</a></li>
                     <li><a href="#">من نحن</a></li>
                     <li><a href="#">رأيك يهمنا</a></li>
                     <li><a href="#">اتصل بنا</a></li>
@@ -31,7 +31,19 @@
                 <ul class="nav navbar-nav navbar-left">
                     @guest
                         <li><a href="#">دخول</a></li>
-                        <li><a href="#">تسجيل</a></li>
+                        <li><a href="{{ route('register') }}">تسجيل</a></li>
+                    @else
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                تسجيل الخروج
+                            </a>
+
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     @endguest
                     <li><a href="#" class="btn btn-orange">English</a></li>
                     <li>
