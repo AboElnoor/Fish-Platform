@@ -13,7 +13,7 @@
 				مستلزمات الانتاج
 			@endif
 		</h2>
-		@include('admin.layouts.alert')
+		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">
 			<li class="active">

@@ -5,7 +5,7 @@
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">الأسعار</h2>
-        @include('admin.layouts.alert')
+        @include('layouts.alert')
 
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">

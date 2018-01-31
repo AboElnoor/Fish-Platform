@@ -5,7 +5,7 @@
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">سوق بشاير : عرض {{ $buy ?? $market->buy_request ?? false ? 'شراء' : 'بيع' }}</h2>
-        @include('admin.layouts.alert')
+        @include('layouts.alert')
 
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">

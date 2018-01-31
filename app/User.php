@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use App\Models\HSCode;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,9 @@ class User extends Authenticatable
      * @var bool
      */
     public $timestamps = false;
+
+    public function hSCodes()
+    {
+        return $this->belongsToMany(HSCode::class, 'hscode_user', $this->primaryKey, 'HSCode_ID');
+    }
 }

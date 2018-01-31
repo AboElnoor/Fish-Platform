@@ -5,7 +5,7 @@
 <section class="form">
 	<div class="container">
 		<h2 class="section-title">مزرعــــة جديــدة</h2>
-		@include('admin.layouts.alert')
+		@include('layouts.alert')
 
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#menu0">المزارعين</a></li>

@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.layouts.alert')
+        @include('layouts.alert')
     </div>
 </section>
 

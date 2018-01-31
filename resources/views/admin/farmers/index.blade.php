@@ -12,7 +12,7 @@
 				<a href="{{ route('admin.farmers.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
 			</div>
 		</div>
-		@include('admin.layouts.alert')
+		@include('layouts.alert')
 		<table class="table table-striped">
 			<thead>
 				<tr>

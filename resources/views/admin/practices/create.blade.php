@@ -3,7 +3,7 @@
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">أفضل الممارسات والافيديوهات</h2>
-        @include('admin.layouts.alert')
+        @include('layouts.alert')
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#menu1">أفضل الممارسات</a></li>
             <li><a data-toggle="tab" href="#menu2">الفيديوهات</a></li>

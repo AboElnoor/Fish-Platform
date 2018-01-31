@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'AdminController@index')->name('admin');
 
     Route::resource('farms', 'FarmsController');
     Route::resource('hSCodes', 'hScodesController');
@@ -60,7 +60,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
 });
 
 Route::middleware('web')->group(function () {
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
     Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
 });

@@ -49,9 +49,11 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $hSCodes = HSCode::whereColumn('HSCode_ID', 'MainHSCode')->pluck('HS_Aname', 'HSCode_ID');
-        return view('auth.register', compact('governorates', 'hSCodes'));
+        $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        $locals = old('Governorate_ID') ?
+            Governorate::find(old('Governorate_ID'))->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
+        return view('auth.register', compact('hSCodes', 'governorates', 'locals'));
     }
 
     /**
@@ -70,7 +72,7 @@ class RegisterController extends Controller
             'Governorate_ID' => 'required|exists:governorate',
             'Locality_ID' => 'required|exists:locality',
             'HSCode_ID.*' => 'required|exists:hscode,HSCode_ID',
-            'sms' => 'sometimes|nullable',
+            'sms' => 'sometimes',
         ]);
     }
 
@@ -82,11 +84,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $hSCodes = $data['HSCode_ID'];
-        unset($data['HSCode_ID']);
-        $data['password'] = bcrypt($data['password']);
-        $data['UserType'] = 2;
-        $data['EntDate'] = Carbon::now();
-        return User::create($data);
+        return \DB::transaction(function () use ($data) {
+            $hSCodes = $data['HSCode_ID'];
+            unset($data['HSCode_ID']);
+            $data['password'] = bcrypt($data['password']);
+            $data['UserType'] = 2;
+            $data['EntDate'] = Carbon::now();
+            $user = User::create($data);
+            $user->hSCodes()->attach($hSCodes);
+            return $user;
+        });
     }
 }

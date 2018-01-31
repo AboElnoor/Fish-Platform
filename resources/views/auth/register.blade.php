@@ -8,6 +8,7 @@
                     <i class="fa fa-facebook"></i>
                 </button>
             <h2> - أو - </h2>
+            @include('layouts.alert')
         </div>
         <div class="row">
             <div >
@@ -52,15 +53,15 @@
                         <div class="clearfix"></div>
 
                         <div class="reg-title">مكان العمل:</div>
-                        <fieldset class="col-md-6 col-md-offset-2">
+                        <fieldset class="col-md-7 col-md-offset-2">
                             <div class="form-group">
-                                <div class="col-md-4  col-md-offset-2 centre">
+                                <div class="col-md-4 ol-md-offset-1 centre">
                                     {!! Form::label(
                                         'Governorate_ID', 'المحافظة *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
                                             'Governorate_ID',
                                             $governorates->prepend('من فضلك اختار', 0),
-                                            null,
+                                            old('Governorate_ID') ?? null,
                                             [
                                                 'id' => 'gov',
                                                 'class' => 'Governorate_ID',
@@ -68,10 +69,14 @@
                                             ]
                                         ) !!}
                                 </div>
-                                <div class="col-md-4  col-md-offset-2 centre">
+                                <div class="col-md-4 col-md-offset-1 centre">
                                     {!! Form::label(
                                         'Locality_ID', 'المركز *', ['class' => 'control-label reg-label']) !!}
-                                    {!! Form::select('Locality_ID', ['من فضلك اختار'], null, ['class' => 'Locality_ID']) !!}
+                                    {!! Form::select(
+                                            'Locality_ID',
+                                            $locals ? $locals->prepend('من فضلك اختار', 0) : ['من فضلك اختار'],
+                                            old('Locality_ID') ?? null,
+                                            ['class' => 'Locality_ID']) !!}
                                 </div>
                             </div>
                         </fieldset>
@@ -83,21 +88,30 @@
                                     {!! Form::label(
                                         'HSCode_ID', 'النوع الأول *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
-                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type1']
+                                        'HSCode_ID[]',
+                                        $hSCodes->prepend('من فضلك اختار', 0),
+                                        old('HSCode_ID.0') ?? null,
+                                        ['id' => 'type1']
                                     ) !!}
                                 </div>
                                 <div class="col-md-4 centre">
                                     {!! Form::label(
                                         'HSCode_ID', 'النوع الثاني *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
-                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type2']
+                                        'HSCode_ID[]',
+                                        $hSCodes->prepend('من فضلك اختار', 0),
+                                        old('HSCode_ID.1') ?? null,
+                                        ['id' => 'type2']
                                     ) !!}
                                 </div>
                                 <div class="col-md-4 centre">
                                     {!! Form::label(
                                         'HSCode_ID', 'النوع الثالث *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
-                                        'HSCode_ID[]', $hSCodes->prepend('من فضلك اختار', 0), null, ['id' => 'type3']
+                                        'HSCode_ID[]',
+                                        $hSCodes->prepend('من فضلك اختار', 0),
+                                        old('HSCode_ID.2') ?? null,
+                                        ['id' => 'type3']
                                     ) !!}
                                 </div>
                             </div>
@@ -108,7 +122,7 @@
                                 <div class="col-md-4 block-center">
                                     <div class="checkbox" style="margin-bottom: 10px">
                                         <label style="font-size: 20px">
-                                            {!! Form::checkbox('sms', false, old('sms')) !!}
+                                            {!! Form::checkbox('sms', 1, old('sms')) !!}
                                             الاشتراك في خدمة الرسائل القصيرة *<br>
                                             <span style="font-size: 12px">سعر الاشتراك في خدمة الرسائل القصيرة خمسون قرشاً يومياً</span>
                                         </label>
