@@ -60,6 +60,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $practices->links() }}
             </div>
             <div id="menu2" class="tab-pane fade">
                 {!! Form::open(['route' => 'admin.videos.store', 'class' => 'videos']) !!}
@@ -109,6 +110,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $videos->links() }}
             </div>
         </div>
     </div>
