@@ -25,8 +25,8 @@ class MarketsController extends Controller
     public function index()
     {
         $hSCodes = $this->hSCodes;
-        $markets = Market::latest('startDate')->paginate(10);
-        return view('admin.markets.index', compact('hSCodes', 'markets'));
+        $markets = Market::latest('startDate');
+        return view(\Route::current()->getPrefix() . '.markets.index', compact('hSCodes', 'markets'));
     }
 
     /**

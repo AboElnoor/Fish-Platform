@@ -28,7 +28,7 @@ class PracticesController extends Controller
     {
         $practices = Practice::paginate(10);
         $videos = Video::paginate(10);
-// dd($videos);
+
         if (\Route::current()->getPrefix() == 'api') {
             return compact('practices', 'videos');
         }

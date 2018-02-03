@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-15">
-                <a href="/fishplat/fish-market.html" class="icon-anchor">
+                <a href="{{ route('markets.index') }}" class="icon-anchor">
                     <div class="icon-wrapper">
                         <img src="images/fish-circle.png" class="img-responsive">
                         <h3>سوق الأسماك</h3>
@@ -21,7 +21,7 @@
                 </a>
             </div>
             <div class="col-md-15">
-                <a href="/fishplat/prices.html" class="icon-anchor">
+                <a href="{{ route('prices.index') }}" class="icon-anchor">
                     <div class="icon-wrapper">
                         <img src="images/price-circle.png" class="img-responsive">
                         <h3>أسعار الأسماك</h3>

@@ -67,7 +67,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($markets as $market)
+                        @forelse($markets->paginate(10) as $market)
                             <tr>
                                <td>{{ $market->id }}</td>
                                <td>{{ $market->hSCode->HS_Aname ?? '' }}</td>

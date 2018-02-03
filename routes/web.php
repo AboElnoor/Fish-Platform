@@ -65,4 +65,6 @@ Route::middleware('web')->group(function () {
     Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
     Route::get('practices', 'PracticesController@index')->name('practices.index');
     Route::get('videos', 'VideosController@index')->name('videos.index');
+    Route::get('prices', 'PricesController@index')->name('prices.index');
+    Route::get('markets', 'MarketsController@index')->name('markets.index');
 });

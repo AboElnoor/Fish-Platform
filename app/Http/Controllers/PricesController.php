@@ -31,7 +31,7 @@ class PricesController extends Controller
         if (\Route::current()->getPrefix() == 'api') {
             return compact('prices');
         }
-        return view('admin.prices.index', compact('prices', 'hSCodes'));
+        return view(\Route::current()->getPrefix() . '.prices.index', compact('prices', 'hSCodes'));
     }
 
     /**
@@ -89,10 +89,10 @@ class PricesController extends Controller
     {
         return [
             'HSCode_ID' => 'required|exists:hscode,HSCode_ID',
-            'Market_ID' => 'sometimes|nullable|numeric',
+            'Market_ID' => 'required|numeric',
             'PriceDate' => 'sometimes|nullable|date',
-            'PriceMin' => 'sometimes|nullable|numeric',
-            'PriceMax' => 'sometimes|nullable|numeric',
+            'PriceMin' => 'required|nullable|numeric',
+            'PriceMax' => 'required|nullable|numeric',
             'Unit_ID.*' => 'sometimes|nullable|exists:Unit,Unit_ID',
             'Weights.*' => 'sometimes|nullable|string',
             'Weight' => 'sometimes|nullable|string',
@@ -116,7 +116,7 @@ class PricesController extends Controller
         ];
         $data += $request->validate($this->rules());
         $sync = [];
-        foreach (request('Unit_ID') as $key => $value) {
+        foreach (request('Unit_ID') ?? [] as $key => $value) {
             $sync[$value] = ['Weights' => request('Weights')[$key] ?? null];
         }
         try {
@@ -182,7 +182,7 @@ class PricesController extends Controller
         ];
         $data += $request->validate($this->rules());
         $sync = [];
-        foreach (request('Unit_ID') as $key => $value) {
+        foreach (request('Unit_ID') ?? [] as $key => $value) {
             $sync[$value] = ['Weights' => request('Weights')[$key] ?? null];
         }
         try {

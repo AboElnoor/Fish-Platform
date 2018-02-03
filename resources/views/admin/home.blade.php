@@ -125,6 +125,30 @@
                 </a>
             </div>
             <div class="col-md-3">
+             <a href="content.html" class="box-anchor">
+                <div class="box">
+                   <div class="box-icon">
+                      <i class="fa fa-folder-open fa-2x" aria-hidden="true"></i>
+                   </div>
+                   <div class="box-title">
+                      <h4>المحتوي</h4>
+                   </div>
+                </div>
+             </a>
+          </div>
+          <div class="col-md-3">
+             <a href="ask.html" class="box-anchor">
+                <div class="box">
+                   <div class="box-icon">
+                      <i class="fa fa-question fa-2x" aria-hidden="true"></i>
+                   </div>
+                   <div class="box-title">
+                      <h4>اسأل خبير </h4>
+                   </div>
+                </div>
+             </a>
+          </div>
+            <div class="col-md-3">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="box-anchor">
                     <div class="box">
