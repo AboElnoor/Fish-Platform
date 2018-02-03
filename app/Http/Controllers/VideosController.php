@@ -51,6 +51,8 @@ class VideosController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
+        $delimeter = strpos('=', $data['url']) === false ? '/' : '=';
+        $data['url'] = substr(strrchr($data['url'], $delimeter), 1);
 
         Video::create($data);
         $success = 'تمت الااضافة بنجاح';
@@ -93,6 +95,8 @@ class VideosController extends Controller
     public function update(Request $request, Video $video)
     {
         $data = $request->validate($this->rules());
+        $delimeter = strpos('=', $data['url']) === false ? '/' : '=';
+        $data['url'] = substr(strrchr($data['url'], $delimeter), 1);
 
         $video->update($data);
         $success = 'تم التحديث بنجاح';

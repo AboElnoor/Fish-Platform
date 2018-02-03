@@ -88,7 +88,8 @@
                             <tr>
                                 <td>{{ $video->title }}</td>
                                 <td>
-                                    <iframe width="200" height="100" src="{{ $video->url }}"></iframe>
+                                    <iframe width="200" height="100"
+                                        src="https://www.youtube.com/embed/{{ $video->url }}"></iframe>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.videos.edit', $video) }}" data-form="videos"
