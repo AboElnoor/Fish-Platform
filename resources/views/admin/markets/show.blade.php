@@ -50,7 +50,7 @@
                      <h4>نوع المزرعة:</h4>
                   </td>
                   <td>
-                     <h4><i>{{ $market->type }}</i>></h4>
+                     <h4><i>{{ $market->type }}</i></h4>
                   </td>
                </tr>
                <tr>
@@ -90,7 +90,7 @@
                      <h4>المواصفات: </h4>
                   </td>
                   <td>
-                     <h4><i>{{ $market->specs }}</i></h4>
+                     <h4><i>{{ $market->specs ?? '-' }}</i></h4>
                   </td>
                </tr>
             </tbody>

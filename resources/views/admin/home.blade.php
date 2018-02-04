@@ -137,7 +137,7 @@
              </a>
           </div>
           <div class="col-md-3">
-             <a href="ask.html" class="box-anchor">
+             <a href="{{ route('admin.experts.index') }}" class="box-anchor">
                 <div class="box">
                    <div class="box-icon">
                       <i class="fa fa-question fa-2x" aria-hidden="true"></i>

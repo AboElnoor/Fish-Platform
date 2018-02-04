@@ -66,5 +66,6 @@ Route::middleware('web')->group(function () {
     Route::get('practices', 'PracticesController@index')->name('practices.index');
     Route::get('videos', 'VideosController@index')->name('videos.index');
     Route::get('prices', 'PricesController@index')->name('prices.index');
-    Route::get('markets', 'MarketsController@index')->name('markets.index');
+    Route::resource('markets', 'MarketsController@index')->only('index', 'show');
+    Route::get('experts', 'ExpertsController@index');
 });

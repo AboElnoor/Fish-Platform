@@ -67,7 +67,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($markets->paginate(10) as $market)
+                        @php
+                            $markets = $markets->paginate(10);
+                        @endphp
+                        @forelse($markets as $market)
                             <tr>
                                <td>{{ $market->id }}</td>
                                <td>{{ $market->hSCode->HS_Aname ?? '' }}</td>
@@ -85,6 +88,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $markets->links() }}
             </div>
         </div>
         @include('layouts.alert')

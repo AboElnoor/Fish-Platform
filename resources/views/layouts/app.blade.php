@@ -74,13 +74,13 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="intro-certificate">
-                        <a href="#"><img src="images/adbox-square.png" class="img-responsive"></a>
+                        <a href="#"><img src="/images/adbox-square.png" class="img-responsive"></a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="intro-text text-center">
                         <!-- <h2>شبكة الأسماك</h2> -->
-                        <img src="images/logo-type.png" class="img-responsive">
+                        <img src="/images/logo-type.png" class="img-responsive">
                         <form class="search">
                             <input class="searchTerm" placeholder="إبحث في شبكة بشاير: مشتين, موردين, محاصيل, خبراء ." /><input class="searchButton" type="submit" />
                         </form>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="intro-logo">
-                        <a href="#"><img src="images/adbox-square.png" class="img-responsive"></a>
+                        <a href="#"><img src="/images/adbox-square.png" class="img-responsive"></a>
                     </div>
                 </div>
             </div>

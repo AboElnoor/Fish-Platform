@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Expert;
+use App\Models\Expert;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ExpertsController extends Controller
@@ -14,7 +15,9 @@ class ExpertsController extends Controller
      */
     public function index()
     {
-        return view('admin.experts.index');
+        $experts = Expert::latest();
+
+        return view(\Route::current()->getPrefix() . '.experts.index', compact('experts'));
     }
 
     /**
@@ -24,7 +27,19 @@ class ExpertsController extends Controller
      */
     public function create()
     {
-        return view('admin.experts.create');
+        //return view('admin.experts.create');
+    }
+
+    /**
+     * Specify the form's rules.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'question' => 'required|string',
+        ];
     }
 
     /**
@@ -35,51 +50,80 @@ class ExpertsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'entryUser' => auth()->id(),
+        ];
+        $data += $request->validate($this->rules());
+        Expert::create($data);
+
+        return back()->with('success', 'تم انشاء السؤال بنجاح');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Expert  $expert
+     * @param  Expert  $expert
      * @return \Illuminate\Http\Response
      */
     public function show(Expert $expert)
     {
-        //
+        return view('admin.experts.show', compact('expert'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Expert  $expert
+     * @param  Expert  $expert
      * @return \Illuminate\Http\Response
      */
     public function edit(Expert $expert)
     {
-        //
+        return view('admin.experts.show', compact('expert'));
+    }
+
+    /**
+     * Specify the form's rules.
+     *
+     * @return array
+     */
+    public function adminRules()
+    {
+        return [
+            'answer' => 'required|string',
+            'photo' => 'sometimes|nullable|image',
+        ];
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Expert  $expert
+     * @param  Expert  $expert
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Expert $expert)
     {
-        //
+        $data = [
+            'UpdateUser' => auth()->id(),
+            'updated_at' => Carbon::now(),
+        ];
+        $data += $request->validate($this->adminRules());
+        $expert->update($data);
+
+        return back()->with('success', 'تم الاجابة على السؤال بنجاح');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Expert  $expert
+     * @param  Expert  $expert
      * @return \Illuminate\Http\Response
      */
     public function destroy(Expert $expert)
     {
-        //
+        $price->delete();
+        $success = 'تم حذف السؤال بنجاح';
+
+        return back()->with(compact('success'));
     }
 }
