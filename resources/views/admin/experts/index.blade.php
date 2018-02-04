@@ -71,3 +71,7 @@
     </div>
 </section>
 @stop
+
+@section('scripts')
+<script src="/js/script.js"></script>
+@stop

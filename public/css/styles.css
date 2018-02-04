@@ -103,6 +103,7 @@ table {
     box-shadow: 0px 1px 46px 0px rgba(189, 190, 190, 0.3);
     background-color: #fff;
     border-radius: 8px;
+    font-size: 16px;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 	padding: 18px;
@@ -157,4 +158,170 @@ Home page - logged in
 }
 .farms.details img {
 	max-width: 300px;
+}
+
+
+.tab {
+    margin-top: 50px;
+    /* margin-bottom: 20px; */
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    font-weight: 300;
+    /* color: #e6e7e8; */
+    -webkit-font-smoothing: antialiased;
+}
+
+
+ .tabs {
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	width: 100%;
+}
+
+ .tabs li {
+	float: right;
+	line-height: 42px;
+	padding: 0;
+	position: relative;
+	width: 240px;
+	list-style: none;
+	box-shadow: 0px 1px 46px 0px rgba(189, 190, 190, 0.3);
+}
+
+ .tabs a {
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	font-weight: 500;
+	display: block;
+	letter-spacing: 0;
+	outline: none;
+	text-decoration: none;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	/* border-radius: 50px; */
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+ .tabs .current a {
+	color: #fff;
+	background: #439ce8;
+	border: none;
+
+}
+
+.tabs .current a:hover {
+    background: white;
+    color: #1c72bc;
+}
+ .tabs_item {
+	display: none;
+}
+
+ .tabs_item h4 {
+	font-weight: bold;
+	color: blue;
+	font-size: 20px;
+}
+
+.tabs_item img {
+	width: 200px;
+	float: left;
+	margin-right: 30px;
+}
+
+.tabs_item:first-child {
+	display: block;
+}
+
+
+
+.title h2 {
+    color: #1c72bc;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+
+.tab p {
+	color: #439ce8;
+    margin-top: 15px;
+    line-height: 28px;
+    font-size: 15px;
+    padding: 17px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2.3em;
+}
+ .tab-wrapper {
+	/* padding: 17px; */
+	text-align: center;
+}
+ .tab-wrapper .tabs {
+    display: inline-block;
+    width: auto;
+    background: #0d60a7;
+    padding: 2px 2px;
+    border-radius: 5px;
+    text-align: center;
+    float: none;
+    margin: 0 auto;
+}
+ .tab-wrapper .tabs li {
+	list-style: none;
+}
+p.ques{
+	font-size:18px;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    /* margin: 10px 0; */
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.imageThumb {
+  max-height: 75px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+}
+.pip {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+}
+.remove {
+  display: block;
+  background: #444;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: white;
+  color: black;
+}
+#blah{
+	margin-bottom:20px;
+}
+.overflow-h{
+	overflow: hidden;
 }
