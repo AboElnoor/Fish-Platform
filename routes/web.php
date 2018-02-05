@@ -61,11 +61,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
 
 Route::middleware('web')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('about', 'HomeController@about')->name('about');
     Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
     Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
     Route::get('practices', 'PracticesController@index')->name('practices.index');
     Route::get('videos', 'VideosController@index')->name('videos.index');
     Route::get('prices', 'PricesController@index')->name('prices.index');
-    Route::resource('markets', 'MarketsController@index')->only('index', 'show');
-    Route::get('experts', 'ExpertsController@index');
+    Route::resource('markets', 'MarketsController')->only('index', 'show');
+    Route::get('experts', 'ExpertsController@index')->name('experts.index');
+    Route::resource('farmers', 'FarmersController')->only('create', 'store');
 });

@@ -23,7 +23,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">الرئيسية</a></li>
-                    <li><a href="#">من نحن</a></li>
+                    <li><a href="{{ route('about') }}">من نحن</a></li>
                     <li><a href="#">رأيك يهمنا</a></li>
                     <li><a href="#">اتصل بنا</a></li>
                     <li><a href="#">خريطة الموقع</a></li>
@@ -67,9 +67,23 @@
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
+        <div class="login-wrapper">
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="اسم المستخدم">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
+                </div>
+                <div class="form-group">
+                    <a href="#forgotpassword" class="open-popup">هل نسيت كلمة المرور او اسم المستخدم؟</a>
+                </div>
+                <button type="submit" class="btn btn-block btn-main">إرسال</button>
+            </form>
+        </div>
     </nav>
 
-    <section class="intro">
+    <section class="intro padding20">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -79,11 +93,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="intro-text text-center">
-                        <!-- <h2>شبكة الأسماك</h2> -->
                         <img src="/images/logo-type.png" class="img-responsive">
-                        <form class="search">
-                            <input class="searchTerm" placeholder="إبحث في شبكة بشاير: مشتين, موردين, محاصيل, خبراء ." /><input class="searchButton" type="submit" />
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-4">

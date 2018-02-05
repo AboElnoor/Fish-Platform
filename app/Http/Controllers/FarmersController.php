@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Farmer;
 use App\Models\Governorate;
 use App\Models\HSCode;
-use App\Models\Locality;
-use App\Models\Village;
 use Illuminate\Http\Request;
 
 class FarmersController extends Controller
@@ -34,7 +32,7 @@ class FarmersController extends Controller
         $hscodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
         $farmer = session('farmer', null);
 
-        return view('admin.farmers.create', compact('governorates', 'hscodes', 'farmer'));
+        return view(\Route::current()->getPrefix() . '.farmers.create', compact('governorates', 'hscodes', 'farmer'));
     }
 
     /**
@@ -68,7 +66,9 @@ class FarmersController extends Controller
         ];
         $data += $request->validate($this->rules());
         $farmer = Farmer::create($data);
-        session(compact('farmer'));
+        if (\Route::current()->getPrefix() == 'admin') {
+            session(compact('farmer'));
+        }
 
         $success = 'تم انشاء المزارع بنجاح';
         return back()->with(compact('success'));

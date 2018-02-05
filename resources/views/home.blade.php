@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="col-md-15">
-                <a href="/fishplat/ask-expert.html" class="icon-anchor">
+                <a href="{{ route('experts.index') }}" class="icon-anchor">
                     <div class="icon-wrapper">
                         <img src="images/icons/website-veg-fish-14X.png" class="img-responsive">
                         <h3>اسأل خبير</h3>
