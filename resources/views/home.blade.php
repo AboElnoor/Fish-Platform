@@ -48,38 +48,67 @@
     </div>
 </section>
 
-<section class="carousel-news">
-    <div class="carousel-wrapper">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="http://lorempixel.com/1800/800/sports/1/">
-                    <div class="carousel-caption">
-                        <h2 class="new-title">عنوان الخبر</h2>
-                        <p>تفاصيل الخبر: بشاير أول شبكة تسويق زراعى فى مصر مدعمة بسوق أونلاين لبيع وشراء المحاصيل الزراعية</p>
+<section class="main-slider">
+    <div class="col-md-12">
+        <div class="col-md-8">
+            <div class="news-holder">
+                <ul class="news-headlines">
+                    <li class="selected">عنوان المقالة الأولي </li>
+                    <li>عنوان المقالة الثاتنية </li>
+                    <li>عنوان المقالة الثالثة ؟</li>
+                    <li>عنوان المقالة الرابعة </li>
+                    <li>عنوان المقالة الخامسة عنوان المقالة الخامسة  عنوان المقالة الخامسة </li>
+                </ul>
+                <div class="news-preview">
+                    <div class="news-content top-content">
+                        <img src="images/slider/1.jpg">
+                        <div class="resume">
+                            <a href="article.html" class="title">عنوان المقالة الأولي </a>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <img src="http://lorempixel.com/1800/800/sports/1/">
-                    <div class="carousel-caption">
-                        <h2 class="new-title">عنوان الخبر</h2>
-                        <p>تفاصيل الخبر: بشاير أول شبكة تسويق زراعى فى مصر مدعمة بسوق أونلاين لبيع وشراء المحاصيل الزراعية</p>
+                    <!-- .news-content -->
+                    <div class="news-content">
+                        <img src="images/slider/2.jpg">
+                        <div class="resume">
+                            <a href="article.html" class="title">عنوان المقالة الثاتنية </a>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                        </div>
                     </div>
+                    <!-- .news-content -->
+                    <div class="news-content">
+                        <img src="images/slider/3.jpg">
+                        <div class="resume">
+                            <a href="article.html" class="title">عنوان المقالة الثالثة ؟</a>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                        </div>
+                    </div>
+                    <!-- .news-content -->
+                    <div class="news-content">
+                        <img src="images/slider/4.jpg">
+                        <div class="resume">
+                            <a href="article.html" class="title">عنوان المقالة الرابعة </a>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                        </div>
+                    </div>
+                    <!-- .news-content -->
+                    <div class="news-content">
+                        <img src="images/slider/5.jpg">
+                        <div class="resume">
+                            <a href="article.html" class="title">عنوان المقالة الخامسة عنوان المقالة الخامسة  عنوان المقالة الخامسة </a>
+                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                        </div>
+                    </div>
+                    <!-- .news-content -->
                 </div>
+                <!-- .news-preview -->
             </div>
-
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            </ol>
+            <!-- .news-holder -->
         </div>
-    </div>
-    <div class="container">
-        <div class="carousel-bottom text-center">
-            <p>عن خدمة بشاير الإخبارية بشاير : أول شبكة تسويق زراعي في مصر مدعمة بسوق اونلاين لبيع و شراء المحاصيل الزراعية ومستلزمات الأنتاج علي النت و المحمول و الربط المباشر بين المزارعين و جمعياتهم الزراعية و الأهلية مع كل فئات السوق: مصانع, مصدرين, سلاسل تجزئة, شركات مستلزمات الإنتاج لإتمام عقود البيع الفوري وعقود التوريد والزراعة التعاقدية.</p>
-            <a href="#" class="btn btn-primary">المزيد من الأخبار</a>
+        <div class="col-md-4 ">
+            <div class="slider-ad-div">
+                <img class="slider-ad" src="images/adbox-square.png">
+            </div>
         </div>
     </div>
 </section>
@@ -193,68 +222,113 @@
     </div>
 </section>
 
-<section class="contact">
+<section class="contact" id="contact-form">
+    <div class="title centre ">
+        <h2>  - تواصل معانا -  </h2>
+    </div>
     <div class="container">
-        <h2 class="section-title">تواصل معنا</h2>
-        <div class="col-md-6 right-col">
+        <div class="col-md-5 right-col">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="الأسم">
+                <input type="text" class="form-control" placeholder="الأسم"> <span class="required">*</span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="التليفون">
+                <input type="text" class="form-control" placeholder="التليفون"> <span class="required">*</span>
             </div>
             <div class="form-group">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        الموضوع
-                        <span class="caret"></span>
+                    أريد التواصل مع 
+                    <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">واحد</a></li>
-                        <li><a href="#">اتنين</a></li>
+                        <li><a href="#">بشاير</a></li>
+                        <li><a href="#">المركز الدولي للأسماك</a></li>
                     </ul>
                 </div>
             </div>
             <div class="form-group">
-                <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="الرسالة ..."></textarea>
+                <textarea name="message" id="" cols="30" rows="8" class="form-control" placeholder="الرسالة ..."></textarea>
             </div>
             <button class="btn btn-primary pull-left">ارسال</button>
         </div>
-        <div class="col-md-6 left-col">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="icon">
-                        <img src="images/contact-call.png" alt="">
+        <div class="col-md-7 left-col">
+            <div class="col-md-6 no-padding">
+                <img class="contact-logo" src="images/logo-b.png">
+                <div class="row">
+                    <div class="col-md-5 no-padding-left">
+                        <div class="icon">
+                            <img src="images/contact-call-b.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>012 0154 7720</p>
+                            <p>012 7713 3052</p>
+                        </div>
                     </div>
-                    <div class="desc">
-                        <p>012 0154 7720</p>
-                        <p>012 7713 3052</p>
+                    <div class="col-md-7 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-location-b.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>٢٧ ش حسن عاصم، <br/>الزمالك، القاهرة، مصر</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="icon">
-                        <img src="images/contact-location.png" alt="">
+                <div class="row">
+                    <div class="col-md-5 no-padding-left">
+                        <div class="icon">
+                            <img src="images/contact-fax-b.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>02 / 27371998</p>
+                        </div>
                     </div>
-                    <div class="desc">
-                        <p>٢٧ ش حسن عاصم، الزمالك، القاهرة، مصر</p>
+                    <div class="col-md-7 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-email-b.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>mail@bashaier.net</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="icon">
-                        <img src="images/contact-fax.png" alt="">
+            <div class="col-md-6 no-padding">
+                <img class="contact-logo" src="images/logo.png">
+                <div class="row">
+                    <div class="col-md-5 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-call.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>012 0154 7720</p>
+                            <p>012 7713 3052</p>
+                        </div>
                     </div>
-                    <div class="desc">
-                        <p>02 / 27371998</p>
+                    <div class="col-md-7 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-location.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>٢٧ ش حسن عاصم، <br/>الزمالك، القاهرة، مصر</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="icon">
-                        <img src="images/contact-email.png" alt="">
+                <div class="row">
+                    <div class="col-md-5 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-fax.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>02 / 27371998</p>
+                        </div>
                     </div>
-                    <div class="desc">
-                        <p>mail@bashaier.net</p>
+                    <div class="col-md-7 no-padding">
+                        <div class="icon">
+                            <img src="images/contact-email.png" alt="">
+                        </div>
+                        <div class="desc">
+                            <p>mail@bashaier.net</p>
+                        </div>
                     </div>
                 </div>
             </div>

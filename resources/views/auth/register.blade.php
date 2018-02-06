@@ -14,7 +14,7 @@
             <div >
                 <div class="form-wrapper">
                     {!! Form::open(['route' => 'register', 'class' => 'form-horizontal']) !!}
-                        <fieldset class="col-md-6 col-md-offset-2">
+                        <fieldset class="col-md-8 col-md-offset-2">
                             <!-- Name input-->
                             <div class="form-group">
                                 {!! Form::label(
@@ -27,7 +27,7 @@
                             <!-- Email input-->
                             <div class="form-group">
                                 {!! Form::label(
-                                    'username', 'اسم المستخدم *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                    'username', 'رقم الموبايل *', ['class' => 'col-md-4 control-label reg-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text(
                                         'username', old('username'), ['id' => 'number', 'class' => 'form-control']) !!}
@@ -42,8 +42,8 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label(
-                                    'username', 'البريد الالكترونى *',
-                                    ['class' => 'col-md-4 control-label reg-label']) !!}
+                                    'username', 'البريد الالكتروني'
+                                   , ['class' => 'col-md-4 control-label reg-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text(
                                         'email', old('email'), ['id' => 'e-mail', 'class' => 'form-control']) !!}
@@ -53,9 +53,9 @@
                         <div class="clearfix"></div>
 
                         <div class="reg-title">مكان العمل:</div>
-                        <fieldset class="col-md-7 col-md-offset-2">
+                        <fieldset class="col-md-8 col-md-offset-2">
                             <div class="form-group">
-                                <div class="col-md-4 ol-md-offset-1 centre">
+                                <div class="col-md-4 ol-md-offset-2 centre">
                                     {!! Form::label(
                                         'Governorate_ID', 'المحافظة *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
@@ -69,7 +69,7 @@
                                             ]
                                         ) !!}
                                 </div>
-                                <div class="col-md-4 col-md-offset-1 centre">
+                                <div class="col-md-4 col-md-offset-2 centre">
                                     {!! Form::label(
                                         'Locality_ID', 'المركز *', ['class' => 'control-label reg-label']) !!}
                                     {!! Form::select(
@@ -82,7 +82,7 @@
                         </fieldset>
                         <div class="clearfix"></div>
                         <div class="reg-title">أنواع الأسماك التي تهمك معرفة أسعارها وأفضل الممارسات</div>
-                        <fieldset class="col-md-7 col-md-offset-2">
+                        <fieldset class="col-md-9 col-md-offset-1">
                             <div class="form-group">
                                 <div class="col-md-4  centre">
                                     {!! Form::label(

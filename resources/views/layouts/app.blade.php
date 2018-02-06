@@ -30,7 +30,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     @guest
-                        <li><a href="#">دخول</a></li>
+                        <li><a class="login" href="#">دخول</a></li>
                         <li><a href="{{ route('register') }}">تسجيل</a></li>
                     @else
                         <li>
@@ -111,15 +111,12 @@
         <div class="container">
             <ul>
                 <li class="title"><b>ملتقى الأسماك</b></li>
-                <li><a href="#">أفضل الممارسات</a></li>
                 <li><a href="#">أحدث المنتجات والخدمات</a></li>
                 <li><a href="#">ابتكارات</a></li>
                 <li><a href="#">رواد الأعمال</a></li>
             </ul>
             <ul>
                 <li class="title"><b>روابط هامة</b></li>
-                <li><a href="#">دليل التصدير</a></li>
-                <li><a href="#">دليل</a></li>
                 <li><a href="#">المكتبة الرقمية</a></li>
                 <li><a href="#">روابط مفيدة</a></li>
             </ul>
