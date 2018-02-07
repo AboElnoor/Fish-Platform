@@ -24,7 +24,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">الرئيسية</a></li>
                     <li><a href="{{ route('about') }}">من نحن</a></li>
-                    <li><a href="#">رأيك يهمنا</a></li>
                     <li><a href="#">اتصل بنا</a></li>
                     <li><a href="#">خريطة الموقع</a></li>
                 </ul>
@@ -33,6 +32,12 @@
                         <li><a class="login" href="#">دخول</a></li>
                         <li><a href="{{ route('register') }}">تسجيل</a></li>
                     @else
+                        <li>
+                            <a href="#">
+                                <span class="badge">1</span>
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -88,17 +93,18 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="intro-certificate">
-                        <a href="#"><img src="/images/adbox-square.png" class="img-responsive"></a>
+                        <a href="#"><img src="/images/certificate-intro.png" class="img-responsive"></a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="intro-text text-center">
                         <img src="/images/logo-type.png" class="img-responsive">
+                        <p>شبكة تسويق الأسماك ومستلزمات الانتاج المدعمة بالمعلومات التسويقية والإرشاد.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="intro-logo">
-                        <a href="#"><img src="/images/adbox-square.png" class="img-responsive"></a>
+                        <a href="#"><img src="/images/logo.png" class="img-responsive"></a>
                     </div>
                 </div>
             </div>

@@ -54,7 +54,9 @@ class ExpertsController extends Controller
             'entryUser' => auth()->id(),
         ];
         $data += $request->validate($this->rules());
-        Expert::create($data);
+        $photo = request()->file('photo') ? request()->file('photo')->store('experts') : 'images/default.jpg';
+
+        Expert::create(compact('photo') + $data);
 
         return back()->with('success', 'تم انشاء السؤال بنجاح');
     }
@@ -108,7 +110,9 @@ class ExpertsController extends Controller
             'updated_at' => Carbon::now(),
         ];
         $data += $request->validate($this->adminRules());
-        $expert->update($data);
+        $photo = request()->file('photo') ? request()->file('photo')->store('experts') : 'images/default.jpg';
+
+        $expert->update(compact('photo') + $data);
 
         return back()->with('success', 'تم الاجابة على السؤال بنجاح');
     }

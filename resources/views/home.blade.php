@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="adbox">
+    <div class="container">
+        <img src="images/boxa.png" class="img-responsive">
+    </div>
+</section>
 <section class="icons">
     <div class="container">
         <div class="row">
@@ -138,7 +143,7 @@
             <div class="col-md-2">
                 <a href="#" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-13.png" class="img-responsive">
-                    <h5>أفضل الممارسات</h5>
+                    <h5> مزارع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
@@ -168,7 +173,7 @@
             <div class="col-md-2">
                 <a href="#" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-08.png" class="img-responsive">
-                    <h5>سجل مزرعتك/شركتك</h5>
+                    <h5>سجل في الشبكة</h5>
                 </a>
             </div>
         </div>
@@ -184,27 +189,33 @@
 <section class="four-icons icons">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2 col-md-offset-1">
+                        <a href="#" class="icon-anchor">
+                            <img src="images/icons/website-veg-fish-dollar.png" class="img-responsive">
+                            <h5>خدمات تمويل</h5>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
                         <a href="#" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-18.png" class="img-responsive">
                             <h5>رواد الأعمال / المشاريع الصغيرة</h5>
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a href="#" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-17.png" class="img-responsive">
                             <h5>وظائف</h5>
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a href="#" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-16.png" class="img-responsive">
                             <h5>ارشادات وقوانين التصدير</h5>
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a href="{{ route('videos.index') }}" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-15.png" class="img-responsive">
                             <h5>أفلام ارشادية</h5>
@@ -300,8 +311,8 @@
                             <img src="images/contact-call.png" alt="">
                         </div>
                         <div class="desc">
-                            <p>012 0154 7720</p>
-                            <p>012 7713 3052</p>
+                            <p>+20 227364114</p>
+                            <p>+2- 01000 77 68 21</p>
                         </div>
                     </div>
                     <div class="col-md-7 no-padding">
@@ -309,7 +320,12 @@
                             <img src="images/contact-location.png" alt="">
                         </div>
                         <div class="desc">
-                            <p>٢٧ ش حسن عاصم، <br/>الزمالك، القاهرة، مصر</p>
+                            <p>
+                                18ب
+                                 شارع مرعشلي
+                                <br/>
+                                الدور الرابع، شقة 17، الزمالك
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -319,7 +335,7 @@
                             <img src="images/contact-fax.png" alt="">
                         </div>
                         <div class="desc">
-                            <p>02 / 27371998</p>
+                            <p>20 227364112</p>
                         </div>
                     </div>
                     <div class="col-md-7 no-padding">
@@ -327,12 +343,17 @@
                             <img src="images/contact-email.png" alt="">
                         </div>
                         <div class="desc">
-                            <p>mail@bashaier.net</p>
+                            <p>m.elazzazy@worldfishcenter.org</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <img src="images/contact-map.png" class="img-responsive mapImg">
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=Egypt, cairo, worldfish&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 </section>

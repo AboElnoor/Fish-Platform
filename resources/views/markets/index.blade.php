@@ -26,7 +26,7 @@
     			<div class="form-group overflow-h margin20">
                     <div class=" centre">
                         <label class="col-md-3 control-label reg-label" for="name">
-                        البحث بنوع الأسماك: 
+                        البحث بنوع الأسماك:
                     </label>
                         <select class="col-md-4 select-market" id="type1">
                           <option value="type1">النوع الأول </option>
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="tab_content">
                     <div class="tabs_item">
                         <table class="table-fill">
@@ -58,7 +58,7 @@
                             {{-- {{ dd($buys) }} --}}
                             <tbody class="table-hover">
                                 @forelse($buys as $buy)
-                                    <tr>
+                                    <tr onclick="window.location='{{ route('markets.show', $buy) }}'">
                                         <td class="td-img"><img class="pro-image" src="images/product.jpg"></td>
                                         <td class="text-center">{{ $buy->hSCode->HS_Aname ?? '-' }}</td>
                                         <td class="text-center">{{ $buy->startDate }}</td>
@@ -91,7 +91,7 @@
                             @endphp
                             <tbody class="table-hover">
                                 @forelse($selles as $sell)
-                                    <tr>
+                                    <tr onclick="window.location='{{ route('markets.show', $sell) }}'">
                                         <td class="td-img"><img class="pro-image" src="images/product.jpg"></td>
                                         <td class="text-center">{{ $sell->hSCode->HS_Aname ?? '-' }}</td>
                                         <td class="text-center">{{ $sell->startDate }}</td>

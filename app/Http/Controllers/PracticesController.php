@@ -58,7 +58,7 @@ class PracticesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
-        $photo = (request()->file('photo')) ? request()->file('photo')->store('photos') : 'photos/default.jpg';
+        $photo = request()->file('photo') ? request()->file('photo')->store('practices') : 'images/default.jpg';
 
         Practice::create(compact('photo') + $data);
         $success = 'تمت الااضافة بنجاح';
@@ -107,7 +107,7 @@ class PracticesController extends Controller
     public function update(Request $request, Practice $practice)
     {
         $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('photos') : 'photos/default.jpg';
+        $photo = request()->file('photo') ? request()->file('photo')->store('practices') : 'images/default.jpg';
 
         $practice->update(compact('photo') + $data);
         $success = 'تم التحديث بنجاح';

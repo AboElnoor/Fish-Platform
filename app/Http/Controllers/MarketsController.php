@@ -116,7 +116,9 @@ class MarketsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules());
-        Market::create($data);
+        $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+
+        Market::create(compact('photo') + $data);
 
         $success = 'تم الانشاء بنجاح';
         return back()->with(compact('success'));
@@ -130,7 +132,7 @@ class MarketsController extends Controller
      */
     public function show(Market $market)
     {
-        return view('admin.markets.show', compact('market'));
+        return view(\Route::current()->getPrefix() . '.markets.show', compact('market'));
     }
 
     /**
