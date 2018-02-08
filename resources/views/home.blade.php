@@ -34,7 +34,7 @@
                 </a>
             </div>
             <div class="col-md-15">
-                <a href="{{ route('practices.index') }}" class="icon-anchor">
+                <a href="{{ route('contents.type', 6) }}" class="icon-anchor">
                     <div class="icon-wrapper">
                         <img src="images/best-circle.png" class="img-responsive">
                         <h3>أفضل الممارسات</h3>

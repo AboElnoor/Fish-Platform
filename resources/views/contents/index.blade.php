@@ -15,7 +15,7 @@
 						</div>
                         <h3 class="box-title">{{ $article->title }}</h3>
                         <p>{{ getHTMLExcerpt($article->subject) }}</p>
-                        @if(!in_array($type, [7, 8, 9, 10]))
+                        @if(!in_array($type->id, [7, 8, 9, 10]))
                             <a href="{{ route('contents.show', $article) }}">مشاهدة المزيد</a>
                         @endif
                     </div>
