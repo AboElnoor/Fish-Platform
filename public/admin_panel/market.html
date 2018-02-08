@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Laravel</title>
+      <!-- Styles -->
+      <link href="css/app.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="css/styles.css">
+      <script>
+         $(function(){
+             var hash = window.location.hash;
+             hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+         
+             $('.nav-tabs a').click(function (e) {
+                 $(this).tab('show');
+                 var scrollmem = $('body').scrollTop();
+                 window.location.hash = this.hash;
+                 $('html,body').scrollTop(scrollmem);
+             });
+         });
+      </script>
+   </head>
+   <body>
+      <div id="app">
+         <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+               <div class="navbar-header">
+                  <!-- Collapsed Hamburger -->
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                  <span class="sr-only">Toggle Navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <!-- Branding Image -->
+                  <a class="navbar-brand" href="admin">
+                  <img src="images/logo.png" class="img-responsive">
+                  </a>
+               </div>
+               <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                  <!-- Left Side Of Navbar -->
+                  <ul class="nav navbar-nav">
+                     &nbsp;
+                  </ul>
+                  <!-- Right Side Of Navbar -->
+                  <ul class="nav navbar-nav navbar-left">
+                     <!-- Authentication Links -->
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                        <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="logout"
+                                 onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                              تسجيل الخروج
+                              </a>
+                              <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                 <input type="hidden" name="" value="">
+                              </form>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <section class="farms details">
+            <div class="container">
+               <div class="row">
+                  <div class="title "><h2>سوق مستلزمات الإنتاج</h2></div>
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr>
+                           <td>عرض بيع</td>
+                           <td>
+                              <img src="" alt="">
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>كود العرض: </h4>
+                           </td>
+                           <td>
+                              <h4><i>1</i></h4>
+                           </td>
+                           
+                        </tr>
+                        <tr>
+                           <td><h4>تاريخ بداية العرض: </h4></td>
+                           <td><h4><i>2018-01-29 00:00:00</i></h4></td>
+
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>تاريخ نهاية العرض: </h4>
+                           </td>
+                           <td>
+                              <h4><i>2018-01-29 00:00:00</i></h4>
+                           </td>
+                        </tr>
+                        
+                     </tbody>
+                  </table>
+
+                   <div class="title "><h2>بيانات المزرعة</h2></div>
+
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr>
+                           <td><h4>نوع المزرعة:</h4></td>
+                           <td>
+                              <h4><i>-</i></h4>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>الكمية المتوفرة:</h4>
+                           </td>
+                           <td>
+                              <h4><i>-</i></h4>
+                           </td>
+                           
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>مكان انتاج المزرعة:</h4>
+                           </td>
+                           <td><h4><i>-</i></h4></td>
+
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>تفاصيل أخرى: </h4>
+                           </td>
+                           <td>
+                              <h4><i>-</i></h4>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>النوع / الصنف: </h4>
+                           </td>
+                           <td>
+                              <h4><i>بورى 3 (˃4 سمكات /كجم)</i></h4>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <h4>المواصفات: </h4>
+                           </td>
+                           <td>
+                              <h4><i>-</i></h4>
+                           </td>
+                        </tr>
+                        
+                     </tbody>
+                  </table>
+
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <a href="https://urhoston.me/admin/markets/1/edit" class="btn btn-primary btn-block">تعديل</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <!-- Scripts -->
+      <script src="js/app.js"></script>
+   </body>
+</html>

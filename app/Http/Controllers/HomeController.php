@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
 use App\Models\Governorate;
 use App\Models\Locality;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Content::where('type', 1)->latest('id')->limit(5)->get();
+        return view('home', compact('articles'));
     }
 
     /**

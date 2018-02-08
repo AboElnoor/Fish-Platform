@@ -13,9 +13,10 @@ class ContentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ContentType $type)
     {
-        //
+        $articles = $type->articles()->paginate(10);
+        return view('contents.index', compact('articles', 'type'));
     }
 
     /**
@@ -52,9 +53,9 @@ class ContentsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('content') : 'images/default.jpg';
         $subject = prepareHTMLInput(request('subject'));
+        $data = $request->validate($this->rules());
+        $photo = request()->file('photo')->store('contents');
 
         Content::create(compact('photo', 'subject') + $data);
 
@@ -69,7 +70,7 @@ class ContentsController extends Controller
      */
     public function show(Content $content)
     {
-        //
+        return view('contents.show', compact('content'));
     }
 
     /**

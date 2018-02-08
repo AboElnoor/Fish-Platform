@@ -58,20 +58,21 @@
         <div class="col-md-8">
             <div class="news-holder">
                 <ul class="news-headlines">
-                    <li class="selected">عنوان المقالة الأولي </li>
-                    <li>عنوان المقالة الثاتنية </li>
-                    <li>عنوان المقالة الثالثة ؟</li>
-                    <li>عنوان المقالة الرابعة </li>
-                    <li>عنوان المقالة الخامسة عنوان المقالة الخامسة  عنوان المقالة الخامسة </li>
+                    @foreach($articles->pluck('title') as $title)
+                        <li class="{{ $loop->first ? 'selected' : '' }}">{{ $title }}</li>
+                    @endforeach
                 </ul>
                 <div class="news-preview">
-                    <div class="news-content top-content">
-                        <img src="images/slider/1.jpg">
-                        <div class="resume">
-                            <a href="article.html" class="title">عنوان المقالة الأولي </a>
-                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
+                    @foreach($articles as $article)
+                        <div class="news-content {{ $loop->first ? 'top-content' : '' }}">
+                            <img src="{{ asset($article->photo) }}">
+                            <div class="resume">
+                                <a href="{{ route('contents.show', $article) }}"
+                                    class="title">{{ $article->title }}</a>
+                                <p>{{ getHTMLExcerpt($article->subject) }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                     <!-- .news-content -->
                     <div class="news-content">
                         <img src="images/slider/2.jpg">
@@ -165,13 +166,13 @@
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="{{ route('contents.type', 7) }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-09.png" class="img-responsive">
                     <h5>مجتمع قطاع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="{{ route('farmers.create') }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-08.png" class="img-responsive">
                     <h5>سجل في الشبكة</h5>
                 </a>
@@ -192,13 +193,13 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2 col-md-offset-1">
-                        <a href="#" class="icon-anchor">
+                        <a href="{{ route('contents.type', 8) }}" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-dollar.png" class="img-responsive">
                             <h5>خدمات تمويل</h5>
                         </a>
                     </div>
                     <div class="col-md-2">
-                        <a href="#" class="icon-anchor">
+                        <a href="{{ route('contents.type', 2) }}" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-18.png" class="img-responsive">
                             <h5>رواد الأعمال / المشاريع الصغيرة</h5>
                         </a>
@@ -210,7 +211,7 @@
                         </a>
                     </div>
                     <div class="col-md-2">
-                        <a href="#" class="icon-anchor">
+                        <a href="{{ route('contents.type', 3) }}" class="icon-anchor">
                             <img src="images/icons/website-veg-fish-16.png" class="img-responsive">
                             <h5>ارشادات وقوانين التصدير</h5>
                         </a>
@@ -248,7 +249,7 @@
             <div class="form-group">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    أريد التواصل مع 
+                    أريد التواصل مع
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">

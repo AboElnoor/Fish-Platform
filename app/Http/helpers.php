@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
-
 if (!function_exists('requestUri')) {
     function requestUri(): string
     {
@@ -27,22 +24,39 @@ if (!function_exists('prepareHTMLInput')) {
     function prepareHTMLInput(string $html): string
     {
         $dom = new \DOMDocument();
-        $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHtml(
+            mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'),
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+        );
         $images = $dom->getElementsByTagName('img');
 
-        foreach ($images as $img) {
+        foreach ($images as $k => $img) {
             $data = $img->getAttribute('src');
             list($type, $data) = explode(';', $data);
+            $extention = substr(strrchr($type, '/'), 1); //For Ex. data:image/svg+xml => svg+xml, data:image/png => png
+            if (strpos($extention, '+')) {
+                $extention = strstr($extention, '+', true); //For Ex. svg+xml => svg
+            }
             list(, $data) = explode(',', $data);
             $data = base64_decode($data);
-
-            $imageName = Storage::putFile('photos', new File($data));
-
+            $imageName = time() . $k . '.' . $extention;
+            $path = storage_path('app/public/contents/') . $imageName;
+            file_put_contents($path, $data);
             $img->removeAttribute('src');
             $img->setAttribute('src', asset($imageName));
         }
 
         $html = $dom->saveHTML();
         return $html;
+    }
+}
+
+if (!function_exists('getHTMLExcerpt')) {
+    function getHTMLExcerpt(string $html)
+    {
+        $text = strip_tags($html);
+        $excerpt = mb_substr($text, 0, 200);
+        $excerpt = substr($excerpt, 0, strrpos($excerpt, '&')) . '..';
+        return $excerpt;
     }
 }

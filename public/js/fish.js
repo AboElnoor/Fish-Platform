@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#wysiwyg').summernote({
-        height: 300,
+        height: 300, lang: 'ar-AR'
     });
 
     $('.next').on('click', function(event) {

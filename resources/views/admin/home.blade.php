@@ -125,7 +125,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-             <a href="content.html" class="box-anchor">
+             <a href="{{ route('admin.contents.create') }}" class="box-anchor">
                 <div class="box">
                    <div class="box-icon">
                       <i class="fa fa-folder-open fa-2x" aria-hidden="true"></i>

@@ -15,7 +15,7 @@
 						</div>
                         <h3 class="box-title">{{ $practice->title }}</h3>
                         <p>{{ $practice->message }}</p>
-                        <a href="article.html">مشاهدة المزيد</a>
+                        {{-- <a href="article.html">مشاهدة المزيد</a> --}}
                     </div>
                 </div>
             @endforeach

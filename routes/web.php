@@ -71,4 +71,6 @@ Route::middleware('web')->group(function () {
     Route::resource('markets', 'MarketsController')->only('index', 'show');
     Route::get('experts', 'ExpertsController@index')->name('experts.index');
     Route::resource('farmers', 'FarmersController')->only('create', 'store');
+    Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
+    Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
 });
