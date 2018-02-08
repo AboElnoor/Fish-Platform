@@ -325,3 +325,9 @@ p.ques{
 .overflow-h{
 	overflow: hidden;
 }
+.note-btn{
+	padding: 10px !important;
+}
+.note-btn-group{
+	display:inline-flex;
+}
