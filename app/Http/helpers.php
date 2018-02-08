@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+
 if (!function_exists('requestUri')) {
     function requestUri(): string
     {
@@ -20,4 +23,26 @@ if (!function_exists('buildRoutes')) {
     }
 }
 
+if (!function_exists('prepareHTMLInput')) {
+    function prepareHTMLInput(string $html): string
+    {
+        $dom = new \DOMDocument();
+        $dom->loadHtml($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getElementsByTagName('img');
 
+        foreach ($images as $img) {
+            $data = $img->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list(, $data) = explode(',', $data);
+            $data = base64_decode($data);
+
+            $imageName = Storage::putFile('photos', new File($data));
+
+            $img->removeAttribute('src');
+            $img->setAttribute('src', asset($imageName));
+        }
+
+        $html = $dom->saveHTML();
+        return $html;
+    }
+}

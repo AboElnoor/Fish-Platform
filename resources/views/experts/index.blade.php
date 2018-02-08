@@ -13,39 +13,22 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-wrapper">
                             <form class="form-horizontal" action="" method="post">
+                            {!! Form::open([]) !!}
                                 <fieldset>
-                                    <!-- Name input-->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="name">الموضوع:</label>
+                                        {!! Form::label('name', 'السؤال:', ['class' => 'col-md-2 control-label']) !!}
                                         <div class="col-md-8">
-                                            <input id="name" name="name" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <!-- Email input-->
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label" for="name">السؤال:</label>
-                                        <div class="col-md-8">
-                                            <textarea  rows="5" id="name" name="name" type="text"  class="form-control"></textarea> 
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3">
-                                            <div class="col-md-12 fileUpload btn btn-sm btn-primary">
-                                                <label for="photo">إضافة صورة</label> 
-                                                <input name="photo" type="file" id="photo" class="upload" onchange="readURL(this);">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <img id="blah" src="images/1.png" alt="الصورة" />
+                                            {!! Form::textarea(
+                                                'question', old('question'), ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <button type="submit" class="col-md-12 btn btn-primary btn-lg">إرسال</button>
+                                            {!! Form::submit('إرسال', ['class' => 'col-md-12 btn btn-primary btn-lg']) !!}
                                         </div>
                                     </div>
                                 </fieldset>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
