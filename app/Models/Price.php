@@ -51,6 +51,6 @@ class Price extends Model
 
     public function getUnitsWeights($unitId)
     {
-        return $this->units()->where('PriceDB_Unit.Unit_ID', $unitId)->first()->pivot_Weights ?? null;
+        return $this->units()->where('PriceDB_Unit.Unit_ID', $unitId)->first()->getOriginal('pivot_Weights') ?? null;
     }
 }
