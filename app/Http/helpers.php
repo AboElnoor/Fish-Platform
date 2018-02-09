@@ -51,8 +51,8 @@ if (!function_exists('prepareHTMLInput')) {
     }
 }
 
-if (!function_exists('getHTMLExcerpt')) {
-    function getHTMLExcerpt(string $html)
+if (!function_exists('getExcerpt')) {
+    function getExcerpt(string $html)
     {
         $text = strip_tags($html);
         $excerpt = mb_substr($text, 0, 200);

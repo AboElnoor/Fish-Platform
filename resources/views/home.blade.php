@@ -69,7 +69,7 @@
                             <div class="resume">
                                 <a href="{{ route('contents.show', $article) }}"
                                     class="title">{{ $article->title }}</a>
-                                <p>{{ getHTMLExcerpt($article->subject) }}</p>
+                                <p>{{ getExcerpt($article->subject) }}</p>
                             </div>
                         </div>
                     @endforeach

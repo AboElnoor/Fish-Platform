@@ -14,7 +14,8 @@
                             <img class="best-img" src="{{ asset('storage/' . $article->photo) }}">
                         </div>
                         <h3 class="box-title">{{ $article->title }}</h3>
-                        <p>{{ getHTMLExcerpt($article->subject) }}</p>
+                        <p>{!! in_array(
+                            $type->id, [7, 8, 9, 10]) ? $article->subject : getExcerpt($article->subject) !!}</p>
                         @if(!in_array($type->id, [7, 8, 9, 10]))
                             <a href="{{ route('contents.show', $article) }}">مشاهدة المزيد</a>
                         @endif
