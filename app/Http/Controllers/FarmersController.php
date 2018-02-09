@@ -66,7 +66,7 @@ class FarmersController extends Controller
         ];
         $data += $request->validate($this->rules());
         $farmer = Farmer::create($data);
-        if (\Route::current()->getPrefix() == 'admin') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'admin') {
             session(compact('farmer'));
         }
 

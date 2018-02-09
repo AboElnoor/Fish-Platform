@@ -28,7 +28,7 @@ class PricesController extends Controller
         $prices = Price::latest('PriceDate')
             ->with('hSCode', 'entryUser', 'updateUser')->paginate(10);
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('prices');
         }
         return view(\Route::current()->getPrefix() . '.prices.index', compact('prices', 'hSCodes'));
@@ -58,7 +58,7 @@ class PricesController extends Controller
 
         $prices = $prices->with('hSCode', 'entryUser', 'updateUser')->paginate(10);
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('prices');
         }
         return view('admin.prices.index', compact('prices', 'hSCodes'));
@@ -74,7 +74,7 @@ class PricesController extends Controller
         $hSCodes = $this->hSCodes;
         $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('hSCodes', 'units');
         }
         return view('admin.prices.create', compact('hSCodes', 'units'));
@@ -132,7 +132,7 @@ class PricesController extends Controller
         }
         $success = 'تم انشاء السوق بنجاح';
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success', 'error');
         }
         return back()->with(compact('success', 'error'));
@@ -161,7 +161,7 @@ class PricesController extends Controller
         $units = Unit::pluck('Unit_Name_A', 'Unit_ID');
         $price = Price::with('hSCode', 'entryUser', 'updateUser')->find($price->PriceDB_ID);
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('hSCodes', 'units', 'price');
         }
         return view('admin.prices.create', compact('hSCodes', 'units', 'price'));
@@ -198,7 +198,7 @@ class PricesController extends Controller
         }
         $success = 'تم تحديث بيانات السوق بنجاح';
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success', 'error');
         }
         return back()->with(compact('success', 'error'));
@@ -215,7 +215,7 @@ class PricesController extends Controller
         $price->delete();
         $success = 'تم حذف المنتج بنجاح';
 
-        if (\Route::current()->getPrefix() == 'api') {
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success');
         }
         return back()->with(compact('success'));
