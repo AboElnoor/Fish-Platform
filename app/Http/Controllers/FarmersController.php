@@ -109,7 +109,12 @@ class FarmersController extends Controller
 
         $success = 'تم انشاء المزرعة بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.farmers.index')->with(compact('success'));
     }
 
     /**
@@ -139,12 +144,21 @@ class FarmersController extends Controller
     public function addHSCode(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->hSCodeRules());
-        $farmer->hSCodes()->attach([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')]);
+        try {
+            $farmer->hSCodes()->attach([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')]);
+        } catch (\Exception $e) {
+            $farmer->hSCodes()->sync([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')], false);
+        }
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات الانتاج بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.farmers.index')->with(compact('success'));
     }
 
     /**
@@ -179,7 +193,12 @@ class FarmersController extends Controller
 
         $success = 'تم انشاء بيانات مستلزمات الانتاج بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.farmers.index')->with(compact('success'));
     }
 
     /**

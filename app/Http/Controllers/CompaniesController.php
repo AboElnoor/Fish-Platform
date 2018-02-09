@@ -201,7 +201,12 @@ class CompaniesController extends Controller
         session(compact('company'));
         $success = 'تم انشاء الفرع بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.companies.index')->with(compact('success'));
     }
 
     /**
@@ -234,7 +239,12 @@ class CompaniesController extends Controller
         session(compact('company'));
         $success = 'تم انشاء الموظف بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.companies.index')->with(compact('success'));
     }
 
     /**
@@ -264,7 +274,12 @@ class CompaniesController extends Controller
         session(compact('company'));
         $success = 'تم تحديد البنوك بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.companies.index')->with(compact('success'));
     }
 
     /**
@@ -294,7 +309,12 @@ class CompaniesController extends Controller
         session(compact('company'));
         $success = 'تم تحديد العضويات بنجاح';
         session()->flash('success', $success);
-        return compact('success');
+
+        if ($request->ajax()) {
+            return compact('success');
+        }
+
+        return redirect()->route('admin.companies.index')->with(compact('success'));
     }
 
     /**
@@ -334,7 +354,12 @@ class CompaniesController extends Controller
 
         session(compact('company'));
         isset($error) ? session()->flash('error', $error) : session()->flash('success', $success);
-        return compact('success', 'error');
+
+        if ($request->ajax()) {
+            return compact('success', 'error');
+        }
+
+        return redirect()->route('admin.companies.index')->with(compact('success', 'error'));
     }
 
     /**
