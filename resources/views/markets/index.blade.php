@@ -55,7 +55,6 @@
                                 $buys = clone $markets;
                                 $buys = $buys->where('buy_request', true)->paginate(10);
                             @endphp
-                            {{-- {{ dd($buys) }} --}}
                             <tbody class="table-hover">
                                 @forelse($buys as $buy)
                                     <tr onclick="window.location='{{ route('markets.show', $buy) }}'">

@@ -19,4 +19,11 @@ class FarmerHSCode extends Pivot
      * @var string
      */
     protected $primaryKey = 'FishFarmer_HSCode_ID';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

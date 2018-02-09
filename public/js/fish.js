@@ -83,9 +83,6 @@ $(document).ready(function() {
             })
             .done(function(data) {
                 $.each(data, function(index, val) {
-                    if (val == null) {
-                        return true;
-                    }
                     if (index == 'Governorate_ID') {
                         var baseURL = window.location.origin;
                         var url = baseURL + '/localities/' + val;

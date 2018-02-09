@@ -77,14 +77,14 @@
             <tbody>
                 @forelse($farmer->hSCodes ?? session('farmer')->hSCodes ?? [] as $hSCode)
                     <tr>
-                        <td>{{ $hSCode->pivot->FishFarmer_HSCode_ID }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID') }}</td>
                         <td>{{ $hSCode->HS_Aname }}</td>
-                        <td>{{ $hSCode->pivot->cropMonth }}</td>
-                        <td>{{ $hSCode->pivot->Area }}</td>
-                        <td>{{ $hSCode->pivot->PoolCount }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_cropMonth') }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_Area') }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_PoolCount') }}</td>
                         <td>
-                            <a href="{{ route('hSCodes.edit', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
-                                data-action="{{ route('hSCodes.update', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
+                            <a href="{{ route('hSCodes.edit', $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID')) }}"
+                                data-action="{{ route('hSCodes.update', $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID')) }}"
                                 data-form="hSCodes" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>

@@ -77,20 +77,21 @@
             <tbody>
                 @forelse($farmer->hSCodes ?? session('farmer')->hSCodes ?? [] as $hSCode)
                     <tr>
-                        <td>{{ $hSCode->pivot->FishFarmer_HSCode_ID }}</td>
+{{ dump($hSCode) }}
+                        <td>{{ $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID') }}</td>
                         <td>{{ $hSCode->HS_Aname }}</td>
-                        <td>{{ $hSCode->pivot->cropMonth }}</td>
-                        <td>{{ $hSCode->pivot->Area }}</td>
-                        <td>{{ $hSCode->pivot->PoolCount }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_cropMonth') }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_Area') }}</td>
+                        <td>{{ $hSCode->getOriginal('pivot_PoolCount') }}</td>
                         <td>
-                            <a href="{{ route('admin.hSCodes.edit', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
-                                data-action="{{ route('admin.hSCodes.update', $hSCode->pivot->FishFarmer_HSCode_ID) }}"
+                            <a href="{{ route('admin.hSCodes.edit', $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID')) }}"
+                                data-action="{{ route('admin.hSCodes.update', $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID')) }}"
                                 data-form="hSCodes" class="btn btn-sm btn-primary edit">تعديل</a>
                         </td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE', 'route' => [
-                                    'admin.hSCodes.destroy', $hSCode->pivot->FishFarmer_HSCode_ID]]) !!}
+                                    'admin.hSCodes.destroy', $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID')]]) !!}
                                 {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
