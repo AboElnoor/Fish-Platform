@@ -144,11 +144,7 @@ class FarmersController extends Controller
     public function addHSCode(Request $request, Farmer $farmer)
     {
         $data = $request->validate($this->hSCodeRules());
-        try {
-            $farmer->hSCodes()->attach([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')]);
-        } catch (\Exception $e) {
-            $farmer->hSCodes()->sync([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')], false);
-        }
+        $farmer->hSCodes()->sync([$data['HSCode_ID'] => array_except($data, 'HSCode_ID')], false);
         session(compact('farmer'));
 
         $success = 'تم انشاء بيانات الانتاج بنجاح';
