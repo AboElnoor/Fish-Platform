@@ -43,7 +43,7 @@ if (!function_exists('prepareHTMLInput')) {
             $path = storage_path('app/public/contents/') . $imageName;
             file_put_contents($path, $data);
             $img->removeAttribute('src');
-            $img->setAttribute('src', asset($imageName));
+            $img->setAttribute('src', asset('storage/contents/' . $imageName));
         }
 
         $html = $dom->saveHTML();

@@ -86,17 +86,9 @@
                 <button type="submit" class="btn btn-block btn-main">إرسال</button>
             </form>
             <div class="text-center">أو</div>
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = 'https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v2.12&appId=1364239426990632&autoLogAppEvents=1';
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            </script>
-            <div class="fb-login-button" data-max-rows="2" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false">
-            </div>
+            <button class="loginBtn loginBtn--facebook">
+                الدخول بحساب الفيسبوك
+            </button>
         </div>
     </nav>
 

@@ -142,25 +142,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="/fishplat/fish-farms.html" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-13.png" class="img-responsive">
                     <h5> مزارع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="/fishplat/fish-suppliers.html" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-12.png" class="img-responsive">
                     <h5>موردى المستلزمات</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="/fishplat/fish-manufacturers.html" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-11.png" class="img-responsive">
                     <h5>تصنيع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="#" class="icon-anchor">
+                <a href="/fishplat/fish-distributors.html" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-10.png" class="img-responsive">
                     <h5>موزعى الأسماك</h5>
                 </a>

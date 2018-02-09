@@ -11,7 +11,7 @@
                <tr>
                   <td>عرض {{ $market->buy_request ? 'شراء' : 'بيع' }}</td>
                   <td>
-                     <h4><i><img src="{{ asset('storage/' . $market->photo) }}" alt=""></i></h4>
+                     <h4><i><img src="{{ asset($market->photo) }}" alt=""></i></h4>
                   </td>
                </tr>
                <tr>

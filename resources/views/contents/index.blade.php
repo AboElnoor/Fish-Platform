@@ -11,8 +11,8 @@
                 <div class="col-md-6">
                     <div class="box">
                         <div class="pull-right col-md-6">
-							<img class="best-img" src="{{ asset('storage/' . $article->photo) }}">
-						</div>
+                            <img class="best-img" src="{{ asset('storage/' . $article->photo) }}">
+                        </div>
                         <h3 class="box-title">{{ $article->title }}</h3>
                         <p>{{ getHTMLExcerpt($article->subject) }}</p>
                         @if(!in_array($type->id, [7, 8, 9, 10]))
