@@ -65,7 +65,7 @@
                 <div class="news-preview">
                     @foreach($articles as $article)
                         <div class="news-content {{ $loop->first ? 'top-content' : '' }}">
-                            <img src="{{ asset($article->photo) }}">
+                            <img src="{{ asset('storage/' . $article->photo) }}">
                             <div class="resume">
                                 <a href="{{ route('contents.show', $article) }}"
                                     class="title">{{ $article->title }}</a>

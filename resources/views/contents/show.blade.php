@@ -8,7 +8,8 @@
                 <div class="blog-post">
                     <!-- === blog main image & entry info === -->
                     <div class="blog-image-main">
-                        <div class="myarticle-img" style="background-image: url({{ asset($content->photo) }});"></div>
+                        <div class="myarticle-img"
+                            style="background-image: url({{ asset('storage/' . $content->photo) }});"></div>
                     </div>
                     <div class="blog-post-content">
                         <!-- === blog post title === -->

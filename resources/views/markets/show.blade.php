@@ -5,7 +5,7 @@
    <div class="container">
       <div class="row">
          <div class="title "><h2>عرض شراء</h2></div>
-         <img class="product-img" src="{{ asset($market->photo) }}">
+         <img class="product-img" src="{{ asset('storage/' . $market->photo) }}">
          <table class="table table-striped">
             <tbody>
                <tr>
