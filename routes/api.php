@@ -14,8 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::get('prices/search', 'PricesController@search');
+Route::get('markets/search', 'MarketsController@search');
 Route::apiResources([
     'prices' => 'PricesController',
     'practices' => 'PracticesController',
     'videos' => 'VideosController',
+    'markets' => 'MarketsController',
 ]);

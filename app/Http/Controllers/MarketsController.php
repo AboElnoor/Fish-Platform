@@ -26,6 +26,10 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $markets = Market::latest('startDate');
+
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            return compact('markets');
+        }
         return view(\Route::current()->getPrefix() . '.markets.index', compact('hSCodes', 'markets'));
     }
 
@@ -56,6 +60,10 @@ class MarketsController extends Controller
         }
 
         $markets = $markets->paginate(10);
+
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            return compact('markets');
+        }
         return view('admin.markets.index', compact('markets', 'hSCodes'));
     }
 
@@ -121,6 +129,10 @@ class MarketsController extends Controller
         Market::create(compact('photo') + $data);
 
         $success = 'تم الانشاء بنجاح';
+
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -161,6 +173,10 @@ class MarketsController extends Controller
         $market->update($data);
 
         $success = 'تم التعديل بنجاح';
+
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 
@@ -174,6 +190,10 @@ class MarketsController extends Controller
     {
         $market->delete();
         $success = 'تم الحذف بنجاح';
+
+        if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            return compact('success');
+        }
         return back()->with(compact('success'));
     }
 }
