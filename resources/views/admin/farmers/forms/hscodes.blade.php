@@ -77,7 +77,6 @@
             <tbody>
                 @forelse($farmer->hSCodes ?? session('farmer')->hSCodes ?? [] as $hSCode)
                     <tr>
-{{ dump($hSCode) }}
                         <td>{{ $hSCode->getOriginal('pivot_FishFarmer_HSCode_ID') }}</td>
                         <td>{{ $hSCode->HS_Aname }}</td>
                         <td>{{ $hSCode->getOriginal('pivot_cropMonth') }}</td>
