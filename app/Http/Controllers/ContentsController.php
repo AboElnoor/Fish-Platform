@@ -15,7 +15,7 @@ class ContentsController extends Controller
      */
     public function index(ContentType $type = null)
     {
-        $articles = $type ? $type->articles()->latest()->paginate(10) : Content::latest('id')->paginate(10);
+        $articles = $type ? $type->articles()->latest('id')->paginate(10) : Content::latest('id')->paginate(10);
         return view(\Route::current()->getPrefix() . '.contents.index', compact('articles', 'type'));
     }
 
