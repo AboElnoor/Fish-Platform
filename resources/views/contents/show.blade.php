@@ -14,9 +14,7 @@
                     <div class="blog-post-content">
                         <!-- === blog post title === -->
                         <div class="blog-post-title">
-                            <h1 class="blog-title">
-                                عنوان المقالة
-                            </h1>
+                            <h1 class="blog-title">{{ $content->title }}</h1>
                             {{-- <div class="blog-info blog-info-top">
                                 <div class="entry">
                                     <i class="fa fa-user"></i>

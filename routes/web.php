@@ -65,7 +65,7 @@ Route::middleware('web')->group(function () {
     Route::get('about', 'HomeController@about')->name('about');
     Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
     Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
-    Route::get('practices', 'PracticesController@index')->name('practices.index');
+    Route::resource('practices', 'PracticesController')->only('index', 'show');
     Route::get('videos', 'VideosController@index')->name('videos.index');
     Route::get('prices', 'PricesController@index')->name('prices.index');
     Route::resource('markets', 'MarketsController')->only('index', 'show');

@@ -77,7 +77,7 @@ class PracticesController extends Controller
      */
     public function show(Practice $practice)
     {
-        //
+        return view('practices.show', compact('practice'));
     }
 
     /**

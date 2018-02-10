@@ -13,10 +13,10 @@ class ContentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ContentType $type)
+    public function index(ContentType $type = null)
     {
-        $articles = $type->articles()->paginate(10);
-        return view('contents.index', compact('articles', 'type'));
+        $articles = $type ? $type->articles()->latest()->paginate(10) : Content::latest('id')->paginate(10);
+        return view(\Route::current()->getPrefix() . '.contents.index', compact('articles', 'type'));
     }
 
     /**
@@ -40,7 +40,7 @@ class ContentsController extends Controller
         return [
             'title' => 'required|string',
             'subject' => 'required|string',
-            'photo' => 'required|file',
+            'photo' => 'sometimes|file',
             'type' => 'required|exists:content_types,id',
         ];
     }
@@ -53,9 +53,9 @@ class ContentsController extends Controller
      */
     public function store(Request $request)
     {
-        $subject = prepareHTMLInput(request('subject'));
         $data = $request->validate($this->rules());
         $photo = request()->file('photo')->store('contents');
+        $subject = prepareHTMLInput(request('subject'));
 
         Content::create(compact('photo', 'subject') + $data);
 
@@ -70,7 +70,7 @@ class ContentsController extends Controller
      */
     public function show(Content $content)
     {
-        return view('contents.show', compact('content'));
+        return view(\Route::current()->getPrefix() . '.contents.show', compact('content'));
     }
 
     /**
@@ -81,7 +81,8 @@ class ContentsController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        $types = ContentType::pluck('name', 'id');
+        return view('admin.contents.create', compact('content', 'types'));
     }
 
     /**
@@ -93,7 +94,13 @@ class ContentsController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        $data = $request->validate($this->rules());
+        $photo = request()->file('photo') ? request()->file('photo')->store('contents') : '';
+        $subject = prepareHTMLInput(request('subject'));
+        $data = compact('photo', 'subject') + $data;
+        $content->update(array_filter($data));
+
+        return back()->with('success', 'تم تحديث المقال بنجاح');
     }
 
     /**
@@ -104,6 +111,8 @@ class ContentsController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        $content->delete();
+        $success = 'تم الحذف بنجاح';
+        return back()->with(compact('success'));
     }
 }

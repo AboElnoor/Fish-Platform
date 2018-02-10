@@ -84,7 +84,7 @@
             <div class="title">
                 <h2> السوق والاسعار</h2>
             </div>
-            
+
             <div class="col-md-3">
                 <a href="{{ route('admin.prices.index') }}" class="box-anchor">
                     <div class="box">
@@ -122,13 +122,13 @@
                 </a>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="title">
                 <h2>  إدارة المحتوي</h2>
             </div>
             <div class="col-md-3">
-             <a href="{{ route('admin.contents.create') }}" class="box-anchor">
+             <a href="{{ route('admin.contents.index') }}" class="box-anchor">
                 <div class="box">
                    <div class="box-icon">
                       <i class="fa fa-folder-open fa-2x" aria-hidden="true"></i>
@@ -205,10 +205,10 @@
                     </div>
                 </a>
             </div>
-            
+
         </div>
-            
-            
+
+
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>

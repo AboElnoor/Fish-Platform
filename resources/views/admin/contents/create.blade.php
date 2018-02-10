@@ -6,19 +6,26 @@
     <div class="container">
         @include('layouts.alert')
         <div class="col-md-12">
-            {!! Form::open(['route' => 'admin.contents.store', 'files' => true]) !!}
+            {!! Form::open([
+                    'method' => isset($content) ? 'PUT' : 'POST', 'files' => true,
+                    'route' => isset($content) ? ['admin.contents.update', $content] : 'admin.contents.store',
+            ]) !!}
                 <div class="form-group">
-                    {!! Form::label('type', 'المحصول') !!}
+                    {!! Form::label('type', 'القسم') !!}
                     {!! Form::select(
-                        'type', $types->prepend('من فضلك اختار', 0), old('type'), ['class' => 'form-control']) !!}
+                        'type',
+                        $types->prepend('من فضلك اختار', 0),
+                        $content->type ?? old('type'), ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('title', 'العنوان:') !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
+                    {!! Form::text('title', $content->title ?? old('title'), ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('subject', 'الموضوع:') !!}
-                    {!! Form::textarea('subject', old('subject'), ['class' => 'form-control', 'id' => 'wysiwyg']) !!}
+                    {!! Form::textarea(
+                        'subject',
+                        $content->subject ?? old('subject'), ['class' => 'form-control', 'id' => 'wysiwyg']) !!}
                 </div>
                 <div class="form-group">
                     <div class="col-md-4">
