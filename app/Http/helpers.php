@@ -55,7 +55,7 @@ if (!function_exists('getExcerpt')) {
     function getExcerpt(string $html)
     {
         $text = strip_tags($html);
-        $excerpt = mb_substr($text, 0, 1000);
+        $excerpt = mb_substr($text, 0, 1500);
         $excerpt = substr($excerpt, 0, strrpos($excerpt, '&')) . '..';
         return $excerpt;
     }

@@ -26,7 +26,6 @@
             <tbody>
                 @forelse($articles as $article)
                     <tr>
-                        {{-- {{ dd($article->type) }} --}}
                         <td>{{ $article->id }}</td>
                         <td>{{ $article->category->name ?? null }}</td>
                         <td>{{ $article->title }}</td>
