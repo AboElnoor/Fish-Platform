@@ -73,18 +73,20 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
         <div class="login-wrapper">
-            <form>
+            {!! Form::open(['route' => 'login']) !!}
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="اسم المستخدم">
+                    <input type="text" name="username"
+                        class="form-control" id="exampleInputEmail1" placeholder="اسم المستخدم">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
+                    <input type="password" name="password"
+                        class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <a href="#forgotpassword" class="open-popup">هل نسيت كلمة المرور او اسم المستخدم؟</a>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-block btn-main">إرسال</button>
-            </form>
+            {!! Form::close() !!}
             <div class="text-center">أو</div>
             <button class="loginBtn loginBtn--facebook">
                 الدخول بحساب الفيسبوك
