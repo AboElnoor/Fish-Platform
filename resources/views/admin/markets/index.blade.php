@@ -78,7 +78,7 @@
                                <td>{{ $market->startDate }}</td>
                                <td>
                                     <a href="{{ route('admin.markets.show', $market) }}"
-                                        class="btn btn-sm btn-primary btn-block edit">تفاصيل</a>
+                                        class="btn btn-sm btn-primary btn-block">تفاصيل</a>
                                 </td>
                             </tr>
                         @empty

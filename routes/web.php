@@ -58,6 +58,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::resource('markets', 'MarketsController');
     Route::resource('experts', 'ExpertsController');
     Route::resource('contents', 'ContentsController');
+    Route::get('ptools/search', 'PtoolsController@search')->name('ptools.search');
+    Route::resource('ptools', 'PtoolsController');
 });
 
 Route::middleware('web')->group(function () {
@@ -73,4 +75,5 @@ Route::middleware('web')->group(function () {
     Route::resource('farmers', 'FarmersController')->only('create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
+    Route::resource('ptools', 'PtoolsController')->only('index', 'show');
 });

@@ -25,15 +25,14 @@
                 <div class="clearfix"></div>
     			<div class="form-group overflow-h margin20">
                     <div class=" centre">
-                        <label class="col-md-3 control-label reg-label" for="name">
-                        البحث بنوع الأسماك:
-                    </label>
-                        <select class="col-md-4 select-market" id="type1">
-                          <option value="type1">النوع الأول </option>
-                          <option value="type2">النوع الثاني</option>
-                          <option value="type3">النوع الثالث</option>
-                          <option value="type4">النوع الرابع</option>
-                        </select>
+                        {!! Form::label(
+                            'HSCode_ID', 'البحث بنوع الأسماك:', ['class' => 'col-md-3 control-label reg-label']) !!}
+                        {!! Form::select(
+                                'HSCode_ID',
+                                $hSCodes->prepend('من فضلك اختار', 0),
+                                $price->HSCode_ID ?? null,
+                                ['class' => 'col-md-4 select-market']
+                            ) !!}
                     </div>
                 </div>
 

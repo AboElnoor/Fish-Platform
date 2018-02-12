@@ -59,9 +59,8 @@ class MarketsController extends Controller
             $markets->where('endDate', request('endDate'));
         }
 
-        $markets = $markets->paginate(10);
-
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
+            $markets = $markets->paginate(10);
             return compact('markets');
         }
         return view('admin.markets.index', compact('markets', 'hSCodes'));
@@ -91,7 +90,7 @@ class MarketsController extends Controller
             'buy_request' => 'sometimes|nullable',
             'provider' => 'required|string',
             'HSCode_ID' => 'required|string|exists:hscode',
-            'photo' => 'required|image',
+            'photo' => 'sometimes|nullable|image',
             'name' => 'sometimes|nullable|string',
             'mobile' => 'sometimes|nullable|numeric',
             'email' => 'sometimes|nullable|email',
@@ -170,6 +169,11 @@ class MarketsController extends Controller
     public function update(Request $request, Market $market)
     {
         $data = $request->validate($this->rules());
+        $photo = request()->file('photo')->store('markets');
+
+        if($photo) {
+            $data = compact('photo') + $data;
+        }
         $market->update($data);
 
         $success = 'تم التعديل بنجاح';

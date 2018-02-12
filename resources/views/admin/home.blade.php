@@ -110,7 +110,7 @@
                 </a>
             </div>
              <div class="col-md-3">
-                <a href="#" class="box-anchor">
+                <a href="{{ route('admin.ptools.index') }}" class="box-anchor">
                     <div class="box">
                         <div class="box-icon">
                             <i class="fa fa-tasks fa-2x" aria-hidden="true"></i>
