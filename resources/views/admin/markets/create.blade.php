@@ -9,7 +9,6 @@
 
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-                <h3 class="tab-title">الأسعار</h3>
                 {!!
                     Form::open([
                         'method' => isset($market) ? 'PUT' : 'POST', 'files' => true,
@@ -77,7 +76,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'المحصول') !!}
+                                {!! Form::label('HSCode_ID', 'نوع الأسماك') !!}
                                 {!! Form::select(
                                         'HSCode_ID',
                                         $hSCodes->prepend('من فضلك اختار', 0),
@@ -101,7 +100,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('amount', 'الكمية المطلوبة') !!}
+                                {!! Form::label('amount', 'الكمية') !!}
                                 {!! Form::text('amount', $market->amount ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
@@ -113,7 +112,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('package', 'التعبئة المطلوبة') !!}
+                                {!! Form::label('package', 'التعبئة') !!}
                                 {!! Form::text('package', $market->package ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
@@ -125,7 +124,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('specs', 'المواصفات المطلوبة') !!}
+                                {!! Form::label('specs', 'المواصفات') !!}
                                 {!! Form::text('specs', $market->specs ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
@@ -137,7 +136,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('certificates', 'الشهادات المطلوبة') !!}
+                                {!! Form::label('certificates', 'الشهادات') !!}
                                 {!! Form::text(
                                     'certificates', $market->certificates ?? null, ['class' => 'form-control']) !!}
                             </div>
@@ -222,7 +221,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('payment', 'طريقة الدفغ') !!}
+                                {!! Form::label('payment', 'طريقة الدفع') !!}
                                 {!! Form::text('payment', $market->payment ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>

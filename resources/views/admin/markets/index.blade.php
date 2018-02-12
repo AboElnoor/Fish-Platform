@@ -46,10 +46,10 @@
                             {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.markets.create') }}" class="btn btn-success btn-block">ادخال عروض شراء</a>
+                            <a href="{{ route('admin.markets.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال عروض شراء</a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.markets.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال عروض بيع</a>
+                            <a href="{{ route('admin.markets.create') }}" class="btn btn-success btn-block">ادخال عروض بيع</a>
                         </div>
                     </div>
                 </div>

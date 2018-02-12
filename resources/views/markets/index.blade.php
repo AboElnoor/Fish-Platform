@@ -58,7 +58,8 @@
                             <tbody class="table-hover">
                                 @forelse($buys as $buy)
                                     <tr onclick="window.location='{{ route('markets.show', $buy) }}'">
-                                        <td class="td-img"><img class="pro-image" src="images/product.jpg"></td>
+                                        <td class="td-img"><img class="pro-image"
+                                            src="{{ asset('storage/' . $buy->photo) }}"></td>
                                         <td class="text-center">{{ $buy->hSCode->HS_Aname ?? '-' }}</td>
                                         <td class="text-center">{{ $buy->startDate }}</td>
                                         <td class="text-center">{{ $buy->amount }}</td>
@@ -91,7 +92,8 @@
                             <tbody class="table-hover">
                                 @forelse($selles as $sell)
                                     <tr onclick="window.location='{{ route('markets.show', $sell) }}'">
-                                        <td class="td-img"><img class="pro-image" src="images/product.jpg"></td>
+                                        <td class="td-img"><img class="pro-image"
+                                            src="{{ asset('storage/' . $sell->photo) }}"></td>
                                         <td class="text-center">{{ $sell->hSCode->HS_Aname ?? '-' }}</td>
                                         <td class="text-center">{{ $sell->startDate }}</td>
                                         <td class="text-center">{{ $sell->amount }}</td>
