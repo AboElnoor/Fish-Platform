@@ -7,7 +7,7 @@
         <div class="row">
             {!! Form::open(['method' => 'GET', 'route' => 'admin.ptools.search']) !!}
                 <div class="col-md-6">
-                    <h2 class="section-title">الأسعار</h2>
+                    <h2 class="section-title">سوق مستلزمات الانتاج</h2>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {!! Form::label('buy_request', 'نوع العرض') !!}
-                        <label>{!! Form::radio('buy_request', 1, false) !!}عرض شراء</label>
+                        <label>{!! Form::radio('buy_request', 1, false) !!}طلب شراء</label>
                         <label>{!! Form::radio('buy_request', 0, false) !!}عرض بيع</label>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.ptools.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال عروض شراء</a>
+                            <a href="{{ route('admin.ptools.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال طلبات شراء</a>
                         </div>
                         <div class="col-md-4">
                             <a href="{{ route('admin.ptools.create') }}" class="btn btn-success btn-block">ادخال عروض بيع</a>
@@ -63,7 +63,7 @@
                                <td>{{ $market->id }}</td>
                                <td>{{ $market->category->name }}</td>
                                <td>{{ $market->amount }}</td>
-                               <td>عرض {{ $market->buy_request ? 'شراء' : 'بيع' }}</td>
+                               <td>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>
                                <td>
                                     <a href="{{ route('admin.ptools.show', $market) }}"
                                         class="btn btn-sm btn-primary btn-block">تفاصيل</a>

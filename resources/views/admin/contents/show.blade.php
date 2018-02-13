@@ -9,7 +9,7 @@
          <table class="table table-striped">
             <tbody>
                <tr>
-                  <td>عرض {{ $market->buy_request ? 'شراء' : 'بيع' }}</td>
+                  <td>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>
                   <td>
                      <h4><i><img src="{{ asset($market->photo) }}" alt=""></i></h4>
                   </td>

@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {!! Form::label('buy_request', 'نوع العرض') !!}
-                        <label>{!! Form::radio('buy_request', 0, false) !!}عرض شراء</label>
+                        <label>{!! Form::radio('buy_request', 0, false) !!}طلب شراء</label>
                         <label>{!! Form::radio('buy_request', 1, false) !!}عرض بيع</label>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.markets.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال عروض شراء</a>
+                            <a href="{{ route('admin.markets.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال طلبات شراء</a>
                         </div>
                         <div class="col-md-4">
                             <a href="{{ route('admin.markets.create') }}" class="btn btn-success btn-block">ادخال عروض بيع</a>
@@ -77,7 +77,7 @@
                                <td>{{ $market->hSCode->HS_Aname ?? '' }}</td>
                                <td>{{ $market->amount }}</td>
                                <td>{{ $market->startDate }}</td>
-                               <td>عرض {{ $market->buy_request ? 'شراء' : 'بيع' }}</td>
+                               <td>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>
                                <td>
                                     <a href="{{ route('admin.markets.show', $market) }}"
                                         class="btn btn-sm btn-primary btn-block">تفاصيل</a>

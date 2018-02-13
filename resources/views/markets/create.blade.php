@@ -4,7 +4,7 @@
 
 <section class="form farms">
     <div class="container">
-        <h2 class="section-title">سوق بشاير : عرض {{ $buy ?? $market->buy_request ? 'شراء' : 'بيع' }}</h2>
+        <h2 class="section-title">سوق بشاير : {{ $buy ?? $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</h2>
         @include('layouts.alert')
 
         <div class="tab-content">

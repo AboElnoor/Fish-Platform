@@ -5,7 +5,7 @@
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">
-            سوق مستلزمات الانتاج : عرض {{ $buy ?? $ptool->buy_request ?? false ? 'شراء' : 'بيع' }}
+            سوق مستلزمات الانتاج : {{ $buy ?? $ptool->buy_request ?? false ? 'طلب شراء' : 'عرض بيع' }}
         </h2>
         @include('layouts.alert')
 
@@ -21,11 +21,11 @@
                         'buy_request', $buy ?? $ptool->buy_request ?? null, ['class' => 'form-control']) !!}
                     <div class="row">
                         <div class="col-md-12">
-                            <h4><b>بيانات المحصول</b></h4>
+                            <h4><b>بيانات المنتج</b></h4>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                {!! Form::label('type', 'المحصول') !!}
+                                {!! Form::label('type', 'المنتج') !!}
                                 {!! Form::select(
                                         'type',
                                         $types->prepend('من فضلك اختار', 0),

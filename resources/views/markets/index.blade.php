@@ -40,7 +40,7 @@
                     <div class="tabs_item">
                         <table class="table-fill">
                             <div class="table-title">
-                                <h3>احدث عروض الشراء </h3>
+                                <h3>احدث طلبات الشراء </h3>
                             </div>
                             <thead>
                                 <tr>

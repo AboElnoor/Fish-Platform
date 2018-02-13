@@ -9,7 +9,7 @@
          <table class="table table-striped">
             <tbody>
                <tr>
-                  <td>عرض {{ $ptool->buy_request ? 'شراء' : 'بيع' }}</td>
+                  <td>{{ $ptool->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>
                   <td>
                      <h4><i><img src="{{ asset('storage/' . $ptool->photo) }}" alt=""></i></h4>
                   </td>

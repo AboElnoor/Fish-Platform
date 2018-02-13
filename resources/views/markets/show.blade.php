@@ -4,7 +4,7 @@
 <section class="farms details">
    <div class="container">
       <div class="row">
-         <div class="title "><h2>عرض شراء</h2></div>
+         <div class="title "><h2>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</h2></div>
          <img class="product-img" src="{{ asset('storage/' . $market->photo) }}">
          <table class="table table-striped">
             <tbody>
