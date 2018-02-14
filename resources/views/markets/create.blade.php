@@ -19,7 +19,7 @@
                     {!! Form::hidden('buy_request', $buy ?? $market->buy_request, ['class' => 'form-control']) !!}
                     <div class="row">
                         <div class="col-md-12">
-                            <h4><b>بيانات المحصول</b></h4>
+                            <h4><b> بيانات النوع</b></h4>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">

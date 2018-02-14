@@ -3,7 +3,7 @@
 @section('content')
 <section class="adbox">
     <div class="container">
-        <img src="images/boxa.png" class="img-responsive">
+        <img src="images/Garfd.png" class="img-responsive">
     </div>
 </section>
 <section class="icons">
@@ -121,7 +121,7 @@
 
 <section class="adbox">
     <div class="container">
-        <img src="images/boxa.png" class="img-responsive">
+        <img src="images/Abe.png" class="img-responsive">
     </div>
 </section>
 
