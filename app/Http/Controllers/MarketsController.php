@@ -171,7 +171,7 @@ class MarketsController extends Controller
         $data = $request->validate($this->rules());
         $photo = request()->file('photo')->store('markets');
 
-        if($photo) {
+        if ($photo) {
             $data = compact('photo') + $data;
         }
         $market->update($data);

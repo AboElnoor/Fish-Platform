@@ -62,7 +62,6 @@ class PtoolsController extends Controller
         return view('admin.ptools.create', compact('types', 'buy'));
     }
 
-
     /**
      * Specify the form's rules.
      *
@@ -77,6 +76,8 @@ class PtoolsController extends Controller
             'name' => 'sometimes|nullable|string',
             'amount' => 'required|string',
             'description' => 'sometimes|nullable|string',
+            'startDate' => 'sometimes|nullable|date',
+            'endDate' => 'sometimes|nullable|date',
         ];
     }
 
@@ -94,7 +95,7 @@ class PtoolsController extends Controller
         $data += $request->validate($this->rules());
         $photo = request()->file('photo')->store('ptools');
 
-        if($photo) {
+        if ($photo) {
             $data = compact('photo') + $data;
         }
         Ptool::create($data);
@@ -138,7 +139,7 @@ class PtoolsController extends Controller
         $data = $request->validate($this->rules());
         $photo = request()->file('photo')->store('ptools');
 
-        if($photo) {
+        if ($photo) {
             $data = compact('photo') + $data;
         }
         $ptool->update($data);

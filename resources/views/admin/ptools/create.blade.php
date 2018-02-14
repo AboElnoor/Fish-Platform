@@ -46,6 +46,18 @@
                                 {!! Form::text('amount', $ptool->amount ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {!! Form::label('startDate', 'بداية العرض') !!}
+                                {!! Form::date('startDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {!! Form::label('endDate', 'نهاية العرض') !!}
+                                {!! Form::date('endDate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 {!! Form::label('description', 'الوصف') !!}
