@@ -88,7 +88,10 @@ class PtoolsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->rules());
+        $data = [
+            'entryUser' => auth()->id(),
+        ];
+        $data += $request->validate($this->rules());
         $photo = request()->file('photo')->store('ptools');
 
         if($photo) {

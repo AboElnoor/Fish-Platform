@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="col-md-15">
-                <a href="/fishplat/production-tools.html" class="icon-anchor">
+                <a href="{{ route('ptools.index') }}" class="icon-anchor">
                     <div class="icon-wrapper">
                         <img src="images/production-tools-circle.png" class="img-responsive">
                         <h3>سوق مستلزمات الانتاج</h3>
