@@ -7,7 +7,7 @@
         <div class="row">
             {!! Form::open(['method' => 'GET', 'route' => 'admin.markets.search']) !!}
                 <div class="col-md-6">
-                    <h2 class="section-title">الأسعار</h2>
+                    <h2 class="section-title">سوق الأسماك</h2>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
