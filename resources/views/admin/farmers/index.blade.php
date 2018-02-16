@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') قــائمة مــزارع الاســماك @stop
 
 @section('content')
-
 <section class="farms">
 	<div class="container">
 		<div class="row">
@@ -58,5 +58,4 @@
 		</div>
 	</div>
 </section>
-
 @stop

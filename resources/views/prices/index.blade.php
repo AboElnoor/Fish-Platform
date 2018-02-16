@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title') اسعار الأسماك @stop
+
 @section('content')
 <section class="Purchase-crop">
     <div class="container">
@@ -17,7 +19,7 @@
                     <div class="form-group overflow-h padding20">
                         <div class=" centre">
                             <label class="col-md-2 control-label reg-label padding10" for="market">
-                            السوق: 
+                            السوق:
                             </label>
                             <select class="col-md-4 select-market" id="market">
                                 <option value="market1">سوق العبور</option>

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title') اسأل خبير @stop
+
 @section('content')
 <section class="ask-expert">
     <div class="container">

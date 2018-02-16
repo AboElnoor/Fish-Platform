@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title') الرئيسية @stop
 
 @section('content')
 <section class="home">

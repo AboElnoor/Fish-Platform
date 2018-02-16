@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') التسجيل في الموقع @stop
 
 @section('content')
 <section class="form-registration">

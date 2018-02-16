@@ -1,4 +1,6 @@
 @extends('admin.layouts.app')
+@section('title') أفضل الممارسات والافيديوهات @stop
+
 @section('content')
 <section class="form farms">
     <div class="container">

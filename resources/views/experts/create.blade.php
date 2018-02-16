@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">الأسعار</h2>

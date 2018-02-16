@@ -1,4 +1,6 @@
 @extends('admin.layouts.app')
+@section('title') {{ $ptool->buy_request ? 'طلب شراء مستلزمات' : 'اسم العرض' }} @stop
+
 @section('content')
 <section class="farms details">
     <div class="container">

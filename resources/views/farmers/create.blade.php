@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') سجل مزرعتك @stop
 
 @section('content')
 <section class="form-registration">

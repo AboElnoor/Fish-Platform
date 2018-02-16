@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title') اسأل خبير @stop
 
 @section('content')
 <section>

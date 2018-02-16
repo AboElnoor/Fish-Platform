@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') {{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }} @stop
 
 @section('content')
 <section class="farms details">

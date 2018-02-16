@@ -1,7 +1,15 @@
 @extends('admin.layouts.app')
+@section('title')
+	@if(requestUri() == 'factories')
+		قائمة المصانع
+	@elseif(requestUri() == 'sellers')
+		قائمة التجار
+	@else
+		قائمة مستلزمات الانتاج
+	@endif
+@stop
 
 @section('content')
-
 <section class="companies">
 	<div class="container">
 		<div class="row">

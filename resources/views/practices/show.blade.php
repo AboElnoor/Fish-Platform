@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') {{ $practice->title }} @stop
 
 @section('content')
 <section class="blog">

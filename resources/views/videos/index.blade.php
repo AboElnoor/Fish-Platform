@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') أفضل الممارسات @stop
 
 @section('content')
 <section class="films best-practices">

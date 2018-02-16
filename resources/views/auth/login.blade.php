@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title') تسجيل الدخول @stop
 
 @section('content')
 <section class="login">

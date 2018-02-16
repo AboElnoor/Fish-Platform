@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') سوق الأسماك @stop
 
 @section('content')
-
 <section class="farms">
     <div class="container">
         <div class="row">
@@ -96,5 +96,4 @@
         @include('layouts.alert')
     </div>
 </section>
-
 @stop

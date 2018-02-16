@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') سوق الاسماك @stop
 
 @section('content')
 <section class="Purchase-crop">
@@ -6,7 +7,7 @@
         <div class="title centre">
             <h2>  - سوق الاسماك -  </h2>
             <p class="ask-p">
-					في هذه الخدمة المتميزة من شبكة الأسماك وﻷول مرة يمكن إضافة طلبات الشراء وعروض البيع و التواصل مع أصحاب العروض والطلبات مباشرة ومجاناً.
+					في هذه الخدمة المتميزة من شبكة الأسماك وﻷول مرة يمكن إضافة طلبات شراء وعروض بيع الأسماك و التواصل مع أصحاب العروض والطلبات مباشرة ومجاناً.
 			</p>
         </div>
         <div class="row">
@@ -31,7 +32,7 @@
                                 'HSCode_ID',
                                 $hSCodes->prepend('من فضلك اختار', 0),
                                 null,
-                                ['class' => 'col-md-4 select-market']
+                                ['class' => 'col-md-4 select-market filter']
                             ) !!}
                     </div>
                 </div>

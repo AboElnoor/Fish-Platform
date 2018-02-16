@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title') المحتوي @stop
 
 @section('content')
 <section class="form">

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') المحتوى @stop
 
 @section('content')
-
 <section class="farms">
     <div class="container">
         <div class="row">

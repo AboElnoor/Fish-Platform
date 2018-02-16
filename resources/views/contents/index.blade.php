@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title') {{ $type->name }} @stop
 
 @section('content')
 <section class="best-practices">

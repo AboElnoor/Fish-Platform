@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') سوق مستلزمات الانتاج @stop
 
 @section('content')
-
 <section class="farms">
     <div class="container">
         <div class="row">
@@ -16,7 +16,7 @@
                                 'type',
                                 $types->prepend('من فضلك اختار', 0),
                                 $price->type ?? null,
-                                ['class' => 'form-control']
+                                ['class' => 'form-control filter']
                             ) !!}
                     </div>
                 </div>

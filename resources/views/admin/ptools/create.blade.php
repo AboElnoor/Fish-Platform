@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') {{ $buy ?? $ptool->buy_request ?? false ? 'طلب شراء' : 'عرض بيع' }} @stop
 
 @section('content')
-
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">

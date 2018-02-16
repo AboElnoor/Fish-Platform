@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
+@section('title') اسأل خبير @stop
 
 @section('content')
-
 <section class="form farms">
     <div class="container">
         <h2 class="section-title">الأسعار</h2>
