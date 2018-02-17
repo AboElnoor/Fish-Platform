@@ -30,7 +30,11 @@
                             'HSCode_ID', 'البحث بنوع الأسماك:', ['class' => 'col-md-3 control-label reg-label']) !!}
                         {!! Form::select(
                                 'HSCode_ID',
-                                $hSCodes->prepend('من فضلك اختار', 0),
+                                [
+                                    0 => 'من فضلك اختار',
+                                    1 => 'النوع الاول',
+                                    2 => 'النوع التاني',
+                                ],
                                 null,
                                 ['class' => 'col-md-4 select-market filter']
                             ) !!}

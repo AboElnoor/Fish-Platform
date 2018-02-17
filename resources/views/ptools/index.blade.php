@@ -19,7 +19,7 @@
                     </ul> <!-- / tabs -->
                 </div>
                 <div class="col-md-12 text-center">
-    				<a href="add-offer.html" class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة طلب شراء</a>
+                    <a href="add-offer.html" class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة طلب شراء</a>
     			</div>
                 <p> يمكنك البحث فى كل عروض بيع/شراء"على حسب التاب" مستلزمات الإنتاج فى شبكة الأسماك واختيار ما يناسبك منها وبعد اختيار العرض المناسب إضغط على زر اتصل بصاحب العرض الموجود في كل عرض وبذلك سيمكنك التواصل مع صاحب العرض.
                 </p>
@@ -30,7 +30,11 @@
                             'type', 'البحث بنوع المنتج:', ['class' => 'col-md-3 control-label reg-label']) !!}
                         {!! Form::select(
                                 'type',
-                                $types->prepend('من فضلك اختار', 0),
+                                [
+                                    0 => 'من فضلك اختار',
+                                    1 => 'النوع الاول',
+                                    2 => 'النوع التاني',
+                                ],
                                 null,
                                 ['class' => 'col-md-4 select-market']
                             ) !!}
