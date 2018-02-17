@@ -557,7 +557,7 @@ section.title {
     color: #1c72bc;
 }
 
-.Purchase-crop .tabs_item {
+.Purchase-crop .tabs_item, .Purchase-crop .tab_head {
     display: none;
 }
 
@@ -576,7 +576,7 @@ section.title {
     width:100px;
 }
 
-.Purchase-crop .tabs_item:first-child {
+.Purchase-crop .tabs_item:first-child, .Purchase-crop .tab_head:first-child {
     display: block;
 }
 
@@ -1551,7 +1551,7 @@ span.required{
     color: #1c72bc;
 }
 
-.Purchase-crop .tabs_item {
+.Purchase-crop .tabs_item, .Purchase-crop .tab_head {
     display: none;
 }
 
