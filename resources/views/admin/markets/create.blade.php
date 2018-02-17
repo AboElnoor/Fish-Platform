@@ -19,7 +19,7 @@
                         'buy_request', $buy ?? $market->buy_request ?? null, ['class' => 'form-control']) !!}
                     <div class="row">
                         <div class="col-md-12">
-                            <h4><b>بيانات المحصول</b></h4>
+                            <h4><b>بيانات العارض</b></h4>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h4><b>بيانات التوريد</b></h4>
+                            <h4><b>بيانات المنتج</b></h4>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -85,7 +85,6 @@
                                     ) !!}
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('type', 'النوع') !!}
@@ -134,6 +133,7 @@
                                 {!! Form::text(null, null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
+                        @if(requestUri() == 'markets')
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('certificates', 'الشهادات') !!}
@@ -147,6 +147,7 @@
                                 {!! Form::text(null, null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
+                        @endif
                         <div class="col-md-12">
                             <div class="form-group">
                                 {!! Form::label('photo', 'صورة المنتج') !!}

@@ -58,8 +58,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::resource('markets', 'MarketsController');
     Route::resource('experts', 'ExpertsController');
     Route::resource('contents', 'ContentsController');
-    Route::get('ptools/search', 'PtoolsController@search')->name('ptools.search');
-    Route::resource('ptools', 'PtoolsController');
+    Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
+    Route::resource('ptools', 'MarketsController');
 });
 
 Route::middleware('web')->group(function () {
@@ -70,10 +70,12 @@ Route::middleware('web')->group(function () {
     Route::resource('practices', 'PracticesController')->only('index', 'show');
     Route::get('videos', 'VideosController@index')->name('videos.index');
     Route::get('prices', 'PricesController@index')->name('prices.index');
-    Route::resource('markets', 'MarketsController')->only('index', 'show');
+    Route::get('markets/search', 'MarketsController@search')->name('markets.search');
+    Route::resource('markets', 'MarketsController')->except('edit', 'update', 'delete');
     Route::get('experts', 'ExpertsController@index')->name('experts.index');
     Route::resource('farmers', 'FarmersController')->only('create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
-    Route::resource('ptools', 'PtoolsController')->only('index', 'show');
+    Route::get('ptools/search', 'PtoolsController@search')->name('ptools.search');
+    Route::resource('ptools', 'PtoolsController')->except('edit', 'update', 'delete');
 });

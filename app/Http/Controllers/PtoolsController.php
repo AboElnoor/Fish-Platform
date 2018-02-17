@@ -59,7 +59,7 @@ class PtoolsController extends Controller
     {
         $types = $this->types;
         $buy = request('buy_request');
-        return view('admin.ptools.create', compact('types', 'buy'));
+        return view(\Route::current()->getPrefix() . '.ptools.create', compact('types', 'buy'));
     }
 
     /**

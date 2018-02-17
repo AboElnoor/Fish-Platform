@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Governorate;
 use App\Models\HSCode;
 use App\Models\Market;
+use App\Models\PtoolsType;
 use Illuminate\Http\Request;
 
 class MarketsController extends Controller
@@ -14,7 +15,8 @@ class MarketsController extends Controller
      */
     public function __construct()
     {
-        $this->hSCodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
+        $this->hSCodes = requestUri() == 'markets' ?
+            HSCode::all()->pluck('HS_Aname', 'HSCode_ID') : PtoolsType::all()->pluck('name', 'id');
     }
 
     /**
@@ -26,6 +28,7 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $markets = Market::latest('startDate');
+        $markets = requestUri() == 'markets' ? $markets->where('category_id', 1) : $markets->where('category_id', 2);
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('markets');
@@ -88,20 +91,42 @@ class MarketsController extends Controller
     {
         return [
             'buy_request' => 'sometimes|nullable',
-            'provider' => 'required|string',
-            'HSCode_ID' => 'required|string|exists:hscode',
+            'HSCode_ID' => 'required|' . (requestUri() == 'markets' ? 'exists:hscode' : 'exists:ptools_types,id'),
+            'type' => 'sometimes|nullable|string',
             'photo' => 'sometimes|nullable|image',
+            'amount' => 'sometimes|nullable|string',
+            'package' => 'sometimes|nullable|string',
+            'specs' => 'sometimes|nullable|string',
+            'certificates' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
+     * Specify the form's rules.
+     *
+     * @return array
+     */
+    public function userRules()
+    {
+        return [
+            'provider' => 'required|string',
             'name' => 'sometimes|nullable|string',
             'mobile' => 'sometimes|nullable|numeric',
             'email' => 'sometimes|nullable|email',
             'fax' => 'sometimes|nullable|numeric',
             'startDate' => 'sometimes|nullable|date',
             'endDate' => 'sometimes|nullable|date',
-            'type' => 'sometimes|nullable|string',
-            'amount' => 'sometimes|nullable|string',
-            'package' => 'sometimes|nullable|string',
-            'specs' => 'sometimes|nullable|string',
-            'certificates' => 'sometimes|nullable|string',
+        ];
+    }
+
+    /**
+     * Specify the form's rules.
+     *
+     * @return array
+     */
+    public function transportRules()
+    {
+        return [
             'place' => 'sometimes|nullable|boolean',
             'Governorate_ID' => 'sometimes|nullable|numeric',
             'Locality_ID' => 'sometimes|nullable|numeric',
@@ -122,17 +147,30 @@ class MarketsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+        $market = $request->validate($this->rules());
+        $marketUser = $request->validate($this->userRules());
+        $marketTransport = $request->validate($this->transportRules());
+        try {
+            \DB::transaction(function () use ($market, $marketUser, $marketTransport) {
+                $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+                $market = Market::create(compact('photo') + $market);
+                if ($marketUser) {
+                    $market->user()->create($marketUser);
+                }
 
-        Market::create(compact('photo') + $data);
-
-        $success = 'تم الانشاء بنجاح';
+                if ($marketTransport) {
+                    $market->tranport()->create($marketTransport);
+                }
+            });
+        } catch (\Exception $e) {
+            \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
+            $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
+        }
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
-            return compact('success');
+            return compact('success', 'error');
         }
-        return back()->with(compact('success'));
+        return back()->with(compact('success', 'error'));
     }
 
     /**

@@ -8,4 +8,9 @@ class Market extends Model
     {
         return $this->belongsTo(HSCode::class, 'HSCode_ID');
     }
+
+    public function pType()
+    {
+        return $this->belongsTo(PToolsType::class, 'HSCode_ID');
+    }
 }
