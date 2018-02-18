@@ -27,7 +27,7 @@ class MarketsController extends Controller
     public function index()
     {
         $hSCodes = $this->hSCodes;
-        $markets = Market::latest('startDate');
+        $markets = Market::latest('id');
         $markets = requestUri() == 'markets' ? $markets->where('type_id', 1) : $markets->where('type_id', 2);
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
@@ -45,7 +45,7 @@ class MarketsController extends Controller
     public function search()
     {
         $hSCodes = $this->hSCodes;
-        $markets = Market::latest('startDate');
+        $markets = Market::latest('id');
         if (request('HSCode_ID')) {
             $markets->where('HSCode_ID', request('HSCode_ID'));
         }

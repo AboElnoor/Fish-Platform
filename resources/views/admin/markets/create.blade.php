@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'نوع الأسماك') !!}
+                                {!! Form::label('HSCode_ID', 'نوع المنتج') !!}
                                 {!! Form::select(
                                         'HSCode_ID',
                                         $hSCodes->prepend('من فضلك اختار', 0),
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('type', 'النوع') !!}
+                                {!! Form::label('type', 'اسم المنتج') !!}
                                 {!! Form::text('type', $market->type ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
