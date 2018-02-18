@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
-@section('title') {{ $buy ?? $market->buy_request ?? false ? 'طلب شراء' : 'عرض بيع' }} @stop
+@section('title') {{ $market->buy_request ?? $buy ? 'طلب شراء' : 'عرض بيع' }} @stop
 
 @section('content')
 <section class="form farms">
     <div class="container">
-        <h2 class="section-title">سوق بشاير : {{ $buy ?? $market->buy_request ?? false ? 'طلب شراء' : 'عرض بيع' }}</h2>
+        <h2 class="section-title">سوق بشاير : {{ $market->buy_request ?? $buy ? 'طلب شراء' : 'عرض بيع' }}</h2>
         @include('layouts.alert')
 
         <div class="tab-content">
@@ -12,11 +12,14 @@
                 {!!
                     Form::open([
                         'method' => isset($market) ? 'PUT' : 'POST', 'files' => true,
-                        'route' => isset($market) ? ['admin.markets.update', $market] : 'admin.markets.store',
+                        'route' => isset($market) ? [
+                                'admin.' . requestUri() . '.update', $market
+                            ] : 'admin.' . requestUri() . '.store',
                     ])
                 !!}
                     {!! Form::hidden(
-                        'buy_request', $buy ?? $market->buy_request ?? null, ['class' => 'form-control']) !!}
+                        'buy_request',
+                        $market->buy_request ?? $buy, ['class' => 'form-control']) !!}
                     <div class="row">
                         <div class="col-md-12">
                             <h4><b>بيانات العارض</b></h4>

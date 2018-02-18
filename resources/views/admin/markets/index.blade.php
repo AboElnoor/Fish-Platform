@@ -1,22 +1,31 @@
 @extends('admin.layouts.app')
-@section('title') سوق الأسماك @stop
+@section('title')
+    @if(requestUri() == 'markets')
+        سوق الاسماك
+    @else
+        سوق مسلتزمات الانتاج
+    @endif
+@stop
 
 @section('content')
 <section class="farms">
     <div class="container">
         <div class="row">
-            {!! Form::open(['method' => 'GET', 'route' => 'admin.markets.search']) !!}
+            {!! Form::open(['method' => 'GET', 'route' => 'admin.' . requestUri() . '.search']) !!}
                 <div class="col-md-6">
-                    <h2 class="section-title">سوق الأسماك</h2>
+                    <h2 class="section-title">
+                        @if(requestUri() == 'markets')
+                            سوق الاسماك
+                        @else
+                            سوق مسلتزمات الانتاج
+                        @endif
+                    </h2>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         {!! Form::label('HSCode_ID', 'منتج/ كود HS') !!}
                         {!! Form::select(
-                                'HSCode_ID',
-                                $hSCodes->prepend('من فضلك اختار', 0),
-                                $price->HSCode_ID ?? null,
-                                ['class' => 'form-control']
+                                'HSCode_ID', $hSCodes->prepend('من فضلك اختار', 0), null, ['class' => 'form-control']
                             ) !!}
                     </div>
                 </div>
@@ -46,10 +55,10 @@
                             {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.markets.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال طلبات شراء</a>
+                            <a href="{{ route('admin.' . requestUri() . '.create') }}?buy_request=1" class="btn btn-success btn-block">ادخال طلبات شراء</a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('admin.markets.create') }}" class="btn btn-success btn-block">ادخال عروض بيع</a>
+                            <a href="{{ route('admin.' . requestUri() . '.create') }}" class="btn btn-success btn-block">ادخال عروض بيع</a>
                         </div>
                     </div>
                 </div>
@@ -74,12 +83,12 @@
                         @forelse($markets as $market)
                             <tr>
                                <td>{{ $market->id }}</td>
-                               <td>{{ $market->hSCode->HS_Aname ?? '' }}</td>
+                               <td>{{ $market->hSCode->HS_Aname ?? $market->pType->name ?? '' }}</td>
                                <td>{{ $market->amount }}</td>
-                               <td>{{ $market->startDate }}</td>
+                               <td>{{ $market->user->startDate ?? '-' }}</td>
                                <td>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>
                                <td>
-                                    <a href="{{ route('admin.markets.show', $market) }}"
+                                    <a href="{{ route('admin.' . requestUri() . '.show', $market) }}"
                                         class="btn btn-sm btn-primary btn-block">تفاصيل</a>
                                 </td>
                             </tr>

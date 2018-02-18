@@ -1,11 +1,23 @@
 @extends('layouts.app')
-@section('title') سوق الاسماك @stop
+@section('title')
+    @if(requestUri() == 'markets')
+        سوق الاسماك
+    @else
+        سوق مسلتزمات الانتاج
+    @endif
+@stop
 
 @section('content')
 <section class="Purchase-crop">
     <div class="container">
         <div class="title centre">
-            <h2>  - سوق الاسماك -  </h2>
+            <h2>  -
+                @if(requestUri() == 'markets')
+                    سوق الاسماك
+                @else
+                    سوق مسلتزمات الانتاج
+                @endif
+            -  </h2>
             <p class="ask-p">
                في هذه الخدمة المتميزة من شبكة الأسماك وﻷول مرة يمكن إضافة طلبات شراء وعروض بيع الأسماك و التواصل مع أصحاب العروض والطلبات مباشرة ومجاناً.
            </p>
@@ -21,7 +33,8 @@
             <div class="tab_headings">
                 <div class="tab_head">
                     <div class="col-md-12 text-center">
-                        <a href="add-offer.html" class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة طلب شراء</a>
+                        <a href="{{ route(requestUri() . '.create') }}?buy_request=1"
+                            class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة طلب شراء</a>
                     </div>
                     <p>
                         يمكنك البحث فى كل عروض بيع الأسماك فى شبكة الأسماك واختيار ما يناسبك منها وبعد اختيار العرض المناسب  إضغط على زر اريد التواصل مع صاحب العرض الموجود أسفل كل عرض وبذلك سيتم ارسال بياناتك الى صاحب العرض للتواصل معك.
@@ -29,7 +42,8 @@
                 </div>
                 <div class="tab_head">
                     <div class="col-md-12 text-center">
-                        <a href="add-offer.html" class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة عرض بيع</a>
+                        <a href="{{ route(requestUri() . '.create') }}"
+                            class=" col-md-4 col-md-offset-4 btn btn-primary">اضافة عرض بيع</a>
                     </div>
                     <p>
                         يمكنك البحث فى كل عروض بيع الأسماك فى شبكة الأسماك واختيار ما يناسبك منها وبعد اختيار العرض المناسب  إضغط على زر اريد التواصل مع صاحب العرض الموجود أسفل كل عرض وبذلك سيتم ارسال بياناتك الى صاحب العرض للتواصل معك.
@@ -74,15 +88,16 @@
                         @endphp
                         <tbody class="table-hover">
                             @forelse($buys as $buy)
-                            <tr onclick="window.location='{{ route('markets.show', $buy) }}'">
+                            <tr onclick="window.location='{{ route(requestUri() . '.show', $buy) }}'">
                                 <td class="td-img"><img class="pro-image"
                                     src="{{ asset('storage/' . $buy->photo) }}"></td>
-                                    <td class="text-center">{{ $buy->hSCode->HS_Aname ?? '-' }}</td>
-                                    <td class="text-center">{{ $buy->startDate }}</td>
+                                    <td class="text-center">
+                                        {{ $buy->hSCode->HS_Aname ?? $buy->pType->name ?? '-' }}</td>
+                                    <td class="text-center">{{ $buy->user->startDate ?? '-' }}</td>
                                     <td class="text-center">{{ $buy->amount }}</td>
                                 </tr>
                                 @empty
-                                <tr colspan=3>ﻻ توجد بيانات لعرضها</tr>
+                                    <tr colspan=3>ﻻ توجد بيانات لعرضها</tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -108,23 +123,24 @@
                             @endphp
                             <tbody class="table-hover">
                                 @forelse($selles as $sell)
-                                <tr onclick="window.location='{{ route('markets.show', $sell) }}'">
+                                <tr onclick="window.location='{{ route(requestUri() . '.show', $sell) }}'">
                                     <td class="td-img"><img class="pro-image"
                                         src="{{ asset('storage/' . $sell->photo) }}"></td>
-                                        <td class="text-center">{{ $sell->hSCode->HS_Aname ?? '-' }}</td>
-                                        <td class="text-center">{{ $sell->startDate }}</td>
-                                        <td class="text-center">{{ $sell->amount }}</td>
-                                    </tr>
-                                    @empty
-                                    <tr colspan=3>ﻻ توجد بيانات لعرضها</tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $selles->links() }}
-                        </div> <!-- / tabs_item -->
-                    </div> <!-- / tab_content -->
-                </div> <!-- / tab -->
-            </div>
+                                    <td class="text-center">
+                                        {{ $sell->hSCode->HS_Aname ?? $sell->pType->name ?? '-' }}</td>
+                                    <td class="text-center">{{ $sell->user->startDate ?? '-' }}</td>
+                                    <td class="text-center">{{ $sell->amount }}</td>
+                                </tr>
+                                @empty
+                                <tr colspan=3>ﻻ توجد بيانات لعرضها</tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        {{ $selles->links() }}
+                    </div> <!-- / tabs_item -->
+                </div> <!-- / tab_content -->
+            </div> <!-- / tab -->
         </div>
-    </section>
-    @endsection
+    </div>
+</section>
+@endsection

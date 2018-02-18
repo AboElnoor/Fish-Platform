@@ -28,7 +28,7 @@ class MarketsController extends Controller
     {
         $hSCodes = $this->hSCodes;
         $markets = Market::latest('startDate');
-        $markets = requestUri() == 'markets' ? $markets->where('category_id', 1) : $markets->where('category_id', 2);
+        $markets = requestUri() == 'markets' ? $markets->where('type_id', 1) : $markets->where('type_id', 2);
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('markets');
@@ -79,7 +79,7 @@ class MarketsController extends Controller
         $hSCodes = $this->hSCodes;
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $buy = request('buy_request');
-        return view('admin.markets.create', compact('hSCodes', 'governorates', 'buy'));
+        return view(\Route::current()->getPrefix() . '.markets.create', compact('hSCodes', 'governorates', 'buy'));
     }
 
     /**
@@ -109,7 +109,7 @@ class MarketsController extends Controller
     public function userRules()
     {
         return [
-            'provider' => 'required|string',
+            'provider' => 'sometimes|nullable|string',
             'name' => 'sometimes|nullable|string',
             'mobile' => 'sometimes|nullable|numeric',
             'email' => 'sometimes|nullable|email',
@@ -136,6 +136,7 @@ class MarketsController extends Controller
             'price' => 'sometimes|nullable|string',
             'payment' => 'sometimes|nullable|string',
             'more' => 'sometimes|nullable|string',
+            'transportDate' => 'sometimes|nullable|date',
         ];
     }
 
@@ -153,15 +154,21 @@ class MarketsController extends Controller
         try {
             \DB::transaction(function () use ($market, $marketUser, $marketTransport) {
                 $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
-                $market = Market::create(compact('photo') + $market);
+                $data = [
+                    'type_id' => requestUri() == 'markets' ? 1 : 2,
+                    'entryUser' => auth()->id(),
+                ];
+
+                $market = Market::create(compact('photo') + $data + $market);
                 if ($marketUser) {
                     $market->user()->create($marketUser);
                 }
 
                 if ($marketTransport) {
-                    $market->tranport()->create($marketTransport);
+                    $market->transport()->create($marketTransport);
                 }
             });
+            $success = 'تم انشاء السوق بنجاح';
         } catch (\Exception $e) {
             \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
@@ -206,15 +213,34 @@ class MarketsController extends Controller
      */
     public function update(Request $request, Market $market)
     {
-        $data = $request->validate($this->rules());
-        $photo = request()->file('photo')->store('markets');
+        $marketData = $request->validate($this->rules());
+        $marketUser = $request->validate($this->userRules());
+        $marketTransport = $request->validate($this->transportRules());
+        try {
+            \DB::transaction(function () use ($marketData, $marketUser, $marketTransport) {
+                $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+                $data = [
+                    'type_id' => requestUri() == 'markets' ? 1 : 2,
+                    'entryUser' => auth()->id(),
+                ];
 
-        if ($photo) {
-            $data = compact('photo') + $data;
+                if ($photo) {
+                    $data += compact('photo');
+                }
+                $market->update($data + $marketData);
+                if ($marketUser) {
+                    $market->user()->createOrUpdate($marketUser);
+                }
+
+                if ($marketTransport) {
+                    $market->transport()->createOrUpdate($marketTransport);
+                }
+            });
+            $success = 'تم التعديل بنجاح';
+        } catch (\Exception $e) {
+            \Log::error('updating ' . \Route::current()->getPrefix(), compact('e'));
+            $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
-        $market->update($data);
-
-        $success = 'تم التعديل بنجاح';
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success');

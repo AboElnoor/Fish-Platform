@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') {{ $buy ?? $market->buy_request ? 'طلب شراء' : 'عرض بيع' }} @stop
+@section('title') {{ $market->buy_request ?? $buy ? 'طلب شراء' : 'عرض بيع' }} @stop
 
 @section('content')
 <section class="form-registration">

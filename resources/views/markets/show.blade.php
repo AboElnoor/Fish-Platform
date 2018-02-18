@@ -19,14 +19,14 @@
                </tr>
                <tr>
                   <td><h4>تاريخ بداية العرض: </h4></td>
-                  <td><h4><i>{{ $market->startDate }}</i></h4></td>
+                  <td><h4><i>{{ $market->user->startDate ?? '-' }}</i></h4></td>
                </tr>
                <tr>
                   <td>
                      <h4>تاريخ نهاية العرض: </h4>
                   </td>
                   <td>
-                     <h4><i>{{ $market->endDate }}</i></h4>
+                     <h4><i>{{ $market->user->endDate ?? '-' }}</i></h4>
                   </td>
                </tr>
             </tbody>
@@ -53,7 +53,7 @@
                   <td>
                      <h4>مكان انتاج المزرعة:</h4>
                   </td>
-                  <td><h4><i>{{ $market->governorate->Governorate_Name_A ?? '-' }}</i></h4></td>
+                  <td><h4><i>{{ $market->transport->governorate->Governorate_Name_A ?? '-' }}</i></h4></td>
                </tr>
                <tr>
                   <td>
@@ -68,7 +68,7 @@
                      <h4>النوع / الصنف: </h4>
                   </td>
                   <td>
-                     <h4><i>{{ $market->hSCode->HS_Aname ?? '-' }}</i></h4>
+                     <h4><i>{{ $market->hSCode->HS_Aname ?? $market->pType->name ?? '-' }}</i></h4>
                   </td>
                </tr>
                <tr>

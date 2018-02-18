@@ -76,6 +76,6 @@ Route::middleware('web')->group(function () {
     Route::resource('farmers', 'FarmersController')->only('create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
-    Route::get('ptools/search', 'PtoolsController@search')->name('ptools.search');
-    Route::resource('ptools', 'PtoolsController')->except('edit', 'update', 'delete');
+    Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
+    Route::resource('ptools', 'MarketsController')->except('edit', 'update', 'delete');
 });
