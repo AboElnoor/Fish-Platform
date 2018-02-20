@@ -15,7 +15,7 @@ class PracticesController extends Controller
      */
     public function index()
     {
-        $practices = Practice::paginate(10);
+        $practices = Practice::latest('id')->paginate(10);
         return view('practices.index', compact('practices'));
     }
 
@@ -107,8 +107,11 @@ class PracticesController extends Controller
     public function update(Request $request, Practice $practice)
     {
         $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('practices') : 'images/default.jpg';
+        $photo = request()->file('photo')->store('practices');
 
+        if ($photo) {
+            $data = compact('photo') + $data;
+        }
         $practice->update(compact('photo') + $data);
         $success = 'تم التحديث بنجاح';
 

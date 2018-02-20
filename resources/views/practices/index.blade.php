@@ -12,7 +12,7 @@
                 <div class="col-md-6">
                     <div class="box">
                         <div class="pull-right col-md-6">
-							<img class="best-img" src="images/best.jpg">
+							<img class="best-img" src="{{ asset('storage/' . $practice->photo) }}">
 						</div>
                         <h3 class="box-title">{{ $practice->title }}</h3>
                         <p>{{ $practice->message }}</p>
