@@ -83,7 +83,7 @@
                         @forelse($markets as $market)
                             <tr>
                                <td>{{ $market->id }}</td>
-                               <td>{{ $market->hSCode->HS_Aname ?? $market->pType->name ?? '' }}</td>
+                               <td>{{ $market->hSCode->HS_Aname ?? '' }}</td>
                                <td>{{ $market->amount }}</td>
                                <td>{{ $market->user->startDate ?? '-' }}</td>
                                <td>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</td>

@@ -47,20 +47,30 @@
             </div>
             <table class="table table-striped">
                 <tbody>
+                    @if(requestUri() == 'ptools')
+                        <tr>
+                            <td>
+                                <h4>نوع المنتج: </h4>
+                            </td>
+                            <td>
+                                <h4><i>{{ $market->pType->HS_Aname ?? '-' }}</i></h4>
+                            </td>
+                        </tr>
+                    @endif
+                    <tr>
+                        <td>
+                            <h4>نوع السمك: </h4>
+                        </td>
+                        <td>
+                            <h4><i>{{ $market->hSCode->HS_Aname ?? '-' }}</i></h4>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h4>نوع المنتج (نوع السمك):</h4>
                         </td>
                         <td>
                             <h4><i>{{ $market->type }}</i></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>النوع / الصنف: </h4>
-                        </td>
-                        <td>
-                            <h4><i>{{ $market->hSCode->HS_Aname ?? $market->pType->name ?? '-' }}</i></h4>
                         </td>
                     </tr>
                     <tr>

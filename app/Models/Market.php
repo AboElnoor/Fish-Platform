@@ -16,7 +16,7 @@ class Market extends Model
 
     public function pType()
     {
-        return $this->belongsTo(PtoolsType::class, 'HSCode_ID');
+        return $this->belongsTo(PtoolsType::class, 'ptoolType');
     }
 
     public function user()
