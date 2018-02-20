@@ -26,7 +26,7 @@
                             {!! Form::hidden('buy_request', $buy, ['class' => 'form-control']) !!}
                             <!-- Name input-->
                             <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'نوع المنتج', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('HSCode_ID', 'نوع السمك', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::select(
                                             'HSCode_ID',
@@ -61,25 +61,40 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('amount', 'الكميه المطلوبيه', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('amount', 'الكميه المطلوبة', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('amount', old('amount'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                {!! Form::label(
-                                    'transportDate', 'تاريخ التوريد', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
-                                    {!! Form::date(
-                                        'transportDate', old('transportDate'), ['class' => 'form-control']) !!}
+                            @if(requestUri() == 'markets')
+                                <div class="form-group">
+                                    {!! Form::label(
+                                        'transportDate', 'تاريخ التوريد', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        {!! Form::date(
+                                            'transportDate', old('transportDate'), ['class' => 'form-control']) !!}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('price', 'السعر المقترح', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
-                                    {!! Form::text('price', old('price'), ['class' => 'form-control']) !!}
+                                <div class="form-group">
+                                    {!! Form::label('price', 'السعر المقترح', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        {!! Form::text('price', old('price'), ['class' => 'form-control']) !!}
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="form-group">
+                                    {!! Form::label(
+                                        'ptoolType', 'نوع المنتج', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        {!! Form::select(
+                                            'ptoolType',
+                                            $types->prepend('من فضلك اختار', 0),
+                                            $market->ptoolType ?? null,
+                                            ['class' => 'form-control']
+                                        ) !!}
+                                    </div>
+                                </div>
+                            @endif
                             <div class="button-custmoeize">
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-4">

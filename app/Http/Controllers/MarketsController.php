@@ -15,8 +15,7 @@ class MarketsController extends Controller
      */
     public function __construct()
     {
-        $this->hSCodes = requestUri() == 'markets' ?
-            HSCode::all()->pluck('HS_Aname', 'HSCode_ID') : PtoolsType::all()->pluck('name', 'id');
+        $this->hSCodes = HSCode::all()->pluck('HS_Aname', 'HSCode_ID');
     }
 
     /**
@@ -77,9 +76,13 @@ class MarketsController extends Controller
     public function create()
     {
         $hSCodes = $this->hSCodes;
+        $types = PtoolsType::all()->pluck('name', 'id');
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $buy = request('buy_request');
-        return view(\Route::current()->getPrefix() . '.markets.create', compact('hSCodes', 'governorates', 'buy'));
+        return view(
+            \Route::current()->getPrefix() . '.markets.create',
+            compact('hSCodes', 'governorates', 'buy', 'types')
+        );
     }
 
     /**
@@ -91,12 +94,13 @@ class MarketsController extends Controller
     {
         return [
             'buy_request' => 'sometimes|nullable',
-            'HSCode_ID' => 'required|' . (requestUri() == 'markets' ? 'exists:hscode' : 'exists:ptools_types,id'),
+            'HSCode_ID' => 'required|exists:hscode',
             'type' => 'sometimes|nullable|string',
             'photo' => 'sometimes|nullable|image',
             'amount' => 'sometimes|nullable|string',
             'package' => 'sometimes|nullable|string',
             'specs' => 'sometimes|nullable|string',
+            'ptoolType' => 'sometimes|nullable|exists:ptools_types,id',
             'certificates' => 'sometimes|nullable|string',
         ];
     }

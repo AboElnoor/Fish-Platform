@@ -10,14 +10,6 @@
          <table class="table table-striped">
             <tbody>
                <tr>
-                  <td>
-                     <h4>كود العرض: </h4>
-                  </td>
-                  <td>
-                     <h4><i>{{ $market->id }}</i></h4>
-                  </td>
-               </tr>
-               <tr>
                   <td><h4>تاريخ بداية العرض: </h4></td>
                   <td><h4><i>{{ $market->user->startDate ?? '-' }}</i></h4></td>
                </tr>
@@ -31,12 +23,12 @@
                </tr>
             </tbody>
          </table>
-         <div class="title "><h2>بيانات المزرعة</h2></div>
+         <div class="title "><h2>بيانات المنتج</h2></div>
 
          <table class="table table-striped">
             <tbody>
                <tr>
-                  <td><h4>نوع المزرعة:</h4></td>
+                  <td><h4>نوع المنتج:</h4></td>
                   <td>
                      <h4><i>{{ $market->type }}</i></h4>
                   </td>
@@ -49,20 +41,22 @@
                      <h4><i>{{ $market->amount }}</i></h4>
                   </td>
                </tr>
-               <tr>
-                  <td>
-                     <h4>مكان انتاج المزرعة:</h4>
-                  </td>
-                  <td><h4><i>{{ $market->transport->governorate->Governorate_Name_A ?? '-' }}</i></h4></td>
-               </tr>
-               <tr>
-                  <td>
-                     <h4>تفاصيل أخرى: </h4>
-                  </td>
-                  <td>
-                     <h4><i>-</i></h4>
-                  </td>
-               </tr>
+               @if(requestUri() == 'markets')
+                  <tr>
+                     <td>
+                        <h4>مكان انتاج المنتج:</h4>
+                     </td>
+                     <td><h4><i>{{ $market->transport->governorate->Governorate_Name_A ?? '-' }}</i></h4></td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <h4>تفاصيل أخرى: </h4>
+                     </td>
+                     <td>
+                        <h4><i>{{ $market->more }}</i></h4>
+                     </td>
+                  </tr>
+               @endif
                <tr>
                   <td>
                      <h4>النوع / الصنف: </h4>
@@ -71,14 +65,16 @@
                      <h4><i>{{ $market->hSCode->HS_Aname ?? $market->pType->name ?? '-' }}</i></h4>
                   </td>
                </tr>
-               <tr>
-                  <td>
-                     <h4>المواصفات: </h4>
-                  </td>
-                  <td>
-                     <h4><i>{{ $market->specs ?? '-' }}</i></h4>
-                  </td>
-               </tr>
+               @if(requestUri() == 'markets')
+                  <tr>
+                     <td>
+                        <h4>المواصفات: </h4>
+                     </td>
+                     <td>
+                        <h4><i>{{ $market->specs ?? '-' }}</i></h4>
+                     </td>
+                  </tr>
+               @endif
             </tbody>
          </table>
          <a href="#" class="col-md-4 btn btn-primary">اتصل بصاحب العرض</a>
