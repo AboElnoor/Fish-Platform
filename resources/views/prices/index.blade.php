@@ -13,7 +13,7 @@
         <div class="row">
             <div class="tab">
                 <div class="tab-wrapper col-md-12">
-                    <h3 class="prices-fish">أسعار الأسماك يوم 03/02/2018</h3>
+                    <h3 class="prices-fish">أسعار الأسماك يوم {{ date('Y/m/d') }}</h3>
                 </div>
                 <form action="" class="col-md-12">
                     <div class="form-group overflow-h padding20">

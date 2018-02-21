@@ -60,3 +60,10 @@ if (!function_exists('getExcerpt')) {
         return $excerpt;
     }
 }
+
+if (!function_exists('imageUrl')) {
+    function imageUrl($model)
+    {
+        return asset($model->photo ? ('storage/' . $model->photo) : 'images/default.png');
+    }
+}

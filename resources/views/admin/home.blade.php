@@ -105,7 +105,7 @@
                             <i class="fa fa-home fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="box-title">
-                            <h4>سوق السمك</h4>
+                            <h4>سوق الاسماك</h4>
                         </div>
                     </div>
                 </a>

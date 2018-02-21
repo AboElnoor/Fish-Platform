@@ -65,6 +65,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
 Route::middleware('web')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('about', 'HomeController@about')->name('about');
+    Route::get('privacy', 'HomeController@privacy')->name('privacy');
     Route::get('localities/{governorate}', 'HomeController@getGovernorateLocalities')->name('localities');
     Route::get('villages/{locality}', 'HomeController@getLocalityVillages')->name('villages');
     Route::resource('practices', 'PracticesController')->only('index', 'show');

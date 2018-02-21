@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'نوع السمك') !!}
+                                {!! Form::label('HSCode_ID', 'نوع الاسماك') !!}
                                 {!! Form::select(
                                         'HSCode_ID',
                                         $hSCodes->prepend('من فضلك اختار', 0),

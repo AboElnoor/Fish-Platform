@@ -32,7 +32,8 @@ class MarketsController extends Controller
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('markets');
         }
-        return view(\Route::current()->getPrefix() . '.markets.index', compact('hSCodes', 'markets'));
+        $type = requestUri() == 'markets' ? 'الأسماك' : 'مستلزمات الانتاج';
+        return view(\Route::current()->getPrefix() . '.markets.index', compact('hSCodes', 'markets', 'type'));
     }
 
     /**

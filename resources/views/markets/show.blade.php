@@ -47,7 +47,7 @@
                @endif
                <tr>
                   <td>
-                     <h4>نوع السمك: </h4>
+                     <h4>نوع الاسماك: </h4>
                   </td>
                   <td>
                      <h4><i>{{ $market->hSCode->HS_Aname ?? '-' }}</i></h4>
@@ -61,7 +61,7 @@
                </tr>
                <tr>
                   <td>
-                     <h4>الكمية المتوفرة:</h4>
+                     <h4>الكمية:</h4>
                   </td>
                   <td>
                      <h4><i>{{ $market->amount }}</i></h4>
@@ -83,17 +83,15 @@
                      </td>
                   </tr>
                @endif
-               @if(requestUri() == 'markets')
-                  <tr>
-                     <td>
-                        <h4>المواصفات: </h4>
-                     </td>
-                     <td>
-                        <h4><i>{{ $market->specs ?? '-' }}</i></h4>
-                     </td>
-                  </tr>
-               @endif
             </tbody>
+            <tr>
+               <td>
+                  <h4>المواصفات: </h4>
+               </td>
+               <td>
+                  <h4><i>{{ $market->specs ?? '-' }}</i></h4>
+               </td>
+            </tr>
          </table>
       </div>
    </div>

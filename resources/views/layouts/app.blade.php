@@ -137,8 +137,7 @@
 
     <section class="bottom-footer">
         <div class="container">
-            <a href="#">سياسة الخصوصية</a>
-            <a href="#">شروط الاستخدام</a>
+            <a href="{{ route('privacy') }}">سياسة الخصوصية و شروط الاستخدام</a>
         </div>
     </section>
 

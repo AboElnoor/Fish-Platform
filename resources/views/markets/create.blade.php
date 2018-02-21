@@ -8,7 +8,6 @@
             <div class="col-md-12">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="product-img">
-                        <img src="/images/potatoes.png">
                         <h3 class="text-center"> - {{ $buy ? 'طلب شراء' : 'عرض بيع' }} -</h3>
                     </div>
                 </div>
@@ -25,8 +24,22 @@
                         <fieldset>
                             {!! Form::hidden('buy_request', $buy, ['class' => 'form-control']) !!}
                             <!-- Name input-->
+                            @if(requestUri() == 'ptools')
+                                <div class="form-group">
+                                    {!! Form::label(
+                                        'ptoolType', 'نوع المنتج', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        {!! Form::select(
+                                            'ptoolType',
+                                            $types->prepend('من فضلك اختار', 0),
+                                            $market->ptoolType ?? null,
+                                            ['class' => 'form-control']
+                                        ) !!}
+                                    </div>
+                                </div>
+                            @endif
                             <div class="form-group">
-                                {!! Form::label('HSCode_ID', 'نوع السمك', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('HSCode_ID', 'نوع الاسماك', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::select(
                                             'HSCode_ID',
@@ -37,9 +50,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('name', 'اسم المنتج', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('name', 'اسم الصنف', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('amount', 'الكميه', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('amount', old('amount'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -60,12 +79,6 @@
                                     {!! Form::date('endDate', old('endDate'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('amount', 'الكميه المطلوبة', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
-                                    {!! Form::text('amount', old('amount'), ['class' => 'form-control']) !!}
-                                </div>
-                            </div>
                             @if(requestUri() == 'markets')
                                 <div class="form-group">
                                     {!! Form::label(
@@ -81,20 +94,20 @@
                                         {!! Form::text('price', old('price'), ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                            @else
-                                <div class="form-group">
-                                    {!! Form::label(
-                                        'ptoolType', 'نوع المنتج', ['class' => 'col-md-4 control-label']) !!}
-                                    <div class="col-md-8">
-                                        {!! Form::select(
-                                            'ptoolType',
-                                            $types->prepend('من فضلك اختار', 0),
-                                            $market->ptoolType ?? null,
-                                            ['class' => 'form-control']
-                                        ) !!}
-                                    </div>
-                                </div>
                             @endif
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('specs', 'المواصفات', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('specs', null, ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('photo', 'صورة المنتج', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::file('photo') !!}
+                                </div>
+                            </div>
                             <div class="button-custmoeize">
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-4">

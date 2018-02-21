@@ -21,13 +21,23 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application about page.
      *
      * @return \Illuminate\Http\Response
      */
     public function about()
     {
         return view('about');
+    }
+
+    /**
+     * Show the application privacy page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function privacy()
+    {
+        return view('privacy');
     }
 
     public function getGovernorateLocalities(Governorate $governorate)
