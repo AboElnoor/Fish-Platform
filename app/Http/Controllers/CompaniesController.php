@@ -66,7 +66,7 @@ class CompaniesController extends Controller
     {
         session()->forget('company');
         $companies = Company::where('FishCompanyType_ID', $this->FishCompanyType_ID)->latest()->paginate(10);
-        return view('admin.companies.index', compact('companies'));
+        return view(\Route::current()->getPrefix() . '.companies.index', compact('companies'));
     }
 
     /**

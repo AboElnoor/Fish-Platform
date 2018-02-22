@@ -74,9 +74,12 @@ Route::middleware('web')->group(function () {
     Route::get('markets/search', 'MarketsController@search')->name('markets.search');
     Route::resource('markets', 'MarketsController')->except('edit', 'update', 'delete');
     Route::get('experts', 'ExpertsController@index')->name('experts.index');
-    Route::resource('farmers', 'FarmersController')->only('create', 'store');
+    Route::resource('farmers', 'FarmersController')->only('index', 'create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
     Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
     Route::resource('ptools', 'MarketsController')->except('edit', 'update', 'delete');
+    Route::resource('companies', 'CompaniesController')->only('index');
+    Route::resource('factories', 'CompaniesController')->only('index');
+    Route::resource('sellers', 'CompaniesController')->only('index');
 });

@@ -18,7 +18,7 @@ class FarmersController extends Controller
     {
         session()->forget('farmer');
         $farmers = Farmer::latest()->paginate(10);
-        return view('admin.farmers.index', compact('farmers'));
+        return view(\Route::current()->getPrefix() . '.farmers.index', compact('farmers'));
     }
 
     /**

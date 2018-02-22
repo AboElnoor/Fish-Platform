@@ -24,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">الرئيسية</a></li>
                     <li><a href="{{ route('about') }}">من نحن</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
+                    <li><a href="{{ route('home') }}#contact-form">اتصل بنا</a></li>
                     <li><a href="#">خريطة الموقع</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-left">

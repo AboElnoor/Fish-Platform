@@ -74,39 +74,6 @@
                             </div>
                         </div>
                     @endforeach
-                    <!-- .news-content -->
-                    <div class="news-content">
-                        <img src="images/slider/2.jpg">
-                        <div class="resume">
-                            <a href="article.html" class="title">عنوان المقالة الثاتنية </a>
-                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
-                        </div>
-                    </div>
-                    <!-- .news-content -->
-                    <div class="news-content">
-                        <img src="images/slider/3.jpg">
-                        <div class="resume">
-                            <a href="article.html" class="title">عنوان المقالة الثالثة ؟</a>
-                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
-                        </div>
-                    </div>
-                    <!-- .news-content -->
-                    <div class="news-content">
-                        <img src="images/slider/4.jpg">
-                        <div class="resume">
-                            <a href="article.html" class="title">عنوان المقالة الرابعة </a>
-                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
-                        </div>
-                    </div>
-                    <!-- .news-content -->
-                    <div class="news-content">
-                        <img src="images/slider/5.jpg">
-                        <div class="resume">
-                            <a href="article.html" class="title">عنوان المقالة الخامسة عنوان المقالة الخامسة  عنوان المقالة الخامسة </a>
-                            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص...</p>
-                        </div>
-                    </div>
-                    <!-- .news-content -->
                 </div>
                 <!-- .news-preview -->
             </div>
@@ -143,25 +110,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <a href="/fishplat/fish-farms.html" class="icon-anchor">
+                <a href="{{ route('farmers.index') }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-13.png" class="img-responsive">
                     <h5> مزارع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="/fishplat/fish-suppliers.html" class="icon-anchor">
+                <a href="{{ route('companies.index') }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-12.png" class="img-responsive">
                     <h5>موردى المستلزمات</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="/fishplat/fish-manufacturers.html" class="icon-anchor">
+                <a href="{{ route('factories.index') }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-11.png" class="img-responsive">
                     <h5>تصنيع الأسماك</h5>
                 </a>
             </div>
             <div class="col-md-2">
-                <a href="/fishplat/fish-distributors.html" class="icon-anchor">
+                <a href="{{ route('sellers.index') }}" class="icon-anchor">
                     <img src="images/icons/website-veg-fish-10.png" class="img-responsive">
                     <h5>موزعى الأسماك</h5>
                 </a>

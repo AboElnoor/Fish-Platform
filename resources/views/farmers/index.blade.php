@@ -1,62 +1,48 @@
 @extends('layouts.app')
+@section('title') مزارع الأسماك @stop
 
 @section('content')
-
-<section class="farms">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<h2 class="section-title">قــائمة مــزارع الاســماك</h2>
-			</div>
-			<div class="col-md-6">
-				<a href="{{ route('farmers.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
-			</div>
-		</div>
-		@include('layouts.alert')
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>كود</th>
-					<th>الاسم</th>
-					<th>الموبايل</th>
-					<th>مدخل البيانات</th>
-					<th>تاريخ الادخال</th>
-					<th>معدل البيانات</th>
-					<th>تاريخ التعديل</th>
-					<th>#</th>
-					<th>#</th>
-				</tr>
-			</thead>
-			<tbody>
-				@forelse($farmers as $farmer)
-					<tr>
-						<td>{{ $farmer->FishFarmer_ID }}</td>
-						<td>{{ $farmer->FishFarmerName }}</td>
-						<td>{{ $farmer->Mob }}</td>
-						<td>{{ $farmer->entryUser ? $farmer->entryUser->FullName : '-' }}</td>
-						<td>{{ $farmer->created_at }}</td>
-						<td>{{ $farmer->updateUser ? $farmer->updateUser->FullName : '-' }}</td>
-						<td>{{ $farmer->updated_at }}</td>
-						<td>
-							<a href="{{ route('farmers.edit', $farmer) }}" class="btn btn-sm btn-primary">تعديل</a>
-						</td>
-						<td>
-							{!! Form::open(['method' => 'DELETE', 'route' => ['farmers.destroy', $farmer]]) !!}
-					            {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
-							{!! Form::close() !!}
-						</td>
-					</tr>
-				@empty
-					<tr>
-                        <td colspan="9">لا توجد نتائج لعرضها</td>
-                    </tr>
-				@endforelse
-			</tbody>
-		</table>
-		<div class="text-center">
-			{{ $farmers->links() }}
-		</div>
-	</div>
+<section class="films best-practices">
+    <div class="container">
+        <div class="title centre">
+            <h2>  - مزارع الأسماك -  </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title"> نماذج للمزارع المتميزة </h2>
+                <div class="carousel slide fishCarousel" id="myCarouselFishFarm">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/1.jpg" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/2.jpg" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/3.jpg" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/4.jpg" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/5.jpg" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-4"><a href="#"><img src="images/slider/6.jpg" class="img-responsive"></a></div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarouselFishFarm" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#myCarouselFishFarm" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3> تحتوي قاعدة بيانات شبكة الأسماك على<span class="number">{{ $farmers->total() }} </span> مزارع ، انضم الآن لشبكة الأسماك وسجل مزرعتك</h3>
+            <h4>يمكنك الإنضمام إلى المزارع على قاعدة بيانات شبكة الأسماك <a href="{{ route('farmers.create') }}">من هنا</a></h4>
+            <h4>
+                للدخول إلي قاعدة بيانات شبكة الاسماك كاملة يرجى الاتصال بنا على ‫02-27371998‬‬ أو من خلال هذه الاستمارة ال <a href="{{ route('home') }}#contact-form" >contact form </a>
+            </h4>
+        </div>
+    </div>
 </section>
-
 @stop
