@@ -82,4 +82,5 @@ Route::middleware('web')->group(function () {
     Route::resource('companies', 'CompaniesController')->only('index');
     Route::resource('factories', 'CompaniesController')->only('index');
     Route::resource('sellers', 'CompaniesController')->only('index');
+    Route::resource('contact', 'ContactsController')->only('store');
 });
