@@ -55,7 +55,7 @@ class ContactsController extends Controller
         $data = $request->validate($this->rules());
         $contact = Contact::create($data);
         $receiver = $data['receiver'] . '' === '1' ? config('mail.to.bashaier') : config('mail.to.worldfish');
-        Mail::to('m.aboelnuor@gmail.com')->send(new ContactMail($contact));
+        Mail::to($receiver)->send(new ContactMail($contact));
 
         return back()->with('success', 'تم ارسال الرسالة بنجاح');
     }
