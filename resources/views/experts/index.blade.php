@@ -17,6 +17,13 @@
                             <form class="form-horizontal" action="" method="post">
                             {!! Form::open([]) !!}
                                 <fieldset>
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="name">الموضوع:</label>
+                                        <div class="col-md-8">
+                                            <input id="name" name="name" type="text" class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         {!! Form::label('name', 'السؤال:', ['class' => 'col-md-2 control-label']) !!}
                                         <div class="col-md-8">
@@ -24,6 +31,17 @@
                                                 'question', old('question'), ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
+                                    <div class="form-group">
+				                        <div class="col-md-3">
+				                           <div class="col-md-12 fileUpload btn btn-sm btn-primary">
+				                              <label for="photo">إضافة صورة</label> 
+				                              <input name="photo" type="file" id="photo" class="upload" onchange="readURL(this);">
+				                           </div>
+				                        </div>
+				                        <div class="col-md-9">
+				                           <img id="blah" src="images/1.png" alt="الصورة" />
+				                        </div>
+				                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
                                             {!! Form::submit('إرسال', ['class' => 'col-md-12 btn btn-primary btn-lg']) !!}
@@ -54,15 +72,19 @@
                 $experts = $experts->paginate(10);
                 @endphp
                 @foreach($experts as $expert)
-                <tr data-toggle="collapse" data-target="#accordion{{ $loop->index+1 }}" class="clickable">
-                    <td class="title">{{ $expert->question }}</td>
+                <tr>
+                    <td class="title">
+                        <a href="fishplat/question.html">
+                            {{ $expert->question }}
+                        </a>
+                    </td>
                     <!-- <td>{{  $expert->entryUser ? $expert->entryUser->FullName : '-' }}</td> -->
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>
                         <div id="accordion{{ $loop->index+1 }}" class="collapse">{{ $expert->answer }}</div>
                     </td>
-                </tr>
+                </tr> -->
                 @endforeach
             </tbody>
         </table>

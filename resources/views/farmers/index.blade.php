@@ -13,22 +13,70 @@
                 <div class="carousel slide fishCarousel" id="myCarouselFishFarm">
                     <div class="carousel-inner">
                         <div class="item active">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/1.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/1.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/2.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/2.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/3.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/3.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/4.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/4.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/5.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/5.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/6.jpg" class="img-responsive"></a></div>
+                            <div class="col-md-4">
+                                <a href="#">
+                                    <img src="images/slider/6.jpg" class="img-responsive">
+                                    <div class="carousel-caption">
+                                        <h2>مزرعة أسماك</h2>
+                                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد ...</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <a class="left carousel-control" href="#myCarouselFishFarm" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
