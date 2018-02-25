@@ -208,28 +208,24 @@
     </div>
     <div class="container">
         <div class="col-md-5 right-col">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="الأسم"> <span class="required">*</span>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="التليفون"> <span class="required">*</span>
-            </div>
-            <div class="form-group">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    أريد التواصل مع
-                    <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">بشاير</a></li>
-                        <li><a href="#">المركز الدولي للأسماك</a></li>
-                    </ul>
+            @include('layouts.alert')
+            {!! Form::open(['route' => 'contact.store']) !!}
+                <div class="form-group">
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'الأسم']) !!}
+                    <span class="required">*</span>
                 </div>
-            </div>
-            <div class="form-group">
-                <textarea name="message" id="" cols="30" rows="8" class="form-control" placeholder="الرسالة ..."></textarea>
-            </div>
-            <button class="btn btn-primary pull-left">ارسال</button>
+                <div class="form-group">
+                    {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'التليفون']) !!}
+                    <span class="required">*</span>
+                </div>
+                <div class="form-group">
+                    {!! Form::select('receiver', ['أريد التواصل مع', 'بشاير', 'المركز الدولي للأسماك']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'الرسالة ...']) !!}
+                </div>
+                {!! Form::submit('ارسال', ['class' => 'btn btn-primary pull-left']) !!}
+            {!! Form::close() !!}
         </div>
         <div class="col-md-7 left-col">
             <div class="col-md-6 no-padding">
