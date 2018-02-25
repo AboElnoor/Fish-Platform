@@ -47,6 +47,7 @@ section {
     border-radius: 15px;
     font-weight: 300;
     padding: 10px 26px;
+    font-size: 16px;
 }
 
 .btn-primary {
@@ -180,7 +181,7 @@ Intro
 
 .intro .intro-text img {
     margin-bottom: 25px;
-    margin-top: 170px;
+    margin-top: 35px;
 }
 
 .intro .intro-text p {
@@ -625,7 +626,7 @@ section.title {
     background: #1c73bc;
     font-size: 19px;
     font-weight: 100;
-    padding: 24px;
+    padding: 12px;
     text-align: left;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
@@ -686,7 +687,7 @@ section.title {
     text-align: right;
     vertical-align: middle;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 16px;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -1148,6 +1149,9 @@ select {
 
     .blog-subtitle {
         line-height: 1.5
+    }
+    .intro .intro-text img{
+        margin-top:170px!important;
     }
 }
 
@@ -1636,6 +1640,7 @@ span.required{
 
 .ques-img{
     width: 350px;
+    height: 350px;
 }
 .carousel-caption h2{
     font-size:25px;

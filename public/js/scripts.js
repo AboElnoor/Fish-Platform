@@ -1,5 +1,5 @@
 $(document).ready(function() { 
-
+    $('[data-toggle="tooltip"]').tooltip(); 
   (function ($) { 
     $('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
     
