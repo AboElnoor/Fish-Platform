@@ -95,7 +95,8 @@ class ContentsController extends Controller
     public function update(Request $request, Content $content)
     {
         $data = $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('contents') : '';
+        $image = request()->file('photo');
+        $photo =  $image ? $image->store('contents') : '';
         $subject = prepareHTMLInput(request('subject'));
         $data = compact('photo', 'subject') + $data;
         $content->update(array_filter($data));

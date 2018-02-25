@@ -14,14 +14,15 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-wrapper">
-                            <form class="form-horizontal" action="" method="post">
-                            {!! Form::open([]) !!}
+                            @include('layouts.alert')
+                            {!! Form::open([
+                                'route' => 'experts.store', 'files' => true, 'class' => 'form-horizontal']) !!}
                                 <fieldset>
                                     <!-- Name input-->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="name">الموضوع:</label>
+                                        {!! Form::label('name', 'الموضوع:', ['class' => 'col-md-2 control-label']) !!}
                                         <div class="col-md-8">
-                                            <input id="name" name="name" type="text" class="form-control">
+                                            {!! Form::text('title', null, ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -32,10 +33,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-				                        <div class="col-md-3">
-				                           <div class="col-md-12 fileUpload btn btn-sm btn-primary">
-				                              <label for="photo">إضافة صورة</label> 
-				                              <input name="photo" type="file" id="photo" class="upload" onchange="readURL(this);">
+                                        <div class="col-md-3">
+                                           <div class="col-md-12 fileUpload btn btn-sm btn-primary">
+                                                {!! Form::label('question_photo', 'إضافة صورة') !!}
+                                                {!! Form::file('question_photo', [
+                                                    'id' => 'photo',
+                                                    'class' => 'upload', 'onchange' => 'readURL(this)']) !!}
 				                           </div>
 				                        </div>
 				                        <div class="col-md-9">
@@ -74,8 +77,8 @@
                 @foreach($experts as $expert)
                 <tr>
                     <td class="title">
-                        <a href="fishplat/question.html">
-                            {{ $expert->question }}
+                        <a href="{{ route('experts.show', $expert) }}">
+                            {{ $expert->title }}
                         </a>
                     </td>
                     <!-- <td>{{  $expert->entryUser ? $expert->entryUser->FullName : '-' }}</td> -->

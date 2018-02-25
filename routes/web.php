@@ -73,7 +73,7 @@ Route::middleware('web')->group(function () {
     Route::get('prices', 'PricesController@index')->name('prices.index');
     Route::get('markets/search', 'MarketsController@search')->name('markets.search');
     Route::resource('markets', 'MarketsController')->except('edit', 'update', 'delete');
-    Route::get('experts', 'ExpertsController@index')->name('experts.index');
+    Route::resource('experts', 'ExpertsController')->only('index', 'store', 'show');
     Route::resource('farmers', 'FarmersController')->only('index', 'create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');

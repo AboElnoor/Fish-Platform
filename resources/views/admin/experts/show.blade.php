@@ -17,7 +17,7 @@
                     @endif
                 </div>
 
-                {{-- @if(!$expert->answer || \Route::current()->getName() == 'admin.experts.edit')
+                @if(!$expert->answer || \Route::current()->getName() == 'admin.experts.edit')
                     <div class="form-group">
                         <div class="col-md-4">
                             <div class="fileUpload btn btn-sm btn-primary">
@@ -30,7 +30,7 @@
                            <img id="blah" src="images/1.png" alt="الصورة" />
                         </div>
                     </div>
-                @endif --}}
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="form-group col-md-12">

@@ -38,7 +38,9 @@ class ExpertsController extends Controller
     public function rules()
     {
         return [
+            'title' => 'required|string',
             'question' => 'required|string',
+            'question_photo' => 'sometimes|nullable|image',
         ];
     }
 
@@ -54,9 +56,10 @@ class ExpertsController extends Controller
             'entryUser' => auth()->id(),
         ];
         $data += $request->validate($this->rules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('experts') : 'images/default.jpg';
+        $image = request()->file('question_photo');
+        $question_photo = $image ? $image->store('experts') : 'images/default.jpg';
 
-        Expert::create(compact('photo') + $data);
+        Expert::create(compact('question_photo') + $data);
 
         return back()->with('success', 'تم انشاء السؤال بنجاح');
     }
@@ -69,7 +72,7 @@ class ExpertsController extends Controller
      */
     public function show(Expert $expert)
     {
-        return view('admin.experts.show', compact('expert'));
+        return view(\Route::current()->getPrefix() . '.experts.show', compact('expert'));
     }
 
     /**
@@ -110,9 +113,10 @@ class ExpertsController extends Controller
             'updated_at' => Carbon::now(),
         ];
         $data += $request->validate($this->adminRules());
-        $photo = request()->file('photo') ? request()->file('photo')->store('experts') : 'images/default.jpg';
+        $image = request()->file('photo');
+        $photo = $image ? $image->store('experts') : 'images/default.jpg';
 
-        $expert->update(compact('photo') + $data);
+        $expert->update(compact('photo') + array_filter($data));
 
         return back()->with('success', 'تم الاجابة على السؤال بنجاح');
     }

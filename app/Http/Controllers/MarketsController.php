@@ -158,7 +158,8 @@ class MarketsController extends Controller
         $marketTransport = $request->validate($this->transportRules());
         try {
             \DB::transaction(function () use ($market, $marketUser, $marketTransport) {
-                $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+                $image = request()->file('photo');
+                $photo = $image ? $image->store('markets') : 'images/default.jpg';
                 $data = [
                     'type_id' => requestUri() == 'markets' ? 1 : 2,
                     'entryUser' => auth()->id(),
@@ -223,7 +224,8 @@ class MarketsController extends Controller
         $marketTransport = $request->validate($this->transportRules());
         try {
             \DB::transaction(function () use ($marketData, $marketUser, $marketTransport) {
-                $photo = request()->file('photo') ? request()->file('photo')->store('markets') : 'images/default.jpg';
+                $image = request()->file('photo');
+                $photo = $image ? $image->store('markets') : 'images/default.jpg';
                 $data = [
                     'type_id' => requestUri() == 'markets' ? 1 : 2,
                     'entryUser' => auth()->id(),

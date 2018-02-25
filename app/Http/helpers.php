@@ -62,8 +62,8 @@ if (!function_exists('getExcerpt')) {
 }
 
 if (!function_exists('imageUrl')) {
-    function imageUrl($model)
+    function imageUrl($image)
     {
-        return asset($model->photo ? ('storage/' . $model->photo) : 'images/default.png');
+        return asset($image ? ('storage/' . $image) : 'images/default.png');
     }
 }

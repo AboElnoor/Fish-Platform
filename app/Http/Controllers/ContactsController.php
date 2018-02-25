@@ -39,7 +39,7 @@ class ContactsController extends Controller
         return [
             'name' => 'required|string',
             'phone' => 'required|string',
-            'receiver' => 'sometimes|nullable|string',
+            'receiver' => 'required|in:1,2',
             'message' => 'sometimes|nullable|string',
         ];
     }

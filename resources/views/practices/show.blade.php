@@ -10,7 +10,7 @@
                     <!-- === blog main image & entry info === -->
                     <div class="blog-image-main">
                         <div class="myarticle-img"
-                            style="background-image: url({{ imageUrl($practice) }});"></div>
+                            style="background-image: url({{ imageUrl($practice->photo) }});"></div>
                     </div>
                     <div class="blog-post-content">
                         <!-- === blog post title === -->
