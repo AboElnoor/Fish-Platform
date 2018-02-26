@@ -63,8 +63,8 @@ class PracticesController extends Controller
         if ($photo) {
             $data = compact('photo') + $data;
         }
-        Practice::create(compact('photo') + $data);
-        $success = 'تمت الااضافة بنجاح';
+        Practice::create($data);
+        $success = 'تمت الاضافة بنجاح';
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success');

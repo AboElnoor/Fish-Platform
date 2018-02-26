@@ -60,6 +60,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::resource('contents', 'ContentsController');
     Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
     Route::resource('ptools', 'MarketsController');
+    Route::resource('galleries', 'GalleriesController');
 });
 
 Route::middleware('web')->group(function () {

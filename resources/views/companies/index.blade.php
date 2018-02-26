@@ -36,24 +36,19 @@
                  المتميزين </h2>
                 <div class="carousel slide fishCarousel" id="myCarouselFishFarm">
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/1.jpg" class="img-responsive"></a></div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/2.jpg" class="img-responsive"></a></div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/3.jpg" class="img-responsive"></a></div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/4.jpg" class="img-responsive"></a></div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/5.jpg" class="img-responsive"></a></div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4"><a href="#"><img src="images/slider/6.jpg" class="img-responsive"></a></div>
-                        </div>
+                        @foreach($galleries as $gallery)
+                            <div class="item  @if($loop->first) active @endif">
+                                <div class="col-md-4">
+                                    <a href="#">
+                                        <img src="{{ imageUrl($gallery->photo) }}" class="img-responsive">
+                                        <div class="carousel-caption">
+                                            <h2>{{ $gallery->title }}</h2>
+                                            <p>{{ $gallery->subject }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                     <a class="left carousel-control" href="#myCarouselFishFarm" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
                     <a class="right carousel-control" href="#myCarouselFishFarm" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>

@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\CompanyBank;
 use App\Models\CompanyClntSplr;
 use App\Models\CompanyMembership;
+use App\Models\Gallery;
 use App\Models\Governorate;
 use App\Models\HSCode;
 use App\Models\Membership;
@@ -66,7 +67,10 @@ class CompaniesController extends Controller
     {
         session()->forget('company');
         $companies = Company::where('FishCompanyType_ID', $this->FishCompanyType_ID)->latest()->paginate(10);
-        return view(\Route::current()->getPrefix() . '.companies.index', compact('companies'));
+        if (!\Route::current()->getPrefix()) {
+            $galleries = Gallery::where('FishCompanyType_ID', $this->FishCompanyType_ID)->take(10)->get();
+        }
+        return view(\Route::current()->getPrefix() . '.companies.index', compact('companies', 'galleries'));
     }
 
     /**

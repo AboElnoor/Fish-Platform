@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Farmer;
+use App\Models\Gallery;
 use App\Models\Governorate;
 use App\Models\HSCode;
 use Illuminate\Http\Request;
@@ -18,7 +19,11 @@ class FarmersController extends Controller
     {
         session()->forget('farmer');
         $farmers = Farmer::latest()->paginate(10);
-        return view(\Route::current()->getPrefix() . '.farmers.index', compact('farmers'));
+
+        if (!\Route::current()->getPrefix()) {
+            $galleries = Gallery::where('FishCompanyType_ID', 0)->take(10)->get();
+        }
+        return view(\Route::current()->getPrefix() . '.farmers.index', compact('farmers', 'galleries'));
     }
 
     /**
