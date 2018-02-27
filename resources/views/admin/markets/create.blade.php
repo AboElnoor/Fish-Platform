@@ -230,7 +230,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('price', 'السعر المقترح') !!}
-                                    {!! Form::text('price', $market->price ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text(
+                                        'price', $market->transport->price ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -242,7 +243,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('payment', 'طريقة الدفع') !!}
-                                    {!! Form::text('payment', $market->payment ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text(
+                                        'payment', $market->transport->payment ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">

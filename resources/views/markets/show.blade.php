@@ -5,6 +5,7 @@
 <section class="farms details">
     <div class="container">
     <div class="row">
+        @include('layouts.alert')
         <div class="col-md-4 col-xs-12">
             <div class="title">
                 <h2>{{ $market->buy_request ? 'طلب شراء' : 'عرض بيع' }}</h2>
@@ -35,7 +36,7 @@
         </div>
         <div class="col-md-8 col-xs-12">
             <div class="col-md-12">
-                <a href="#" class="col-md-4 btn btn-primary pull-left">اتصل بصاحب العرض</a>
+                <a href="{{ route('markets.request', $market) }}" class="col-md-4 btn btn-primary pull-left">اتصل بصاحب العرض</a>
             </div>
             <div class="title">
                 <h2>بيانات المنتج</h2>

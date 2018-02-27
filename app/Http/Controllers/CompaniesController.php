@@ -81,6 +81,10 @@ class CompaniesController extends Controller
     public function create()
     {
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        $locals = old('Governorate_ID') ?
+            Governorate::find(old('Governorate_ID'))->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
+        $villages = old('Locality_ID') ?
+            Governorate::find(old('Governorate_ID'))->villages->pluck('Locality_Name_A', 'Locality_ID') : null;
         $types = ActivityType::where('ActivityTypeGroup_ID', $this->ActivityTypeGroup_ID)
             ->get()->pluck('AName', 'ActivityType_ID');
         $banks = CompanyBank::all()->pluck('Bank_Name_A', 'Bank_ID');

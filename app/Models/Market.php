@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\User;
+
 class Market extends Model
 {
     public function category()
@@ -27,5 +29,10 @@ class Market extends Model
     public function transport()
     {
         return $this->hasOne(MarketTransport::class);
+    }
+
+    public function requesters()
+    {
+        return $this->belongsToMany(User::class, 'market_request', 'user', 'market_id');
     }
 }

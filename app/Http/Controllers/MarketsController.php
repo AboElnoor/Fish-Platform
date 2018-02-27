@@ -6,6 +6,7 @@ use App\Models\Governorate;
 use App\Models\HSCode;
 use App\Models\Market;
 use App\Models\PtoolsType;
+use App\User;
 use Illuminate\Http\Request;
 
 class MarketsController extends Controller
@@ -187,6 +188,34 @@ class MarketsController extends Controller
     }
 
     /**
+     * Add requester information to offer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Market  $company
+     * @return \Illuminate\Http\Response
+     */
+    public function addRequester(Request $request, Market $market)
+    {
+        $market->requesters()->sync(auth()->id(), false);
+        $success = 'تم ارسال رسالة الى صاحب العرض بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
+     * remove requester information from offer.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Market  $company
+     * @return \Illuminate\Http\Response
+     */
+    public function CancelRequester(Request $request, Market $market, User $user)
+    {
+        $market->requesters()->detach($user);
+        $success = 'تم الحذف بنجاح';
+        return back()->with(compact('success'));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  Market  $market
@@ -206,8 +235,13 @@ class MarketsController extends Controller
     public function edit(Market $market)
     {
         $hSCodes = $this->hSCodes;
+        $types = PtoolsType::all()->pluck('name', 'id');
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
-        return view('admin.markets.create', compact('market', 'hSCodes', 'governorates'));
+        $buy = request('buy_request');
+        return view(
+            \Route::current()->getPrefix() . '.markets.create',
+            compact('market', 'hSCodes', 'governorates', 'buy', 'types')
+        );
     }
 
     /**
@@ -222,8 +256,9 @@ class MarketsController extends Controller
         $marketData = $request->validate($this->rules());
         $marketUser = $request->validate($this->userRules());
         $marketTransport = $request->validate($this->transportRules());
+        // dd($marketData);
         try {
-            \DB::transaction(function () use ($marketData, $marketUser, $marketTransport) {
+            \DB::transaction(function () use ($market, $marketData, $marketUser, $marketTransport) {
                 $image = request()->file('photo');
                 $photo = $image ? $image->store('markets') : 'images/default.jpg';
                 $data = [
@@ -236,11 +271,11 @@ class MarketsController extends Controller
                 }
                 $market->update($data + $marketData);
                 if ($marketUser) {
-                    $market->user()->createOrUpdate($marketUser);
+                    $market->user()->updateOrCreate($marketUser);
                 }
 
                 if ($marketTransport) {
-                    $market->transport()->createOrUpdate($marketTransport);
+                    $market->transport()->updateOrCreate($marketTransport);
                 }
             });
             $success = 'تم التعديل بنجاح';
@@ -250,9 +285,9 @@ class MarketsController extends Controller
         }
 
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
-            return compact('success');
+            return compact('success', 'error');
         }
-        return back()->with(compact('success'));
+        return back()->with(compact('success', 'error'));
     }
 
     /**

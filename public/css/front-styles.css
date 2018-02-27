@@ -104,7 +104,7 @@ section {
 }
 
 /*******
-Navbar 
+Navbar
 *******/
 .navbar-default {
     background-color: #1c75bc;
@@ -249,7 +249,7 @@ Adbox
 }
 
 /*************
-News carousel 
+News carousel
 ************/
 .carousel-news .carousel-wrapper .carousel-indicators {
     position: relative;
@@ -440,7 +440,6 @@ Bottom Footer
 }
 
 .bottom-footer a:first-child:after {
-    content: "|";
     margin-right: 20px;
 }
 
@@ -761,7 +760,7 @@ section.title {
 
 /* End Section Purchase-crop */
 /*************
-Bashaer End 
+Bashaer End
 ************/
 /*************
 Ask Start
@@ -1298,7 +1297,7 @@ select {
     transform: translateZ(0);
   }
 
- 
+
 .main-slider li.selected{
    background: #164986;
  }
@@ -1327,7 +1326,7 @@ select {
     width: 100%;
     margin: 0 auto 5px auto;
     height: 425px;
-  } 
+  }
 
 .main-slider .news-content {
     position: absolute;
@@ -1432,7 +1431,7 @@ span.required{
     background: #c8dcec !important;
     color: #1c75bc;
     border-top: 1px solid #22262e;
-    cursor:auto; 
+    cursor:auto;
 }
 .userprofile .table-fill td{
     padding:10px;

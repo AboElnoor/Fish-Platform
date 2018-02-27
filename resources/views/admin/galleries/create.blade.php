@@ -5,13 +5,16 @@
 <section class="form">
     <div class="container">
         @include('layouts.alert')
-        {!! Form::open(['route' => 'admin.galleries.store', 'files' => true]) !!}
+        {!! Form::open([
+                'method' => isset($gallery) ? 'PUT' : 'POST',
+                'route' => isset($gallery) ? ['admin.galleries.update', $gallery] : 'admin.galleries.store',
+            ]) !!}
             <div class="col-md-12">
                 <div class="form-group">
                     {!! Form::label('FishCompanyType_ID', 'القسم') !!}
                     {!! Form::select(
                             'FishCompanyType_ID',
-                            $categories->prepend('مزارع الاسماك', 0), null,
+                            $categories->prepend('مزارع الاسماك', 0), $gallery->FishCompanyType_ID ?? null,
                             ['class' => 'form-control']
                         ) !!}
                 </div>
@@ -24,11 +27,12 @@
                 <div class="clearfix"></div>
                 <div class="form-group">
                     {!! Form::label('title', 'العنوان:') !!}
-                    {!! Form::text('title', null, ['id' => 'title', 'class' => 'form-control']) !!}
+                    {!! Form::text('title', $gallery->title ?? null, ['id' => 'title', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('subject', 'النص:') !!}
-                    {!! Form::textarea('subject', null, ['id' => 'subject', 'class' => 'form-control']) !!}
+                    {!! Form::textarea(
+                        'subject', $gallery->subject ?? null, ['id' => 'subject', 'class' => 'form-control']) !!}
                 </div>
                 <div class="form-group col-md-12">
                     {!! Form::submit('حفظ', ['class' => 'btn btn-primary']) !!}

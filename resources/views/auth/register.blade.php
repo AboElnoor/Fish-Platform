@@ -25,13 +25,21 @@
                                         'FullName', old('FullName'), ['id' => 'name', 'class' => 'form-control']) !!}
                                 </div>
                             </div>
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'username', 'اسم المستخدم *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text(
+                                        'username', old('username'), ['id' => 'name', 'class' => 'form-control']) !!}
+                                </div>
+                            </div>
                             <!-- Email input-->
                             <div class="form-group">
                                 {!! Form::label(
-                                    'username', 'رقم الموبايل *', ['class' => 'col-md-4 control-label reg-label']) !!}
+                                    'phone', 'رقم الموبايل *', ['class' => 'col-md-4 control-label reg-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text(
-                                        'username', old('username'), ['id' => 'number', 'class' => 'form-control']) !!}
+                                        'phone', old('phone'), ['id' => 'number', 'class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -128,7 +136,7 @@
                                             <span style="font-size: 12px">سعر الاشتراك في خدمة الرسائل القصيرة خمسون قرشاً يومياً</span>
                                         </label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-lg reg-btn">التسجيل</button>
+                                    {!! Form::submit('التسجيل', ['class' => 'btn btn-primary btn-lg reg-btn']) !!}
                                 </div>
                             </div>
                         </div>

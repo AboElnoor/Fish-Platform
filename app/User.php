@@ -2,7 +2,10 @@
 
 namespace App;
 
+use App\Models\Governorate;
 use App\Models\HSCode;
+use App\Models\Locality;
+use App\Models\Market;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -46,5 +49,25 @@ class User extends Authenticatable
     public function hSCodes()
     {
         return $this->belongsToMany(HSCode::class, 'hscode_user', $this->primaryKey, 'HSCode_ID');
+    }
+
+    public function governorate()
+    {
+        return $this->belongsTo(Governorate::class, 'Governorate_ID');
+    }
+
+    public function locality()
+    {
+        return $this->belongsTo(Locality::class, 'Locality_ID');
+    }
+
+    public function markets()
+    {
+        return $this->hasMany(Market::class, 'EntryUser');
+    }
+
+    public function requestedMarkets()
+    {
+        return $this->belongsToMany(Market::class, 'market_request', 'market_id', 'user');
     }
 }

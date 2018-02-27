@@ -1,78 +1,56 @@
 @extends('admin.layouts.app')
-@section('title') اسأل خبير @stop
+@section('title') قــائمة مــزارع الاســماك @stop
 
 @section('content')
-<section>
-    <div class="container">
-        <div class="title ">
-            <h2>اسأل خبير</h2>
-        </div>
-        <div class="row">
-            <div class="tab">
-                <div class="tab-wrapper">
-                    <ul class="tabs">
-                        <li><a href="#">الأسئلة الغير مجابة</a></li>
-                        <li><a href="#">الأسئلة المجابة</a></li>
-                    </ul>
-                    <!-- / tabs -->
-                </div>
-                <div class="tab_content">
-                    <div class="tabs_item">
-                        <table class="table table-striped">
-                            <tbody>
-                                @php
-                                    $unanswereds = $experts->whereNull('answer')->paginate(10);
-                                @endphp
-                                @forelse($unanswereds as $unanswered)
-                                    <tr>
-                                        <td><a href="{{ route(
-                                                        'admin.experts.show',
-                                                        $unanswered
-                                                    ) }}">{{ $unanswered->question }}</a></td>
-                                    </tr>
-                                @empty
-                                    <tr>ﻻ توجد بيانات</tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        <div class="text-center">
-                            {{ $unanswereds->links() }}
-                        </div>
-                    </div>
-                    <!-- / tabs_item -->
-                    <div class="tabs_item">
-                        <table class="table table-striped">
-                        <tbody>
-                            @php
-                                $answereds = $experts->whereNotNull('answer')
-                                    ->orWhere('answer', '<>', 'false')->paginate(10);
-                            @endphp
-                            @forelse($answereds as $answered)
-                                <tr>
-                                    <td><a href="{{ route(
-                                                    'admin.experts.show',
-                                                    $answered
-                                                ) }}">{{ $answered->question }}</a></td>
-                                </tr>
-                            @empty
-                                <tr>ﻻ توجد بيانات</tr>
-                            @endforelse
-                        </tbody>
-                        </table>
-                        <div class="text-center">
-                            {{ $answereds->links() }}
-                        </div>
-                    </div>
-                    <!-- / tabs_item -->
-                </div>
-                <!-- / tab_content -->
-            </div>
-            <!-- / tab -->
-        </div>
-    </div>
+<section class="farms">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2 class="section-title">قــائمة مــزارع الاســماك</h2>
+			</div>
+			<div class="col-md-6">
+				<a href="{{ route('admin.galleries.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+			</div>
+		</div>
+		@include('layouts.alert')
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>كود</th>
+					<th>العنوان</th>
+					<th>النص</th>
+					<th>القسم</th>
+					<th>#</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				@forelse($galleries as $gallary)
+					<tr>
+						<td>{{ $gallary->id }}</td>
+						<td>{{ $gallary->title }}</td>
+						<td>{{ $gallary->subject }}</td>
+						<td>{{
+							$gallary->FishCompanyType_ID ? $gallary->category->FishCompanyType_Name : 'مزارع الاسماك' }}</td>
+						<td>
+							<a href="{{ route('admin.galleries.edit', $gallary) }}" class="btn btn-sm btn-primary">تعديل</a>
+						</td>
+						<td>
+							{!! Form::open(['method' => 'DELETE', 'route' => ['admin.galleries.destroy', $gallary]]) !!}
+					            {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
+							{!! Form::close() !!}
+						</td>
+					</tr>
+				@empty
+					<tr>
+                        <td colspan="9">لا توجد نتائج لعرضها</td>
+                    </tr>
+				@endforelse
+			</tbody>
+		</table>
+		<div class="text-center">
+			{{ $galleries->links() }}
+		</div>
+	</div>
 </section>
-@stop
-
-@section('scripts')
-<script src="/js/admin-script.js"></script>
 @stop

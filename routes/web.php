@@ -61,6 +61,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
     Route::resource('ptools', 'MarketsController');
     Route::resource('galleries', 'GalleriesController');
+    Route::resource('users', 'UsersController');
 });
 
 Route::middleware('web')->group(function () {
@@ -72,16 +73,19 @@ Route::middleware('web')->group(function () {
     Route::resource('practices', 'PracticesController')->only('index', 'show');
     Route::get('videos', 'VideosController@index')->name('videos.index');
     Route::get('prices', 'PricesController@index')->name('prices.index');
+    Route::get('markets/{market}/request/', 'MarketsController@addRequester')->name('markets.request');
+    Route::delete('markets/{market}/cancel/{user}', 'MarketsController@CancelRequester')->name('markets.cancel');
     Route::get('markets/search', 'MarketsController@search')->name('markets.search');
-    Route::resource('markets', 'MarketsController')->except('edit', 'update', 'delete');
+    Route::resource('markets', 'MarketsController');
     Route::resource('experts', 'ExpertsController')->only('index', 'store', 'show');
     Route::resource('farmers', 'FarmersController')->only('index', 'create', 'store');
     Route::get('contents/{type}', 'ContentsController@index')->name('contents.type');
     Route::get('content/{content}', 'ContentsController@show')->name('contents.show');
     Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
-    Route::resource('ptools', 'MarketsController')->except('edit', 'update', 'delete');
+    Route::resource('ptools', 'MarketsController');
     Route::resource('companies', 'CompaniesController')->only('index');
     Route::resource('factories', 'CompaniesController')->only('index');
     Route::resource('sellers', 'CompaniesController')->only('index');
     Route::resource('contact', 'ContactsController')->only('store');
+    Route::resource('users', 'UsersController')->only('show', 'edit', 'update');
 });
