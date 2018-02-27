@@ -48,7 +48,7 @@ class UsersController extends Controller
             'username' => 'required|string|max:255|unique:users',
             'phone' => 'required|string|max:20|numeric|unique:users',
             'email' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
             'Governorate_ID' => 'required|exists:governorate',
             'Locality_ID' => 'required|exists:locality',
             'HSCode_ID.*' => 'required|exists:hscode,HSCode_ID',
@@ -92,6 +92,9 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        if (auth()->id() != $user->User_ID && !\Route::current()->getPrefix()) {
+            return back()->with('error', 'عفوا ﻻ تملك صلاحية الوصول لهذه الصفحة');
+        }
         return view('users.show', compact('user'));
     }
 
@@ -103,12 +106,18 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if (auth()->id() != $user->User_ID && !\Route::current()->getPrefix()) {
+            return back()->with('error', 'عفوا ﻻ تملك صلاحية الوصول لهذه الصفحة');
+        }
         $hSCodes = HSCode::whereColumn('HSCode_ID', 'MainHSCode')->pluck('HS_Aname', 'HSCode_ID');
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
         $locals = $user->Governorate_ID ?
             Governorate::find($user->Governorate_ID)->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
 
-        return view('admin.users.create', compact('user', 'hSCodes', 'governorates', 'locals'));
+        return view(
+            \Route::current()->getPrefix() . '.users.create',
+            compact('user', 'hSCodes', 'governorates', 'locals')
+        );
     }
 
     /**
@@ -124,7 +133,7 @@ class UsersController extends Controller
             'username' => 'required|string|max:255', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
             'phone' => 'required|string|numeric', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
             'email' => 'required|string|max:255', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
-            'password' => 'sometimes|nullable|string|min:6',
+            'password' => 'sometimes|nullable|string',
             'HSCode_ID.*' => 'sometimes|nullable|exists:hscode,HSCode_ID',
         ];
         $data = $request->validate($rules + $this->rules());
@@ -132,7 +141,7 @@ class UsersController extends Controller
             \DB::transaction(function () use ($user, $data) {
                 $hSCodes = $data['HSCode_ID'];
                 unset($data['HSCode_ID']);
-                if (empty($data['password'])) {
+                if (!empty($data['password'])) {
                     $data['password'] = bcrypt($data['password']);
                 }
                 $data['UserType'] = 2;

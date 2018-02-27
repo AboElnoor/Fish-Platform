@@ -76,7 +76,7 @@
                         </table>
 
                         <div class="padding20">
-                            <a href="#" class="col-md-4 col-md-offset-4 btn btn-sm btn-primary">
+                            <a href="{{ route('users.edit', $user) }}" class="col-md-4 col-md-offset-4 btn btn-sm btn-primary">
                                 <strong>تعديل</strong>
                             </a>
                         </div>

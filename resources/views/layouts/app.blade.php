@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -100,12 +100,12 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-5">
                         <div class="intro-certificate">
-                            <img src="images/certificate-intro.png" class="img-responsive">
+                            <img src="/images/certificate-intro.png" class="img-responsive">
                         </div>
                     </div>
                     <div class="col-md-4 col-md-offset-4 col-sm-5 col-sm-offset-1">
                         <div class="intro-logo">
-                            <img src="images/logo.png" class="img-responsive">
+                            <img src="/images/logo.png" class="img-responsive">
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     <div class="col-md-4 col-md-offset-4">
                         <div class="intro-text text-center">
                             <!-- <h2>شبكة الأسماك</h2> -->
-                            <img src="images/logo-type.png" class="img-responsive">
+                            <img src="/images/logo-type.png" class="img-responsive">
                             <p>شبكة تسويق الأسماك ومستلزمات الانتاج المدعمة بالمعلومات التسويقية والإرشاد.</p>
                         </div>
                     </div>
