@@ -64,7 +64,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::resource('users', 'UsersController');
 });
 
-Route::middleware('auth:web')->group(function () {
+// Route::middleware('auth:web')->group(function () {
     Route::get('markets/{market}/request/', 'MarketsController@addRequester')->name('markets.request');
     Route::delete('markets/{market}/cancel/{user}', 'MarketsController@CancelRequester')->name('markets.cancel');
 
@@ -74,7 +74,7 @@ Route::middleware('auth:web')->group(function () {
     Route::resource('ptools', 'MarketsController')->except('index', 'show');
     Route::resource('contact', 'ContactsController')->only('store');
     Route::resource('users', 'UsersController')->only('show', 'edit', 'update');
-});
+// });
 
 Route::middleware('web')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
