@@ -25,7 +25,7 @@
                             {!! Form::hidden('buy_request', $market->buy_request ?? $buy, ['class' => 'form-control']) !!}
                             <!-- Name input-->
                             @if(requestUri() == 'ptools')
-                                <div class="form-group">
+                                <div class="form-group overflow-h">
                                     {!! Form::label(
                                         'ptoolType', 'نوع المنتج', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label('HSCode_ID', 'نوع الاسماك', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::select(
@@ -49,19 +49,19 @@
                                         ) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label('pname', requestUri() == 'ptools' ? 'اسم المنتج' : 'الصنف', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('pname', $market->pname ?? old('pname'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label('amount', 'الكميه', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('amount', $market->amount ?? old('amount'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label(
                                     'startDate',
                                     'تاريخ ' . ($market->buy_request ?? $buy ? 'الطلب' : 'العرض'),
@@ -73,7 +73,7 @@
                                         ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label(
                                     'endDate',
                                     ($market->buy_request ?? $buy ? 'الطلب' : 'العرض') . ' ساري حتي',
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             @if(requestUri() == 'markets')
-                                <div class="form-group">
+                                <div class="form-group overflow-h">
                                     {!! Form::label(
                                         'transportDate', 'تاريخ التوريد', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
@@ -96,7 +96,7 @@
                                             ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group overflow-h">
                                     {!! Form::label('price', 'السعر المقترح', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
                                         {!! Form::text(
@@ -107,20 +107,20 @@
                                 </div>
                             @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label('specs', 'المواصفات', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('specs', $market->specs ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group overflow-h">
                                 {!! Form::label('photo', 'صورة المنتج', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::file('photo') !!}
                                 </div>
                             </div>
                             <div class="button-custmoeize">
-                                <div class="form-group">
+                                <div class="form-group overflow-h">
                                     <div class="col-md-8 col-md-offset-4">
                                         {!! Form::submit(
                                             isset($market) ? 'تعديل' : 'اضافة',

@@ -5,6 +5,14 @@
 <section class="login">
     <div class="container">
         <div class="row">
+             <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-danger">
+                  هذه الخدمة متاحة للأعضاء فقط برجاء تسجيل الدخول أو اشترك في خدمات شبكة الأسماك مجانا 
+                  <a class="alert-link" href="{{ route('register') }}">من هنا</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">تسجيل دخول</div>
