@@ -7,7 +7,7 @@
         <div class="row">
              <div class="col-md-8 col-md-offset-2">
                 <div class="alert alert-danger">
-                  هذه الخدمة متاحة للأعضاء فقط برجاء تسجيل الدخول أو اشترك في خدمات شبكة الأسماك مجانا 
+                  هذه الخدمة متاحة للأعضاء فقط برجاء تسجيل الدخول أو اشترك في خدمات شبكة الأسماك مجانا
                   <a class="alert-link" href="{{ route('register') }}">من هنا</a>
                 </div>
             </div>
@@ -21,15 +21,15 @@
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <label for="username" class="col-md-4 control-label">اسم المستخدم</label>
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label for="phone" class="col-md-4 control-label">اسم المستخدم</label>
 
                                 <div class="col-md-6">
-                                    <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                    <input id="phone" type="phone" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
 
-                                    @if ($errors->has('username'))
+                                    @if ($errors->has('phone'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
+                                            <strong>{{ $errors->first('phone') }}</strong>
                                         </span>
                                     @endif
                                 </div>

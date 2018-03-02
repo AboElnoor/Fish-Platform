@@ -82,7 +82,7 @@
         <div class="login-wrapper">
             {!! Form::open(['route' => 'login']) !!}
                 <div class="form-group">
-                    <input type="text" name="username"
+                    <input type="text" name="phone"
                         class="form-control" id="exampleInputEmail1" placeholder="اسم المستخدم">
                 </div>
                 <div class="form-group">
