@@ -116,21 +116,42 @@
                     <h4><b class="margin20">أنواع الأسماك التي تهمك معرفة أسعارها وأفضل الممارسات:</b></h4>
                     <fieldset class="col-md-9 col-md-offset-1 margin20">
                         <div class="form-group">
-                            @foreach(old('HSCode_ID') ?? $user->hSCodes ?? [0,0,0] as $hSCode)
+                            {{-- @forelse(old('HSCode_ID') ?? $user->hSCodes ?? [0, 0, 0] as $hSCode) --}}
+                                {{-- @if($loop->count == 3) {{ dump($loop->count) }} --}}
+                                    {{-- <div class="col-md-4 centre">
+                                        {!! Form::label(
+                                                'HSCode_ID',
+                                                'النوع ' .
+                                                ($loop->first ? 'الأول' : ($loop->last ? 'الثالث' : 'الثاني')) . ' *',
+                                                ['class' => 'control-label reg-label']) !!}
+                                            {!! Form::select(
+                                                "HSCode_ID[$loop->index]",
+                                                $hSCodes->prepend('من فضلك اختار', 0),
+                                                $hSCode->HSCode_ID ?? $hSCode ?? null,
+                                                ['id' => 'type' . ($loop->iteration), 'class' => 'form-control']
+                                            ) !!}
+                                    </div> --}}
+                                {{-- @else --}}
+                                    {{-- @include('layouts.loop') --}}
+                                {{-- @endif --}}
+                            {{-- @empty --}}
+                                {{-- @include('layouts.loop') --}}
+                            {{-- @endforelse --}}
+                            @for($i=0; $i < 3; $i++)
                                 <div class="col-md-4 centre">
                                     {!! Form::label(
                                             'HSCode_ID',
                                             'النوع ' .
-                                            ($loop->first ? 'الأول' : ($loop->last ? 'الثالث' : 'الثاني')) . ' *',
+                                            (!$i ? 'الأول' : ($i == 2 ? 'الثالث' : 'الثاني')) . ' *',
                                             ['class' => 'control-label reg-label']) !!}
                                         {!! Form::select(
-                                            "HSCode_ID[$loop->index]",
+                                            "HSCode_ID[$i]",
                                             $hSCodes->prepend('من فضلك اختار', 0),
-                                            $hSCode->HSCode_ID ?? $hSCode ?? null,
-                                            ['id' => 'type' . ($loop->index + 1), 'class' => 'form-control']
+                                            $user->hSCodes[$i]->HSCode_ID ?? old('HSCode_ID')[$i] ?? null,
+                                            ['id' => 'type' . ($i + 1), 'class' => 'form-control']
                                         ) !!}
                                 </div>
-                            @endforeach
+                            @endfor
                         </div>
                     </fieldset>
                     <div class="clearfix "></div>

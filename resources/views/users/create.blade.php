@@ -95,21 +95,21 @@
                         <div class="reg-title">أنواع الأسماك التي تهمك معرفة أسعارها وأفضل الممارسات</div>
                         <fieldset class="col-md-9 col-md-offset-1">
                             <div class="form-group">
-                                @foreach(old('HSCode_ID') ?? $user->hSCodes ?? [0,0,0] as $hSCode)
+                                @for($i=0; $i < 3; $i++)
                                     <div class="col-md-4 centre">
                                         {!! Form::label(
                                                 'HSCode_ID',
                                                 'النوع ' .
-                                                ($loop->first ? 'الأول' : ($loop->last ? 'الثالث' : 'الثاني')) . ' *',
+                                                (!$i ? 'الأول' : ($i == 2 ? 'الثالث' : 'الثاني')) . ' *',
                                                 ['class' => 'control-label reg-label']) !!}
                                             {!! Form::select(
-                                                "HSCode_ID[$loop->index]",
+                                                "HSCode_ID[$i]",
                                                 $hSCodes->prepend('من فضلك اختار', 0),
-                                                $hSCode->HSCode_ID ?? $hSCode ?? null,
-                                                ['id' => 'type' . ($loop->index + 1), 'class' => 'form-control']
+                                                $user->hSCodes[$i]->HSCode_ID ?? old('HSCode_ID')[$i] ?? null,
+                                                ['id' => 'type' . ($i + 1), 'class' => 'form-control']
                                             ) !!}
                                     </div>
-                                @endforeach
+                                @endfor
                             </div>
                         </fieldset>
                         <div class="clearfix"></div>

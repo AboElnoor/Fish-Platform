@@ -5,13 +5,34 @@
 <section class="farms">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h2 class="section-title">الاعضاء</h2>
             </div>
-            <div class="col-md-6">
-                <a href="{{ route('admin.' . requestUri() . '.create') }}"
-                class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
-            </div>
+            {!! Form::open(['method' => 'GET', 'route' => 'admin.' . requestUri() . '.search']) !!}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('FullName', 'الاسم بالكامل') !!}
+                        {!! Form::text('FullName', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('phone', 'رقم التليفون') !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            {!! Form::submit('بحث', ['class' => 'btn btn-primary btn-block']) !!}
+                        </div>
+                        <div class="col-md-8">
+                            <a href="{{ route('admin.' . requestUri() . '.create') }}"
+                            class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
         </div>
         @include('layouts.alert')
         <table class="table table-striped">

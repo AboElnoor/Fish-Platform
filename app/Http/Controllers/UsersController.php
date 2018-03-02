@@ -23,12 +23,41 @@ class UsersController extends Controller
             return redirect()->route('admin.admin');
         }
 
+        $users = User::latest('User_ID');
+
         if (requestUri() == 'admins') {
-            $users = User::where('UserType', '<>', 2)->paginate(10);
+            $users->where('UserType', '<>', 2);
         } else {
-            $users = User::where('UserType', 2)->paginate(10);
+            $users->where('UserType', 2);
+        }
+        $users = $users->paginate(10);
+        return view('admin.users.index', compact('users'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        $users = User::latest('User_ID');
+        if (requestUri() == 'admins') {
+            $users->where('UserType', '<>', 2);
+        } else {
+            $users->where('UserType', 2);
         }
 
+        $users->where(function ($query) {
+            if (request('phone')) {
+                $query->where('phone', 'like', '%' . request('phone') . '%');
+            }
+            if (request('FullName')) {
+                $query->orWhere('FullName', 'like', '%' . request('FullName') . '%');
+            }
+        });
+        $users = $users->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 

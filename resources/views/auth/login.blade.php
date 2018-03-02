@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('title') تسجيل الدخول @stop
 
 @section('content')

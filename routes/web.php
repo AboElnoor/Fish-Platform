@@ -61,7 +61,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin:web')->group(function 
     Route::get('ptools/search', 'MarketsController@search')->name('ptools.search');
     Route::resource('ptools', 'MarketsController');
     Route::resource('galleries', 'GalleriesController');
+    Route::get('users/search', 'UsersController@search')->name('users.search');
     Route::resource('users', 'UsersController');
+    Route::get('admins/search', 'UsersController@search')->name('admins.search');
     Route::resource('admins', 'UsersController');
 });
 
