@@ -155,4 +155,19 @@ $(document).ready(function() {
                 });
             });
     });
+
+    $('.Locality_ID').on('click', function(event) {
+        var url = $('.Governorate_ID').data('url') + '/' + $('.Governorate_ID').val();
+        var local = $(this);
+        $.ajax({
+                url: url,
+            })
+            .done(function(data) {
+                local.html('<option value=0>من فضلك اختار</option>');
+                $.each(data, function(index, val) {
+                    local.append('<option value=' + index + '>' + val + '</option>');
+                    console.log(index + ' => ' + val);
+                });
+            });
+    });
 });
