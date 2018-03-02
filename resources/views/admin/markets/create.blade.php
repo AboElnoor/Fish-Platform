@@ -28,13 +28,14 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     {!! Form::label('provider', 'الجهة / الاسم') !!}
-                                    {!! Form::text('provider', $market->provider ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text(
+                                        'provider', $market->user->provider ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('name', 'اسم العارض') !!}
-                                    {!! Form::text('name', $market->name ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text('name', $market->user->name ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -46,19 +47,21 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     {!! Form::label('mobile', 'موبايل العارض') !!}
-                                    {!! Form::text('mobile', $market->mobile ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text(
+                                        'mobile', $market->user->mobile ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('email', 'الايميل') !!}
-                                    {!! Form::email('email', $market->email ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::email(
+                                        'email', $market->user->email ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('fax', 'الفاكس') !!}
-                                    {!! Form::text('fax', $market->fax ?? null, ['class' => 'form-control']) !!}
+                                    {!! Form::text('fax', $market->user->fax ?? null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -94,8 +97,8 @@
                         @endif
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('type', 'اسم المنتج') !!}
-                                {!! Form::text('type', $market->type ?? null, ['class' => 'form-control']) !!}
+                                {!! Form::label('pname', requestUri() == 'ptools' ? 'اسم المنتج' : 'الصنف') !!}
+                                {!! Form::text('pname', $market->pname ?? null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="col-md-6">

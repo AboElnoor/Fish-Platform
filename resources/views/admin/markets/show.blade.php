@@ -37,7 +37,7 @@
                             <h4>تاريخ نهاية العرض: </h4>
                         </td>
                         <td>
-                            <h4><i>{{ $market->user->endDate }}</i></h4>
+                            <h4><i>{{ $market->user->endDate ?? '-' }}</i></h4>
                         </td>
                     </tr>
                 </tbody>

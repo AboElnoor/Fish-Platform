@@ -66,6 +66,7 @@
                             <tr>
                                 <th></th>
                                 <th class="text-center">نوع {{ $type }}</th>
+                                <th class="text-center">الاسم</th>
                                 <th class="text-center">تاريخ العرض</th>
                                 <th class="text-center">الكميه</th>
                             </tr>
@@ -82,6 +83,7 @@
                                     <td class="text-center">
                                         {{ @(requestUri() == 'markets' ? $buy->hSCode->HS_Aname : $buy->pType->name) ?? '-' }}
                                     </td>
+                                    <td class="text-center">{{ $buy->pname }}</td>
                                     <td class="text-center">{{ $buy->user->startDate ?? '-' }}</td>
                                     <td class="text-center">{{ $buy->amount }}</td>
                                 </tr>
@@ -102,6 +104,7 @@
                                 <tr>
                                     <th></th>
                                     <th class="text-center">نوع {{ $type }}</th>
+                                    <th class="text-center">الاسم</th>
                                     <th class="text-center">تاريخ العرض</th>
                                     <th class="text-center">الكميه</th>
                                 </tr>
@@ -117,6 +120,7 @@
                                         src="{{ asset('storage/' . $sell->photo) }}"></td>
                                     <td class="text-center">
                                         {{ $sell->hSCode->HS_Aname ?? $sell->pType->name ?? '-' }}</td>
+                                    <td class="text-center">{{ $sell->pname }}</td>
                                     <td class="text-center">{{ $sell->user->startDate ?? '-' }}</td>
                                     <td class="text-center">{{ $sell->amount }}</td>
                                 </tr>

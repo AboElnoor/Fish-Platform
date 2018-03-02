@@ -97,7 +97,7 @@ class MarketsController extends Controller
         return [
             'buy_request' => 'sometimes|nullable',
             'HSCode_ID' => 'required|exists:hscode',
-            'type' => 'sometimes|nullable|string',
+            'pname' => 'sometimes|nullable|string',
             'photo' => 'sometimes|nullable|image',
             'amount' => 'sometimes|nullable|string',
             'package' => 'sometimes|nullable|string',
@@ -177,6 +177,7 @@ class MarketsController extends Controller
             });
             $success = 'تم انشاء السوق بنجاح';
         } catch (\Exception $e) {
+            throw $e;
             \Log::error('storing ' . \Route::current()->getPrefix(), compact('e'));
             $error = 'حدث خطأ يرجى المحاولة مرة أخرى';
         }
@@ -184,7 +185,7 @@ class MarketsController extends Controller
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success', 'error');
         }
-        return back()->with(compact('success', 'error'));
+        return redirect()->route(getRouteNamePrefix() . '.index')->with(compact('success', 'error'));
     }
 
     /**

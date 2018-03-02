@@ -67,3 +67,11 @@ if (!function_exists('imageUrl')) {
         return asset($image ? ('storage/' . $image) : 'images/default.png');
     }
 }
+
+if (!function_exists('getRouteNamePrefix')) {
+    function getRouteNamePrefix()
+    {
+        $routeName = \Route::currentRouteName();
+        return substr($routeName, 0, strrpos($routeName, '.'));
+    }
+}

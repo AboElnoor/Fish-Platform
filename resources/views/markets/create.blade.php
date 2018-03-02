@@ -50,9 +50,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('name', 'اسم الصنف', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('pname', requestUri() == 'ptools' ? 'اسم المنتج' : 'الصنف', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
-                                    {!! Form::text('name', $market->name ?? old('name'), ['class' => 'form-control']) !!}
+                                    {!! Form::text('pname', $market->pname ?? old('pname'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -67,7 +67,10 @@
                                     'تاريخ ' . ($market->buy_request ?? $buy ? 'الطلب' : 'العرض'),
                                     ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
-                                    {!! Form::date('startDate', $market->user->startDate ?? old('startDate'), ['class' => 'form-control']) !!}
+                                    {!! Form::date(
+                                        'startDate',
+                                        $market->user->startDate ?? old('startDate') ?? \Carbon\Carbon::today(),
+                                        ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,7 +79,10 @@
                                     ($market->buy_request ?? $buy ? 'الطلب' : 'العرض') . ' ساري حتي',
                                     ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
-                                    {!! Form::date('endDate', $market->user->endDate ?? old('endDate'), ['class' => 'form-control']) !!}
+                                    {!! Form::date(
+                                        'endDate',
+                                        $market->user->endDate ?? old('endDate') ?? \Carbon\Carbon::today(),
+                                        ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             @if(requestUri() == 'markets')
@@ -86,7 +92,7 @@
                                     <div class="col-md-8">
                                         {!! Form::date(
                                             'transportDate',
-                                            $market->transport->transportDate ?? old('transportDate'),
+                                            $market->transport->transportDate ?? old('transportDate') ?? \Carbon\Carbon::today(),
                                             ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
