@@ -24,6 +24,10 @@ class PricesController extends Controller
      */
     public function index()
     {
+        if (trim(\Route::current()->getPrefix(), '/') == 'admin' && !in_array(auth()->user()->UserType, [1, 3])) {
+            return redirect()->route('admin.admin');
+        }
+
         $hSCodes = $this->hSCodes;
         $prices = Price::latest('PriceDate')
             ->with('hSCode', 'entryUser', 'updateUser')->paginate(10);

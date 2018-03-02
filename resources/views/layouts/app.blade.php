@@ -44,7 +44,9 @@
                                 {{ auth()->user()->FullName }}<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="">لوحة التحكم</a></li>
+                                @if(auth()->user() && auth()->user()->UserType != 2)
+                                    <li><a href="{{ route('admin.admin') }}">لوحة التحكم</a></li>
+                                @endif
                                 <li><a href="{{ route('users.show', auth()->user()) }}">الصفحة الشخصية</a></li>
                                 <li><a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Governorate;
 use App\Models\HSCode;
+use App\Models\UserType;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +19,16 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        if (auth()->user()->UserType != 1) {
+            return redirect()->route('admin.admin');
+        }
+
+        if (requestUri() == 'admins') {
+            $users = User::where('UserType', '<>', 2)->paginate(10);
+        } else {
+            $users = User::where('UserType', 2)->paginate(10);
+        }
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -31,9 +41,12 @@ class UsersController extends Controller
     {
         $hSCodes = HSCode::whereColumn('HSCode_ID', 'MainHSCode')->pluck('HS_Aname', 'HSCode_ID');
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        if (requestUri() == 'admins') {
+            $types = UserType::pluck('UserType_Name', 'UserType');
+        }
         $locals = old('Governorate_ID') ?
-            Governorate::find(old('Governorate_ID'))->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
-        return view('admin.users.create', compact('hSCodes', 'governorates', 'locals'));
+        Governorate::find(old('Governorate_ID'))->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
+        return view('admin.users.create', compact('hSCodes', 'governorates', 'locals', 'types'));
     }
 
     /**
@@ -46,7 +59,7 @@ class UsersController extends Controller
         return [
             'FullName' => 'required|string|max:255',
             'phone' => 'required|numeric|unique:users',
-            'email' => 'sometimes|nullable|string|max:255|unique:users',
+            'email' => 'sometimes|nullable|string',
             'password' => 'required|string',
             'Governorate_ID' => 'required|exists:governorate',
             'Locality_ID' => 'required|exists:locality',
@@ -69,7 +82,10 @@ class UsersController extends Controller
                 $hSCodes = $data['HSCode_ID'];
                 unset($data['HSCode_ID']);
                 $data['password'] = bcrypt($data['password']);
-                $data['UserType'] = 2;
+
+                if (empty($data['UserType'])) {
+                    $data['UserType'] = 2;
+                }
                 $data['EntDate'] = Carbon::now();
                 $user = User::create($data);
                 $user->hSCodes()->attach($hSCodes);
@@ -110,12 +126,15 @@ class UsersController extends Controller
         }
         $hSCodes = HSCode::whereColumn('HSCode_ID', 'MainHSCode')->pluck('HS_Aname', 'HSCode_ID');
         $governorates = Governorate::all()->pluck('Governorate_Name_A', 'Governorate_ID');
+        if (requestUri() == 'admins') {
+            $types = UserType::pluck('UserType_Name', 'UserType');
+        }
         $locals = $user->Governorate_ID ?
-            Governorate::find($user->Governorate_ID)->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
+        Governorate::find($user->Governorate_ID)->localities->pluck('Locality_Name_A', 'Locality_ID') : null;
 
         return view(
             \Route::current()->getPrefix() . '.users.create',
-            compact('user', 'hSCodes', 'governorates', 'locals')
+            compact('user', 'hSCodes', 'governorates', 'locals', 'types')
         );
     }
 
@@ -130,7 +149,7 @@ class UsersController extends Controller
     {
         $rules = [
             'phone' => 'required|string|numeric', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
-            'email' => 'required|string|max:255', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
+            'email' => 'sometimes|nullable|string',
             'password' => 'sometimes|nullable|string',
             'HSCode_ID.*' => 'sometimes|nullable|exists:hscode,HSCode_ID',
         ];
@@ -142,8 +161,11 @@ class UsersController extends Controller
                 if (!empty($data['password'])) {
                     $data['password'] = bcrypt($data['password']);
                 }
-                $data['UserType'] = 2;
-                $data['EntDate'] = Carbon::now();
+
+                if (empty($data['UserType'])) {
+                    $data['UserType'] = 2;
+                }
+
                 $user->update(array_filter($data));
                 if ($hSCodes) {
                     $user->hSCodes()->sync($hSCodes, false);

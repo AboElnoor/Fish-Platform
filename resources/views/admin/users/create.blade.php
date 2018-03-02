@@ -26,7 +26,7 @@
                                         ['id' => 'name', 'class' => 'form-control']) !!}
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label(
                                     'username', 'اسم المستخدم *', ['class' => 'control-label reg-label']) !!}
@@ -35,7 +35,7 @@
                                         $user->username ?? old('username'),
                                         ['id' => 'name', 'class' => 'form-control']) !!}
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- Email input-->
                         <div class="col-md-6">
                             <div class="form-group">
@@ -64,6 +64,24 @@
                                         ['id' => 'e-mail', 'class' => 'form-control']) !!}
                             </div>
                         </div>
+                        @if(requestUri() == 'admins')
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::label(
+                                    'UserType', 'درجة العضو', ['class' => 'control-label reg-label']) !!}
+                                {!! Form::select(
+                                            'UserType',
+                                            $types->prepend('من فضلك اختار', 0),
+                                            $user->UserType ?? old('UserType'),
+                                            [
+                                                'id' => 'gov',
+                                                'class' => 'form-control overflow-h',
+                                                'data-url' => url('/localities')
+                                            ]
+                                        ) !!}
+                            </div>
+                        </div>
+                        @endif
                     </fieldset>
                     <div class="clearfix"></div>
                     <h4><b class="margin20">مكان العمل:<b></h4>

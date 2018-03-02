@@ -26,6 +26,10 @@ class PracticesController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->UserType == 5) {
+            return redirect()->route('admin.admin');
+        }
+
         $practices = Practice::paginate(10);
         $videos = Video::paginate(10);
 

@@ -17,6 +17,10 @@ class FarmersController extends Controller
      */
     public function index()
     {
+        if (trim(\Route::current()->getPrefix(), '/') == 'admin' && !in_array(auth()->user()->UserType, [1, 3])) {
+            return redirect()->route('admin.admin');
+        }
+
         session()->forget('farmer');
         $farmers = Farmer::latest()->paginate(10);
 

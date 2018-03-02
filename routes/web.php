@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('admin:web')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin');
 
     Route::resource('farms', 'FarmsController');
@@ -62,6 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:web')->group(function (
     Route::resource('ptools', 'MarketsController');
     Route::resource('galleries', 'GalleriesController');
     Route::resource('users', 'UsersController');
+    Route::resource('admins', 'UsersController');
 });
 
 Route::middleware('auth:web')->group(function () {

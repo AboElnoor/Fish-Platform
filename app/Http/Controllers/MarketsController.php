@@ -26,6 +26,10 @@ class MarketsController extends Controller
      */
     public function index()
     {
+        if (trim(\Route::current()->getPrefix(), '/') == 'admin' && !in_array(auth()->user()->UserType, [1, 3])) {
+            return redirect()->route('admin.admin');
+        }
+
         $hSCodes = $this->hSCodes;
         $markets = Market::latest('id');
         $markets = requestUri() == 'markets' ? $markets->where('type_id', 1) : $markets->where('type_id', 2);

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Company;
 use App\Models\Market;
 use App\Models\Ptool;
+use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::Model('factory', Company::class);
         Route::Model('seller', Company::class);
         Route::Model('ptool', Market::class);
+        Route::Model('admin', User::class);
     }
 
     /**

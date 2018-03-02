@@ -15,6 +15,9 @@ class GalleriesController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->UserType == 5) {
+            return redirect()->route('admin.admin');
+        }
         $galleries = Gallery::paginate(10);
         return view('admin.galleries.index', compact('galleries'));
     }

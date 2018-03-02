@@ -9,7 +9,8 @@
                 <h2 class="section-title">الاعضاء</h2>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
+                <a href="{{ route('admin.' . requestUri() . '.create') }}"
+                class="btn btn-success pull-left" style="margin-top: 30px;">اضافة جديد</a>
             </div>
         </div>
         @include('layouts.alert')
@@ -32,10 +33,10 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">تعديل</a>
+                            <a href="{{ route('admin.' . requestUri() . '.edit', $user) }}" class="btn btn-sm btn-primary">تعديل</a>
                         </td>
                         <td>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['admin.users.destroy', $user]]) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['admin.' . requestUri() . '.destroy', $user]]) !!}
                                 {!! Form::submit('حذف', ['class' => 'btn btn-sm btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
