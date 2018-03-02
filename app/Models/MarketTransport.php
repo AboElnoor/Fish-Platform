@@ -11,6 +11,13 @@ class MarketTransport extends Model
      */
     protected $table = 'market_transport';
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['transportDate'];
+
     public function governorate()
     {
         return $this->belongsTo(Governorate::class, 'Governorate_ID');

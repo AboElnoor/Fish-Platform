@@ -45,9 +45,8 @@ class UsersController extends Controller
     {
         return [
             'FullName' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'phone' => 'required|string|max:20|numeric|unique:users',
-            'email' => 'required|string|max:255|unique:users',
+            'phone' => 'required|numeric|unique:users',
+            'email' => 'sometimes|nullable|string|max:255|unique:users',
             'password' => 'required|string',
             'Governorate_ID' => 'required|exists:governorate',
             'Locality_ID' => 'required|exists:locality',
@@ -130,7 +129,6 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = [
-            'username' => 'required|string|max:255', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
             'phone' => 'required|string|numeric', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
             'email' => 'required|string|max:255', Rule::unique('users')->ignore($user->User_ID, 'User_ID'),
             'password' => 'sometimes|nullable|string',

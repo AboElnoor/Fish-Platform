@@ -39,13 +39,19 @@
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                تسجيل الخروج
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ auth()->user()->FullName }}<b class="caret"></b>
                             </a>
-
+                            <ul class="dropdown-menu">
+                                <li><a href="">لوحة التحكم</a></li>
+                                <li><a href="{{ route('users.show', auth()->user()) }}">الصفحة الشخصية</a></li>
+                                <li><a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    تسجيل الخروج
+                                </a></li>
+                            </ul>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

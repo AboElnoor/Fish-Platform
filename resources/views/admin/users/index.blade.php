@@ -17,9 +17,9 @@
             <thead>
                 <tr>
                     <th>كود</th>
-                    <th>الاسم بالكامل</th>
-                    <th>اسم المستخدم</th>
-                    <th>المحافظة</th>
+                    <th>الاسم</th>
+                    <th>البريد الالكتروني</th>
+                    <th>رقم الموبايل</th>
                     <th>#</th>
                     <th>#</th>
                 </tr>
@@ -29,8 +29,8 @@
                     <tr>
                         <td>{{ $user->User_ID }}</td>
                         <td>{{ $user->FullName }}</td>
-                        <td>{{ $user->username }}</td>
-                        <td>{{ $user->governorate->Governorate_Name_A ?? '-' }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">تعديل</a>
                         </td>

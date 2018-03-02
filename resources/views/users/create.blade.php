@@ -95,36 +95,21 @@
                         <div class="reg-title">أنواع الأسماك التي تهمك معرفة أسعارها وأفضل الممارسات</div>
                         <fieldset class="col-md-9 col-md-offset-1">
                             <div class="form-group">
-                                <div class="col-md-4  centre">
-                                    {!! Form::label(
-                                        'HSCode_ID', 'النوع الأول *', ['class' => 'control-label reg-label']) !!}
-                                    {!! Form::select(
-                                        'HSCode_ID[]',
-                                        $hSCodes->prepend('من فضلك اختار', 0),
-                                        old('HSCode_ID.0'),
-                                        ['id' => 'type1']
-                                    ) !!}
-                                </div>
-                                <div class="col-md-4 centre">
-                                    {!! Form::label(
-                                        'HSCode_ID', 'النوع الثاني *', ['class' => 'control-label reg-label']) !!}
-                                    {!! Form::select(
-                                        'HSCode_ID[]',
-                                        $hSCodes->prepend('من فضلك اختار', 0),
-                                        old('HSCode_ID.1'),
-                                        ['id' => 'type2']
-                                    ) !!}
-                                </div>
-                                <div class="col-md-4 centre">
-                                    {!! Form::label(
-                                        'HSCode_ID', 'النوع الثالث *', ['class' => 'control-label reg-label']) !!}
-                                    {!! Form::select(
-                                        'HSCode_ID[]',
-                                        $hSCodes->prepend('من فضلك اختار', 0),
-                                        old('HSCode_ID.2'),
-                                        ['id' => 'type3']
-                                    ) !!}
-                                </div>
+                                @foreach(old('HSCode_ID') ?? $user->hSCodes ?? [0,0,0] as $hSCode)
+                                    <div class="col-md-4 centre">
+                                        {!! Form::label(
+                                                'HSCode_ID',
+                                                'النوع ' .
+                                                ($loop->first ? 'الأول' : ($loop->last ? 'الثالث' : 'الثاني')) . ' *',
+                                                ['class' => 'control-label reg-label']) !!}
+                                            {!! Form::select(
+                                                "HSCode_ID[$loop->index]",
+                                                $hSCodes->prepend('من فضلك اختار', 0),
+                                                $hSCode->HSCode_ID ?? $hSCode ?? null,
+                                                ['id' => 'type' . ($loop->index + 1), 'class' => 'form-control']
+                                            ) !!}
+                                    </div>
+                                @endforeach
                             </div>
                         </fieldset>
                         <div class="clearfix"></div>

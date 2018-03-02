@@ -68,7 +68,8 @@
                                 </tr>
                                 @foreach($user->hSCodes as $hSCode)
                                     <tr>
-                                        <td class="text-center">النوع الأول</td>
+                                        <td class="text-center">النوع
+                                            {{ ($loop->first ? 'الأول' : ($loop->last ? 'الثالث' : 'الثاني')) }}</td>
                                         <td class="text-right">{{ $hSCode->HS_Aname }}</td>
                                     </tr>
                                 @endforeach

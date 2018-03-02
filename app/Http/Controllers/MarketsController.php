@@ -288,7 +288,7 @@ class MarketsController extends Controller
         if (trim(\Route::current()->getPrefix(), '/') == 'api') {
             return compact('success', 'error');
         }
-        return back()->with(compact('success', 'error'));
+        return redirect()->route(getRouteNamePrefix() . '.index')->with(compact('success', 'error'));
     }
 
     /**
